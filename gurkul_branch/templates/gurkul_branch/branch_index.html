@@ -1,0 +1,222 @@
+{% extends 'basic.html' %}
+{% block title %}
+Gurkul Branch
+{% endblock %}
+
+{% block css %}
+<style>
+    /* css for primary div of info field and button field */
+    .container-fluid{
+        margin-top: 20px;
+        background-color: white;
+    }
+    .info{
+        background-color: rgb(223, 214, 214);
+        width: calc(100% - 400px);
+    }
+    .info_head{
+        width: 96%;
+        height: 60px;
+        background-color: rgb(255, 0, 0);
+        display: flex;
+        justify-content: center;
+        border: 2px solid blue;
+        border-radius: 7px;
+        margin: 10px;
+    }
+    /* but div css */
+    .but{
+        background-color: rgb(255, 255, 255);
+        width: 400px;
+        height: auto;
+        justify-content: center;
+    }
+    .but_btn{
+        padding: 10px;
+        margin: 10px;
+
+    }
+    /* css for table */
+    table{
+        min-width: 100%;
+    }
+    .tr1{
+        flex-wrap: wrap;
+        display: flex;
+        width: 98%;
+        justify-content: space-between;
+        background-color: #212529;
+        margin: 10px;
+        border: 1px solid red;
+        border-radius: 10px;
+    }
+    .td1{
+        width: 33%;
+        min-width: 200px;
+        display: flex;
+        justify-content: center;  
+        align-items: center;
+        margin-top: 20px;      
+        margin-bottom: 20px;      
+    }
+    .tr2{
+        margin-top: 50px;
+    }
+    /* css for edit btn */
+    .edit_btn_fade{
+        visibility: hidden;
+    }
+
+    @media screen and (max-width:1200px){
+        /* css for profile information div */
+        .info{
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+
+<div class="container-fluid">
+<div style="background-color: white;border:2px solid white; border-radius:10px;width:100%;height:100%;display: flex;justify-content: center;flex-wrap: wrap;">
+
+<div class="info">
+<div class="info_head">
+    <h1>Branch Profile Data</h1>
+</div>
+<h3><b class="text-success">Branch Code: {{branch_code}}</b></h3>
+<div>
+
+    <div id="update_profile">
+    </div>
+
+    </div>
+    <table>
+        <tbody>
+          <tr class="tr1">
+            <td class="td1">Branch Manager</td>
+            <td class="td1">{{profile.0.branch_mgr}}</td>
+            <td class="td1"><button class="edit_info btn btn-warning edit_btn_fade" data-input="text" data-type="branch_mgr">Edit</button></td>
+          </tr>
+          <tr class="tr1">
+            <td class="td1">Branch Manager Contact No.</td>
+            <td class="td1">{{profile.0.branch_mgr_mob}}</td>
+            <td class="td1"><button class="edit_info btn btn-warning edit_btn_fade" data-input="number" data-type="branch_mgr_mob">Edit</button></td>
+          </tr>
+          <tr class="tr1">
+            <td class="td1">Branch Address</td>
+            <td class="td1">{{profile.0.branch_add}}</td>
+            <td class="td1"><button class="edit_info btn btn-warning edit_btn_fade" data-input="text" data-type="branch_add">Edit</button></td>
+          </tr>
+          <tr class="tr1">
+            <td class="td1">Branch Registration Date</td>
+            <td class="td1">{{profile.0.date.date}}</td>
+            <td class="td1">{{profile.0.date.time}}</td>
+          </tr>
+          
+          <tr class="tr1">
+            <td class="td1"><button class="btn btn-success">Add Teacher</button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<div class="but">
+    <button class="btn btn-danger but_btn edit_profile_btn" data-fade="off">Edit Profile</button>
+    <button class="btn btn-primary but_btn">Go to Student Data</button>
+</div>
+</div>
+</div>
+
+<div>
+    <div class="info_head" style="background-color: rgb(81, 255, 0); margin-top: 20px;">
+        <h1><b style="color: black;">All Teachers List</b></h1>
+    </div>
+<table>
+    <tbody>
+      <tr class="tr1 tr2">
+        <td class="td1 td2">Branch Manager</td>
+        <td class="td1">{{profile.0.branch_mgr}}</td>
+        <td class="td1"><button class="edit_info btn btn-warning edit_btn_fade" data-input="text" data-type="branch_mgr">Edit</button></td>
+      </tr>
+      <tr class="tr1 tr2">
+        <td class="td1">Branch Manager Contact No.</td>
+        <td class="td1">{{profile.0.branch_mgr_mob}}</td>
+        <td class="td1"><button class="edit_info btn btn-warning edit_btn_fade" data-input="number" data-type="branch_mgr_mob">Edit</button></td>
+      </tr>
+      <tr class="tr1 tr2">
+        <td class="td1">Branch Address</td>
+        <td class="td1">{{profile.0.branch_add}}</td>
+        <td class="td1"><button class="edit_info btn btn-warning edit_btn_fade" data-input="text" data-type="branch_add">Edit</button></td>
+      </tr>
+      <tr class="tr1 tr2">
+        <td class="td1">Branch Registration Date</td>
+        <td class="td1">{{profile.0.date.date}}</td>
+        <td class="td1">{{profile.0.date.time}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% else %}
+<div class="forbidden" style="background-image: linear-gradient(red,white,green);
+height: 100vh;
+width: 100vw;
+display: flex;
+justify-content: center;
+align-items: center;
+position: absolute;
+top: 0px;
+right: 0px;">
+    <i class="fas fa-skull-crossbones" style="color: rgb(17, 0, 255); font-size: 10vw;"></i><pre style="color: black; font-size: 5vw;">  You are not authenticated to view this page.</pre>
+</div>
+{% endif %}
+
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    //  non event js 
+    // code for edit button
+    // $('.edit_btn_fade').fadeOut()
+</script>
+<script>
+    // code for branch profile form
+    $(document).ready(function(){
+        $('.edit_info').click(function(){
+            type=$(this).attr('data-type')
+            input_type=$(this).attr('data-input')
+            input=document.getElementById('upd_br_pro')
+            if(input==null){
+                $('#update_profile').html(`        <form class="update_profile" action="/gurkul_branch/branch_profile/update_profile" method="post">{% csrf_token %}
+        <div style="position: absolute;right: 15px;top: 50%;background-color: black;padding: 30px;border: 1px solid blue;border-radius: 20px;box-shadow: 0px 0px 362px #2d0fff;">
+            <input type="${input_type}" id="upd_branch_pro" style="border:2px solid #ffffff;border-radius:7px;width:100%;padding-left:20px;" name="data">
+            <input type="hidden" value="${type}" name="type">
+            <button class="btn btn-warning my-2 mx-2">Update</button>
+        </form>
+        <button class="btn btn-primary my-2 mx-2" onclick="document.getElementById('update_profile').innerHTML=''">Exit</button>`)
+            }
+        })
+
+        // code for edit button show
+        $('.edit_profile_btn').click(function(){
+            val=$(this).attr('data-fade')
+            if(val=="off"){
+                $('.edit_btn_fade').css('visibility','unset')
+                $('.edit_profile_btn').attr('data-fade','on')
+            }
+            if(val=="on"){
+                $('.edit_btn_fade').css('visibility','hidden')
+                $('.edit_profile_btn').attr('data-fade','off')
+            }
+        })
+
+
+
+    })
+    </script>
+    
+    {% endblock %}

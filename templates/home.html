@@ -1,0 +1,1012 @@
+{% extends 'basic.html' %}
+{% block title %}
+The Gurkul
+{% endblock %}
+{% block css %}
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");
+
+  /* css for bootstrap classes */
+
+  /* css for welcome div */
+  #welcome_book {
+    font-size: 150px;
+  }
+
+  #welcome_head {
+    font-family: "Acme", sans-serif;
+    font-size: 100px;
+    border: 1px solid rgb(0, 0, 255);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(112, 112, 112);
+    background-color: rgba(0, 0, 0, 0.521);
+    color: #00f3ff;
+    display: flex;
+    justify-content: center;
+  }
+
+  #welcome_div {
+    border: none;
+    width: 100%;
+    color: rgb(0, 0, 255);
+  }
+
+  #welcome_div_bac_img {
+    max-height: 1000px;
+  }
+
+  .welcome_div_card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(transparent,black,rgba(77, 77, 77, 0.493));
+  }
+
+  .welcome_text:hover {
+    box-shadow: 0px 0px 10px greenyellow;
+  }
+
+  .welcome_cotext {
+    color: rgb(255, 251, 0);
+    display: flex;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  /* animation in intro_slide_img */
+  #intro_slide_img {
+    overflow: hidden;
+    height: 800px;
+  }
+
+  .intro_slide_img {
+    width: 100%;
+    height: 800px;
+    animation-name: zoom_in_intro_slide;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-delay: 2s;
+    animation-delay: 0s;
+    animation-direction: alternate;
+  }
+
+  @keyframes zoom_in_intro_slide {
+    0% {
+      width: 100%;
+    }
+
+    50% {
+      width: 105%;
+    }
+
+    100% {
+      width: 100%;
+    }
+  }
+
+  /* css for gurkul base quote */
+  .gurkul_base {
+    width: 100%;
+    min-height: 1000px;
+    /* background-color: rgb(255, 255, 255); */
+    background-image: linear-gradient(#3733acc4, #ffff008a, #00ff004f);
+    padding: 30px;
+  }
+
+  .gurkul_base_quote {
+    font-size: 20px;
+  }
+
+  .quote_div {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .quote_div1 {
+    position: relative;
+    left: 0vw;
+    visibility: hidden;
+
+  }
+
+  .quote_div2 {
+    position: relative;
+    right: 0vw;
+    visibility: hidden;
+
+  }
+
+  .quote_div_1_animate {
+    visibility: unset;
+    animation-name: quote_gurkul_1;
+    animation-duration: 1s;
+    left: 0vw;
+  }
+
+  .quote_div_2_animate {
+    visibility: unset;
+    animation-name: quote_gurkul_2;
+    animation-duration: 1s;
+    right: 0vw;
+  }
+
+  @keyframes quote_gurkul_1 {
+    0% {
+      left: 1000px;
+    }
+
+    100% {
+      left: 0px;
+    }
+  }
+
+  @keyframes quote_gurkul_2 {
+    0% {
+      right: 1000px;
+    }
+
+    100% {
+      right: 0px;
+    }
+  }
+
+  #quote_head_symbol {
+    display: flex;
+    justify-content: center;
+    font-size: 75px;
+    margin: 10px;
+  }
+
+  .quote_symbol {
+    animation-name: quote_symbol;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes quote_symbol {
+    0% {
+      color: red;
+    }
+
+    33% {
+      color: rgb(9, 255, 9);
+    }
+
+    66% {
+      color: blue;
+    }
+
+    100% {
+      color: red;
+    }
+  }
+
+  /* css for visitor counters */
+  /* css for visitor counter */
+  .count_box {
+    width: 80px;
+    height: 80px;
+    background-color: red;
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 16px;
+    box-shadow: 10px 9px 12px black;
+  }
+
+  .count_number {
+    font-size: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* css when display size is smaller than 1200px */
+  @media screen and (max-width: 1200px) {
+
+    /* css for welcome div */
+    #welcome_div_bac_img {
+      height: 650px;
+    }
+
+    /* css for intro slide img */
+    #intro_slide_img {
+      height: 600px;
+    }
+
+    .intro_slide_img {
+      height: 600px;
+    }
+  }
+
+  /* css when display size is smaller than 1000px */
+  @media screen and (max-width: 1000px) {
+    #welcome_div_bac_img {
+      height: 650px;
+    }
+
+  }
+
+  /* css when screen size is less than 950px */
+  @media screen and (max-width: 980px) {
+
+    /* css for welcom texts */
+    #welcome_head {
+      font-size: 80px;
+    }
+
+    #welcome_book {
+      font-size: 120px;
+    }
+
+    /* css for line of owners images */
+    .hr_owners {
+      display: none;
+    }
+
+  }
+
+  /* css when screen size is less than 950px */
+  @media screen and (max-width: 850px) {
+
+    /* css for welcom texts */
+    #welcome_div_bac_img {
+      height: 650px;
+    }
+
+    #welcome_head {
+      font-size: 60px;
+    }
+
+    #welcome_book {
+      font-size: 100px;
+    }
+
+    .welcome_cotext {
+      font-size: 22px;
+    }
+  }
+
+
+  /* css whne display size is smaller than 700px */
+  @media screen and (max-width: 700px) {
+
+    /* css for welcom texts */
+    #welcome_div_bac_img {
+      height: 500px;
+    }
+
+    #welcome_head {
+      font-size: 50px;
+    }
+
+    #welcome_book {
+      font-size: 80px;
+    }
+
+    .welcome_cotext {
+      font-size: 18px;
+    }
+
+    .join_head1 {
+      font-size: 20px;
+    }
+
+    /* css for intro slide img */
+    #intro_slide_img {
+      height: 400px;
+    }
+
+    .intro_slide_img {
+      height: 400px;
+    }
+
+  }
+
+  /* css whne display size is smaller than 500px */
+  @media screen and (max-width: 500px) {
+
+    /* css for welcom texts */
+    #welcome_div_bac_img {
+      height: 500px;
+    }
+
+    #welcome_head {
+      font-size: 40px;
+    }
+
+    #welcome_book {
+      font-size: 60px;
+    }
+
+    /* css for visitor counter */
+    .count_box {
+      height: 50px;
+      margin: 5px;
+    }
+
+    .count_number {
+      font-size: 30px;
+    }
+
+  }
+
+  /* css when display size is less than 450px */
+  @media screen and (max-width: 450px) {
+
+    /* css for welcom texts */
+    #welcome_div_bac_img {
+      height: 400px;
+    }
+
+    #welcome_head {
+      font-size: 30px;
+    }
+
+    #welcome_book {
+      font-size: 50px;
+    }
+
+    .join_btn {
+      padding: 2px 6px;
+    }
+
+    .join_head1 {
+      font-size: 10px;
+    }
+
+    /* css for intro slide img */
+    #intro_slide_img {
+      height: 300px;
+    }
+
+    .intro_slide_img {
+      height: 300px;
+    }
+  }
+</style>
+
+{% endblock %}
+{% block active_home %}
+active
+{% endblock %}
+{% block body %}
+{% load static %}
+
+<div class="card text-bg-dark" id="welcome_div">
+  <img src="{% static 'theGurkul/img/homeImg/first_home_welcome.png' %}" class="card-img" alt="..."
+    id="welcome_div_bac_img" />
+  <div class="card-img-overlay welcome_div_card">
+    <div>
+
+      <div>
+        <div style="display: flex; justify-content:center;margin-bottom: 10px;">
+          <i class="mx-3 fas fa-book-open" id="welcome_book" style="background-image: linear-gradient(white,blue,white);background-clip: text; -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;"></i>
+        </div>
+        <div>
+          <h1 id="welcome_head" style="text-align: center;">
+            Welcome To The Gurkul
+          </h1>
+        </div>
+
+      </div>
+      <div style="display:flex;justify-content:center; margin:10px;flex-wrap: wrap;">
+        <p class="welcome_cotext" style="text-align: center;">
+          We welcome you to The Gurkul, A place of technology , education , and innovation..
+        </p>
+      </div>
+      <div style="display:flex;justify-content:center; margin:10px;flex-wrap: wrap;">
+        <p class="welcome_cotext" style="text-align: center;">
+          The Gurkul encompasses the best of infrastructure for the young learners.
+        </p>
+      </div>
+      <div>
+        {% if user.is_authenticated %}
+
+        <a href="/user/profile" style="text-decoration: none;"><button class="btn btn-outline-success join_btn"
+            style="display: flex; justify-content: center; align-items: center">
+            <h2 class="join_head1" style="display: flex; justify-content: center; align-items: center">
+              Go to Your Profile
+            </h2>
+          </button></a>
+
+        {% else %}
+        <a href="/user_login/" style="text-decoration: none;"><button class="btn btn-outline-success join_btn"
+            style="display: flex; justify-content: center; align-items: center">
+            <h2 class="join_head1" style="display: flex; justify-content: center; align-items: center">
+              Join The Gurkul
+            </h2>
+          </button></a>
+        {% endif%}
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div id="intro_slide_img" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#intro_slide_img" data-bs-slide-to="0" class="active"
+      aria-current="true"></button>
+    {% for item in intro_slide_img|slice:"1::" %}
+    <button type="button" data-bs-target="#intro_slide_img" data-bs-slide-to="{{forloop.counter}}"></button>
+    {% endfor %}
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="media/{{intro_slide_img.0.img}}" class="d-block intro_slide_img" alt="..." />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{intro_slide_img.0.time.date}}</h5>
+        <p>{{intro_slide_img.0.about}}</p>
+      </div>
+    </div>
+    {% for item in intro_slide_img|slice:"1::" %}
+    <div class="carousel-item">
+      <img src="media/{{item.img}}" class="d-block intro_slide_img" alt="..." />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{item.time.date}}</h5>
+        <p>{{item.about}}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#intro_slide_img" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#intro_slide_img" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Gurkul Base-->
+<div class="gurkul_base">
+  <hr style="color: red; border: 2px solid #ff0000" />
+  <div class="head_gurkul_base" style="display: flex; justify-content: center">
+    <h1 class="text-warning">Gurkul Path</h1>
+  </div>
+
+  <div style="
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+    " class="quote_div1">
+
+
+
+    <div class="card bg-dark quote_div" style="width: 18rem">
+      <i class="fas fa-microscope" id="quote_head_symbol" style="color: rgb(0, 255, 179)"></i>
+      <div class="card-body">
+        <i class="fa fa-quote-left fa-x fa-pull-left fa-border quote_symbol"></i>
+        <p class="card-text gurkul_base_quote">
+          The Gurkul emphasizes on practical knowledge which is quite beneficial
+          to build the concepts of the students.
+        </p>
+        <i class="fa fa-quote-right fa-x fa-pull-right fa-border quote_symbol"></i>
+      </div>
+    </div>
+
+
+    <div class="card bg-dark quote_div" style="width: 18rem">
+      <i class="fas fa-atlas" id="quote_head_symbol" style="color: rgb(255, 0, 221)"></i>
+      <div class="card-body">
+        <i class="fa fa-quote-left fa-x fa-pull-left fa-border quote_symbol"></i>
+        <p class="card-text gurkul_base_quote">
+          Learning beyond classrooms through extra-curricular activities for
+          all-round development.
+        </p>
+        <i class="fa fa-quote-right fa-x fa-pull-right fa-border quote_symbol"></i>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div style="
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  " class="quote_div2">
+
+
+    <div class="card bg-dark quote_div" style="width: 18rem">
+      <i class="fas fa-brain" id="quote_head_symbol" style="color: yellow"></i>
+      <div class="card-body">
+        <i class="fa fa-quote-left fa-x fa-pull-left fa-border quote_symbol"></i>
+        <p class="card-text gurkul_base_quote">
+          Educating a person does not mean that he/she became a rich person. It
+          means to do what is right and in the right way. That's what The Gurkul
+          system teaches.
+        </p>
+        <i class="fa fa-quote-right fa-x fa-pull-right fa-border quote_symbol"></i>
+      </div>
+    </div>
+
+
+
+    <div class="card bg-dark quote_div" style="width: 18rem">
+      <i class="fas fa-spa" id="quote_head_symbol" style="color: rgb(47, 0, 255)"></i>
+      <div class="card-body">
+        <i class="fa fa-quote-left fa-x fa-pull-left fa-border quote_symbol"></i>
+        <p class="card-text gurkul_base_quote">
+          The Gurkul is a contraction of Sanskrit word guru means teacher and kula
+          mean family or home. Students(shishya) live away from their family but
+          they get a new family. Gurkul includes humanity, deep thinking,
+          respect, moral living, the importance of duty, science, non-violence,
+          values, ethics, knowledge of application are well appreciated.
+        </p>
+        <i class="fa fa-quote-right fa-x fa-pull-right fa-border quote_symbol"></i>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+</div>
+
+
+<div style="background-image: linear-gradient(45deg,rgb(92, 92, 92),black,rgb(105, 105, 105));">
+  <div
+    style="width: 100%; display: flex; justify-content: space-around; flex-wrap: wrap-reverse;padding: 100px 0px 100px 0px;">
+
+    <hr style="    border-left: 6px dotted red;
+    height: 420px;
+    margin-right: 40px;
+    background-color: rgba(0, 0, 0, 0);" class="hr_owners">
+    <div style="display: flex; justify-content:center; align-items:center;">
+      <pre>  <h2 class="card-title"><b class="text-light">Director and Founder</b></h2>
+        <h4 class="card-text text-danger" style="display: flex; justify-content:center; align-items:center;background-color: #000000c9;
+        box-shadow: 0px 0px 10px red;">Mr. Ram Suraj Gupta</h4>
+      </pre>
+    </div>
+
+    <div>
+      <img src="{% static 'theGurkul/img/homeImg/owner/ramsuraj_transparent.png' %}" alt="" style="max-width: 100%;">
+    </div>
+  </div>
+  <hr class="hr_owners"
+    style="border: 2px dashed red;position: relative;bottom: 70px;background-color: rgba(0, 0, 0, 0); margin: 0px;">
+
+
+
+  <div>
+    <div
+      style="width: 100%; display: flex; justify-content: space-around; flex-wrap: wrap;padding: 100px 0px 100px 0px;">
+
+      <hr class="hr_owners"
+        style="border: 2px dashed rgb(47, 0, 255);background-color: rgba(0, 0, 0, 0); margin: 0px; width: 100%;">
+      <div>
+        <img src="{% static 'theGurkul/img/homeImg/owner/sanjay.png' %}" alt="" style="max-width: 100%; width: 500px;">
+      </div>
+
+      <div style="display: flex; justify-content:center; align-items:center;">
+        <pre>  <h2 class="card-title"><b class="text-light">Co-Director and Founder</b></h2>
+        <h4 class="card-text text-primary" style="display: flex; justify-content:center; align-items:center;background-color: #000000c9;
+        box-shadow: 0px 0px 10px rgb(4, 0, 255);">Mr. Sanjay Gupta</h4>
+      </pre>
+        <hr style="    border-left: 6px dotted rgb(25, 0, 255);
+      height: 420px;
+      margin-left: 40px;
+      background-color: rgba(0, 0, 0, 0);" class="hr_owners">
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<div id="teams_slide" class="carousel slide carousel-fade" data-bs-ride="carousel"
+  style="background-image: linear-gradient(black,rgb(129, 129, 129));">
+
+  <div>
+    <h1 style="display: flex; justify-content: center; padding: 50px;text-shadow: 0px 0px 20px rgb(0, 0, 0);">Your
+      Mentors</h1>
+  </div>
+
+  <div class="carousel-inner">
+
+    {% for item in teachers|slice:":1" %}
+    <div class="carousel-item active" style="background-color: transparent;">
+      <div style="width: 100%; height: 100%; display: flex; justify-content: center;">
+        <div class="card card_founders"
+          style="margin: 0px 0px 110px 0px; padding: 70px 0px; display: flex; justify-content: space-around; flex-direction: unset;width: 90%; flex-wrap: wrap;background-color: rgb(71, 50, 50); max-width: 1300px;">
+
+          <img src="media/{{item.img}}" class="card-img-top" alt="..."
+            style="width: 300px; height: 400px; margin: 10px; border: 1px solid rgb(0, 0, 0); border-radius: 162px;box-shadow: 0px 0px 20px black;" />
+          <div style="max-width: 735px; display: flex;justify-content: center; align-items: center;">
+
+            <div class="my-2" style="margin: 2vw;">
+              <div class="my-2">
+                <h3 class="card-title text-warning" style="display: flex; justify-content: center; text-align: center;">
+                  {{item.name}}</h3>
+              </div>
+              <div>
+                <div>
+                  <h5 class="card-text my-2 text-primary"
+                    style="display: flex; justify-content: center; text-align: center;">{{item.about}}</h5>
+                </div>
+                <div class="my-4">
+                  <i class="fa fa-quote-left fa-x fa-pull-left fa-border quote_symbol " style="border: unset;"></i>
+                  <p class="card-text"
+                    style="display: flex; justify-content: center; margin: unset; text-align: center;">{{item.quote}}
+                  </p>
+                  <i class="fa fa-quote-right fa-x fa-pull-right fa-border quote_symbol"></i>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    {% endfor %}
+
+
+    {% for item in teachers|slice:"1:" %}
+
+    <div class="carousel-item" style="background-color: transparent;">
+      <div style="width: 100%; height: 100%; display: flex; justify-content: center;">
+        <div class="card card_founders"
+          style="margin: 0px 0px 110px 0px; padding: 70px 0px; display: flex; justify-content: space-around; flex-direction: unset;width: 90%; flex-wrap: wrap;background-color: rgb(71, 50, 50); max-width: 1300px;">
+
+          <img src="media/{{item.img}}" class="card-img-top" alt="..."
+            style="width: 300px; height: 400px; margin: 10px; border: 1px solid rgb(0, 0, 0); border-radius: 162px;box-shadow: 0px 0px 20px black;" />
+          <div style="max-width: 735px; display: flex;justify-content: center; align-items: center;">
+
+            <div class="my-2" style="margin: 2vw;">
+              <div class="my-2">
+                <h3 class="card-title text-warning" style="display: flex; justify-content: center; text-align: center;">
+                  {{item.name}}</h3>
+              </div>
+              <div>
+                <div>
+                  <h5 class="card-text my-2 text-primary"
+                    style="display: flex; justify-content: center;text-align: center;">{{item.about}}</h5>
+                </div>
+                <div class="my-4">
+                  <i class="fa fa-quote-left fa-x fa-pull-left fa-border quote_symbol " style="border: unset;"></i>
+                  <p class="card-text"
+                    style="display: flex; justify-content: center; margin: unset; text-align: center;">{{item.quote}}
+                  </p>
+                  <i class="fa fa-quote-right fa-x fa-pull-right fa-border quote_symbol"></i>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+
+
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#teams_slide" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#teams_slide" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+
+<div class="visitor"
+  style="width: 100%;min-height: 400px; display: flex; align-items: center; justify-content: center; background-image: linear-gradient(60deg,rgb(63, 63, 63),rgb(9, 63, 9));">
+
+  <div style="width: 100%;">
+
+    <div style="width: 100%;">
+      <h1 style="display: flex; justify-content: center;"><i class="fas fa-users"
+          style="font-size: 130px; color: rgb(238, 255, 0);"></i></h1>
+    </div>
+
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+
+      <div class="count_box6 count_box">
+        <div id="count_box6">
+          <p id="count_number0" class="count_number">0</p>
+        </div>
+      </div>
+
+      <div class="count_box5 count_box">
+        <div id="count_box5">
+          <p id="count_number1" class="count_number">0</p>
+        </div>
+      </div>
+
+      <div class="count_box4 count_box">
+        <div id="count_box4"></div>
+        <p id="count_number2" class="count_number">0</p>
+      </div>
+
+      <div class="count_box3 count_box">
+        <div id="count_box3"></div>
+        <p id="count_number3" class="count_number">0</p>
+      </div>
+
+      <div class="count_box2 count_box">
+        <div id="count_box2"></div>
+        <p id="count_number4" class="count_number">0</p>
+      </div>
+
+      <div class="count_box1 count_box">
+        <div id="count_box1"></div>
+        <p id="count_number5" class="count_number">0</p>
+      </div>
+
+      <div class="count_box_plus count_box"
+        style="background-color: transparent;border-color: transparent; box-shadow: unset;">
+        <p
+          style="color: red; font-size: 115px;display: flex;justify-content: center;align-items: center;width: 100%;height: 100%;">
+          +</p>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+
+{% endblock %} {% block js %}
+<script>
+  $(document).ready(function () {
+
+    // js for showing animation gurkul quotes when scrolled but fixed device size
+    var device_width = window.innerWidth
+
+
+    // when device with greater than 1350px
+    if (device_width > 1351) {
+
+      window.addEventListener("scroll", function () {
+        home_scroll = scrollY;
+
+        if (home_scroll > 1350) {
+          $('.quote_div1').addClass('quote_div_1_animate')
+        }
+        if (home_scroll > 1700) {
+          $('.quote_div2').addClass('quote_div_2_animate')
+        }
+
+      });
+
+    }
+
+    // when device with greater than 676px but less than 1350
+    else if (device_width > 676 && device_width < 1350) {
+
+      window.addEventListener("scroll", function () {
+        home_scroll = scrollY;
+
+        if (home_scroll > 1200) {
+          $('.quote_div1').addClass('quote_div_1_animate')
+        }
+        if (home_scroll > 1700) {
+          $('.quote_div2').addClass('quote_div_2_animate')
+        }
+
+      });
+
+    }
+
+    // when device with less than 676px
+    else if (device_width < 677 && device_width > 550) {
+
+      window.addEventListener("scroll", function () {
+        home_scroll = scrollY;
+
+        if (home_scroll > 911) {
+          $('.quote_div1').addClass('quote_div_1_animate')
+        }
+        if (home_scroll > 1500) {
+          $('.quote_div2').addClass('quote_div_2_animate')
+        }
+
+      });
+
+    }
+
+
+    // when device with less than 550px
+    else if (device_width < 551 && device_width > 460) {
+
+      window.addEventListener("scroll", function () {
+        home_scroll = scrollY;
+
+        if (home_scroll > 900) {
+          $('.quote_div1').addClass('quote_div_1_animate')
+        }
+        if (home_scroll > 1500) {
+          $('.quote_div2').addClass('quote_div_2_animate')
+        }
+
+      });
+
+    }
+
+
+    // when device with less than 500px
+    else if (device_width < 461) {
+      console.log(device_width)
+      window.addEventListener("scroll", function () {
+
+        home_scroll = scrollY;
+        console.log(home_scroll)
+
+        if (home_scroll > 700) {
+          $('.quote_div1').addClass('quote_div_1_animate')
+        }
+        if (home_scroll > 1350) {
+          $('.quote_div2').addClass('quote_div_2_animate')
+        }
+
+      });
+
+    }
+
+
+
+
+
+  })
+</script>
+<script>
+  $(document).ready(function () {
+
+    $(window).resize(function () {
+
+      // js for showing animation gurkul quotes when scrolled and changing the device width device size
+      var device_width = window.innerWidth
+
+
+      // when device with greater than 1350px
+      if (device_width > 1351) {
+
+        window.addEventListener("scroll", function () {
+          var window_width = window.innerWidth
+          home_scroll = scrollY;
+
+          if (home_scroll > 1350) {
+            $('.quote_div1').addClass('quote_div_1_animate')
+          }
+          if (home_scroll > 1700) {
+            $('.quote_div2').addClass('quote_div_2_animate')
+          }
+
+        });
+
+      }
+
+      // when device with greater than 676px but less than 1350
+      else if (device_width > 676 && device_width < 1350) {
+
+        window.addEventListener("scroll", function () {
+          var window_width = window.innerWidth
+          home_scroll = scrollY;
+
+          if (home_scroll > 1200) {
+            $('.quote_div1').addClass('quote_div_1_animate')
+          }
+          if (home_scroll > 1700) {
+            $('.quote_div2').addClass('quote_div_2_animate')
+          }
+
+        });
+
+      }
+
+      // when device with less than 676px
+      else if (device_width < 677 && device_width > 550) {
+
+        window.addEventListener("scroll", function () {
+          var window_width = window.innerWidth
+          home_scroll = scrollY;
+
+          if (home_scroll > 911) {
+            $('.quote_div1').addClass('quote_div_1_animate')
+          }
+          if (home_scroll > 1500) {
+            $('.quote_div2').addClass('quote_div_2_animate')
+          }
+
+        });
+
+      }
+
+
+      // when device with less than 550px
+      else if (device_width < 551 && device_width > 460) {
+
+        window.addEventListener("scroll", function () {
+          var window_width = window.innerWidth
+          home_scroll = scrollY;
+
+          if (home_scroll > 900) {
+            $('.quote_div1').addClass('quote_div_1_animate')
+          }
+          if (home_scroll > 1500) {
+            $('.quote_div2').addClass('quote_div_2_animate')
+          }
+
+        });
+
+      }
+
+
+      // when device with less than 500px
+      else if (device_width < 461) {
+
+        window.addEventListener("scroll", function () {
+          var window_width = window.innerWidth
+          home_scroll = scrollY;
+
+          if (home_scroll > 700) {
+            $('.quote_div1').addClass('quote_div_1_animate')
+          }
+          if (home_scroll > 1350) {
+            $('.quote_div2').addClass('quote_div_2_animate')
+          }
+
+        });
+
+      }
+
+
+
+
+
+    })
+
+  })
+</script>
+<script>
+  $(document).ready(function () {
+
+    setInterval(function () {
+
+      $.ajax({
+        url: '/total_visitor/',
+        type: 'get',
+        data: {},
+        success: function (data) {
+          list = data.data
+          $('#count_number0').text(list[0])
+          $('#count_number1').text(list[1])
+          $('#count_number2').text(list[2])
+          $('#count_number3').text(list[3])
+          $('#count_number4').text(list[4])
+          $('#count_number5').text(list[5])
+        }
+
+
+      })
+
+
+    }, 10000000)
+
+  })
+</script>
+{% endblock %}

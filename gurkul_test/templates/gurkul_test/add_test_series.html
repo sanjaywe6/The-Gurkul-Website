@@ -1,0 +1,1901 @@
+{% extends 'basic.html' %}
+
+{% block title %}
+Add Test Series
+{% endblock %}
+
+{% block active_test_series %}
+active
+{% endblock %}
+
+{% block css %}
+<style>
+  /* css for add/rdit seris div */
+
+  .series_div {
+    margin: 3vw;
+    border: 2px solid red;
+    border-radius: 7px;
+    box-shadow: 20px 20px 20px rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
+  }
+
+  /* css for test_series_form_div containing form */
+  .test_series_form_div {
+    background-image: linear-gradient(rgb(0, 0, 0), #ea00ff, black);
+  }
+
+  /* css for show all question with selected category */
+  .question_card {
+    margin: 50px 0px;
+    box-shadow: 0px 0px 20px black;
+  }
+
+  .show_question {
+    background-color: #f2f200;
+    padding: 10px;
+    box-shadow: 0px 0px 20px black;
+    border: 2px dotted pink;
+    border-radius: 7px;
+  }
+
+  .show_options {
+    background-color: yellow;
+    padding: 7px;
+    border: 1px solid red;
+    border-radius: 6px;
+    box-shadow: 0px 0px 10px;
+    margin: 0px;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+{% load static %}
+
+{% if messages %}
+{% for message in messages %}
+<div id="absoluteMsg" class="bg-{{message.tags}}" style="
+display: flex;
+justify-content: space-around;
+border: 1px solid black;
+box-shadow: 0px 0px 10px rgb(115, 115, 115);
+border-radius: 7px;
+max-width: 300px;
+position: fixed;
+bottom: 20%;
+right: 0%;
+padding: 10px;
+z-index: 1000;">
+  <strong style="margin: 5px;">{{message}}</strong>
+  <span style="
+margin-left: 15px;
+color: white;
+font-weight: bold;
+float: right;
+font-size: 22px;
+line-height: 20px;
+cursor: pointer;
+transition: 0.3s;
+position: absolute;
+top: 0%;
+right: 0%;
+background-color: rgb(0, 0, 0);
+border: 1px solid black;
+border-radius: 6px;
+" onclick="this.parentElement.style.display='none';" onmouseenter="this.style.color='red';"
+    onmouseleave="this.style.color='white';">&times;
+  </span>
+</div>
+<script>
+  setTimeout(function () {
+    $('#absoluteMsg').hide()
+  }, 2000)
+</script>
+{% endfor %}
+{% endif %}
+
+<div id="absoluteMsg_outer" class="bg-{{message.tags}}" style="
+display: flex;
+justify-content: space-around;
+border: 1px solid black;
+box-shadow: 0px 0px 10px rgb(115, 115, 115);
+border-radius: 7px;
+max-width: 300px;
+position: fixed;
+bottom: 20%;
+right: 0%;
+padding: 10px;
+z-index: 1000; visibility: hidden;">
+  <strong style="margin: 5px;" id="strong_msg"></strong>
+  <span style="
+margin-left: 15px;
+color: white;
+font-weight: bold;
+float: right;
+font-size: 22px;
+line-height: 20px;
+cursor: pointer;
+transition: 0.3s;
+position: absolute;
+top: 0%;
+right: 0%;
+background-color: rgb(0, 0, 0);
+border: 1px solid black;
+border-radius: 6px;
+" onclick="this.parentElement.style.display='none';" onmouseenter="this.style.color='red';"
+    onmouseleave="this.style.color='white';">&times;
+  </span>
+</div>
+
+
+
+<div class="container-fluid" style="background-color: rgb(175, 175, 175);">
+  <div style="display: flex;flex-wrap:wrap; justify-content: center; width: 100%; padding: 50px;">
+
+    <div class="acad_series series_div">
+      <button type="button" class="btn btn-outline-warning" style="height: 500px; width:400px;"
+        data-bs-toggle="modal" data-bs-target="#acad_series">
+        <h2 style="color: rgb(234, 0, 255); margin:20px 0px 80px 0px">Add Academic Test-Series</h2>
+        <i class="fas fa-school" style="font-size: 250px; color: rgb(234, 0, 255);"></i>
+      </button>
+    </div>
+
+
+    <div class="comp_series series_div">
+      <button type="button" class="btn btn-outline-warning" style="height: 500px; width:400px;"
+        data-bs-toggle="modal" data-bs-target="#comp_series">
+        <h2 style="color: blue; margin:20px 0px 80px 0px">Add Competition Test Series</h2>
+        <i class="fas fa-user-graduate" style="font-size: 250px; color: blue;"></i>
+      </button>
+    </div>
+
+
+  </div>
+
+  <!-- Model for academic -->
+  <div class="modal fade" tabindex="-1" aria-labelledby="acad_seriesLabel" aria-hidden="true" id="acad_series" style="width: 100%;">
+
+    <div class="modal-dialog" style="max-width: 90%;">
+      <div class="modal-content" style="background-image:linear-gradient(rgb(190, 255, 130),rgb(106, 106, 255),rgb(180, 180, 180))">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-dark" id="acad_seriesLabel">Add/Edit Academic Test Series</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+
+
+          <div class="card card-body test_series_form_div">
+
+            <div style="display: flex; justify-content:space-between">
+              <button class="btn btn-primary my-2 mx-2 w-30" id="acad_show_question">Show Questions With Selected
+                Categoreis below</button>
+      
+              <button class="btn btn-warning mx-2 my-2 w-30" data-bs-toggle="collapse" data-bs-target="#acad_question_add"
+                aria-expanded="false" aria-controls="acad_question_add>Add Question">Add
+                Question</button>
+            </div>
+      
+            <form class="acad_test_series_form" action="/gurkul_test/test_series/academic_test_series_category/"
+              method="post">{% csrf_token %}
+              <h3><b style="display: flex; justify-content:center;color:red;margin-bottom: 30px;"> Select Your Question
+                  Categories</b></h3>
+      
+      
+              <div class="row g-3" style="display: flex; justify-content:center">
+                <div class="navbar-dark my-2 col-md-4">
+                  <label for="input_language" class="form-label">Choose Language</label>
+                  <select id="input_language" name="class" class="form-select bg-dark text-light">
+                    <option value="Hindi" selected>Hindi</option>
+                    <option value="English">English</option>
+                  </select>
+                </div>
+      
+                <div class="row g-3" style="display: flex; justify-content:center">
+                  <div class="navbar-dark my-2 col-md-4">
+                    <label for="input_class" class="form-label">Choose Class</label>
+                    <select id="input_class" name="class" class="form-select bg-dark text-light">
+                      <option value="Five" selected>5<sub>th</sub></option>
+                      <option value="Six">6<sub>th</sub></option>
+                      <option value="Seven">7<sub>th</sub></option>
+                      <option value="Eight">8<sub>th</sub></option>
+                      <option value="Nine">9<sub>th</sub></option>
+                      <option value="Ten">10<sub>th</sub></option>
+                      <option value="Eleven">11<sub>th</sub></option>
+                      <option value="Twelve">12<sub>th</sub></option>
+                    </select>
+                  </div>
+      
+      
+                  <div class="navbar-dark my-2 col-md-4">
+                    <label for="input_board" class="form-label">Choose Board</label>
+                    <select id="input_board" name="board" class="form-select bg-dark text-light">
+                      <option value="UPBoard" selected>U.P. Board</option>
+                      <option value="CBSE">C.B.S.E. Board</option>
+                      <option value="ICSE">I.C.S.E. Board</option>
+                    </select>
+                  </div>
+      
+                  <div class="navbar-dark my-2 col-md-4">
+                    <label for="input_subject" class="form-label">Choose Subject</label>
+                    <select id="input_subject" name="subject" class="form-select bg-dark text-light">
+                      <option value="Mathematics" selected>Mathematics</option>
+                      <option value="Physics">Physics</option>
+                      <option value="Chemistry">Chemistry</option>
+                      <option value="Biology">Biology</option>
+                      <option value="English">English</option>
+                      <option value="Hindi">Hindi</option>
+                      <option value="History">History</option>
+                      <option value="Science">Science ( For class lower than Inter Mediate )</option>
+                    </select>
+                  </div>
+      
+                  <div class="navbar-dark my-2 col-md-6">
+                    <label for="input_qtype" class="form-label">Choose Question Type</label>
+                    <select id="input_qtype" name="qtype" class="form-select bg-dark text-light">
+                      <option value="MCQ" selected>MCQ (Multiple Choice Question) ( 1 Marks )</option>
+                      <option value="Short">Short question ( 2 marks )</option>
+                      <option value="Long">Long question ( 4 marks )</option>
+                      <option value="Very Long">Very Long question ( 8 marks )</option>
+                    </select>
+                  </div>
+      
+                  <hr style="color: red;border:2px solid rgb(0, 0, 0);">
+      
+      
+      
+                  <!-- model for adding question -->
+                  <div class=" collapse" id="acad_question_add">
+                    <div class="card card-body">
+                      <h3 class="text-danger" id="editing_q_id"></h3>
+                      <div class="form-floating navbar-dark my-2">
+                        <textarea class="form-control text-light" placeholder="Write question here" id="acad_question"
+                          name="question" style="height: 200px;background-color: black;" required></textarea>
+                        <label for="question">Write Your Question Here</label>
+                      </div>
+      
+      
+      
+                      <div class="row my-2">
+                        <div class="col">
+                          <input id="acad_q_1" name="acad_q_1" type="text" class="form-control"
+                            placeholder="1st Option (If question is MCQ)" aria-label="1st Option (If question is MCQ)">
+                        </div>
+                        <div class="col">
+                          <input id="acad_q_2" name="acad_q_2" type="text" class="form-control"
+                            placeholder="2nd Option (If question is MCQ)" aria-label="2nd Option (If question is MCQ)">
+                        </div>
+                      </div>
+      
+                      <div class="row my-2">
+                        <div class="col">
+                          <input id="acad_q_3" name="acad_q_3" type="text" class="form-control"
+                            placeholder="3rd Option (If question is optional)"
+                            aria-label="3rd Option (If question is optional)">
+                        </div>
+                        <div class="col">
+                          <input id="acad_q_4" name="acad_q_4" type="text" class="form-control"
+                            placeholder="4th Option (If question is MCQ)" aria-label="4th Option (If question is MCQ)">
+                        </div>
+                      </div>
+                      <input type="hidden" value="-1" id="acad_q_id">
+      
+                      <div class="row mb-3 my-2">
+                        <label for="input_answer" class="col-sm-2 col-form-label text-dark">Answer</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="input_answer" name="answer">
+                        </div>
+                      </div>
+      
+      
+                      <div>
+                        <button class="btn btn-primary" style="float: right;">Submit</button>
+                      </div>
+      
+                    </div>
+                  </div>
+      
+      
+                </div>
+      
+      
+      
+            </form>
+          </div>
+      
+      
+          <!-- Button trigger modal -->
+          <div class="my-2" style="display:flex;justify-content:right;">
+            <button id="btn_acad_pdf" data-bs-toggle="collapse" aria-expanded="false" aria-controls="generate_acad_pdf" class="btn btn-outline-dark text-warning"
+              style="border: 2px solid red;border-radius:7px;" data-bs-target="#generate_acad_pdf">Generate PDF</button>
+          </div>
+      
+      
+      
+          <!-- Modal -->
+          <div class="collapse fade" id="generate_acad_pdf" tabindex="-1" aria-labelledby="generate_acad_pdfLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" style="max-width: 850px;">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5 text-dark" id="generate_acad_pdfLabel">Ready to Download as PDF</h1>
+      
+                  <div>
+                    <button class="btn btn-primary mx-2" id="acad_pdf_download_btn">Download as PDF</button>
+                  </div>
+      
+                </div>
+                <div class="modal-body" style="display: flex; justify-content: center; background-color: black;">
+      
+                  <div id="make_acad_pdf" style="width: 800px;background-color: white;">
+                    <!-- starting pdf content -->
+      
+                    <div class="container-fluid" style="padding: 7px 0px 7px 0px; width: 100%;">
+      
+                      <div>
+                        <div>
+      
+                          <div style="display: flex; justify-content:space-between">
+                            <h5 class="text-dark mx-2">Digital India</h5>
+                            <h5 class="text-dark mx-2">Clean India</h5>
+                          </div>
+      
+                          <div>
+                            <h1 style="display: flex; justify-content:center;"><b style="color: blue;"> Gurkul है, तो Growth
+                                है..</b></h1>
+                          </div>
+      
+                          <div style="display: flex;justify-content:center;">
+                            <h1><b style="font-size: 90px;color: red;">THE GURKUL </b> </h1>
+                          </div>
+      
+                          <div style="display: flex;justify-content:right;">
+                            <h1 id="pdf_class" style="font-size: 40px; margin-left:20px;color: rgb(117, 0, 0);" class="mx-2">
+                            </h1>
+                          </div>
+      
+                        </div>
+                        <div style="display: flex;justify-content: center;">
+                          <h1 id="pdf_subject" style="font-size: 60px; padding: 20px; color: rgb(0, 0, 0);" class="mx-2"></h1>
+                        </div>
+      
+      
+                        <div class="my-2" style="display: flex;
+                        justify-content: space-between;
+                        ">
+      
+                          <div class="mx-2">
+      
+                            <div class="gurkul_logo_owner" style="display: flex;
+                            justify-content: center;
+                            align-items: center;">
+                              <h3><b style="color: #000988 !important;"> Director</b></h3>
+                            </div>
+      
+                            <div class="gurkul_logo_owner" style="display: flex;
+                            justify-content: center;
+                            align-items: center;">
+                              <h4><b style="color: black;"> Mr. Ram Suraj Gupta </b></h4>
+                            </div>
+      
+                          </div>
+      
+                          <img src="{% static 'theGurkul/img/logo/logo_with_name.png' %}" alt="Logo" class="logoImg"
+                            style="width: 200px;">
+      
+                          <div class="mx-2">
+                            <div class="gurkul_logo_owner" style="display: flex;
+                            justify-content: center;
+                            align-items: center;">
+                              <h3><b style="color: #000988 !important;">Co-Director</b></h3>
+                            </div>
+      
+                            <div class="gurkul_logo_owner" style="display: flex;
+                            justify-content: center;
+                            align-items: center;">
+                              <h4><b style="color: black;"> Mr. Sanjay Gupta </b></h4>
+                            </div>
+      
+                          </div>
+      
+                        </div>
+      
+      
+                        <div>
+      
+                          <div class="social_pdf_icons my-2" style="display: flex;
+                          justify-content: space-between;">
+      
+                            <div class="social_pdf_icon" style="display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin: 10px 5px 10px 5px;">
+                              <h2 class="icon_head" style="display: inline-block;"> <b class=" mx-2" style="color: #6a3200;">
+                                  <i class="fa fa-youtube mx-2" style="color: red;"></i> The
+                                  Gurkul </b></h2>
+                            </div>
+      
+                            <div class="social_pdf_icon" style="display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin: 10px 5px 10px 5px;">
+                              <h2 class="icon_head" style="display: inline-block;"> <b class=" mx-2" style="color: #888803;">
+                                  <i class="fa fa-facebook mx-2" style="color: blue;"></i> THE
+                                  GURKUL</b></h2>
+                            </div>
+      
+                          </div>
+      
+                          <div class="social_pdf_icons my-2" style="display: flex;
+                          justify-content: space-between;">
+      
+                            <div class="social_pdf_icon" style="display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin: 10px 5px 10px 5px;">
+                              <h2 class="icon_head" style="display: inline-block;"> <b class="mx-2" style="color: #6a3200;"><i
+                                    class="fa fa-instagram mx-2" style="color: rgb(255, 213, 0);"></i>the_gurkul</b></h2>
+                            </div>
+      
+                            <div class="social_pdf_icon" style="display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin: 10px 5px 10px 5px;">
+                              <h2 class="icon_head " style="display: inline-block;"> <b class=" mx-2"
+                                  style="color: #888803;"><i class="fa fa-telegram mx-2" style="color: blue;"></i> The Gurkul
+                                </b></h2>
+                            </div>
+      
+                          </div>
+      
+                          <div class="social_pdf_icons my-2" style="display: flex;
+                          justify-content: space-between;">
+      
+                            <div class="social_pdf_icon" style="display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin: 10px 5px 10px 5px;">
+                              <h2 class="icon_head" style="display: inline-block;"> <b class=" mx-2"
+                                  style="color: #6a3200;"><i class="fa fa-linkedin mx-2" style="color: rgb(0, 153, 255);"></i>
+                                  The Gurkul </b></h2>
+                            </div>
+      
+                            <div class="social_pdf_icon" style="display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin: 10px 5px 10px 5px;">
+                              <h2 class="icon_head mx-2" style="display: inline-block;"><b style="color: #888803;"><i
+                                    class="fa fa-twitter mx-2" style="color: blue;"></i> @TGurkul</b>
+                              </h2>
+                            </div>
+      
+                          </div>
+      
+                          <div class="mx-2 my-2" style="display: flex;justify-content:right;">
+                            <h2 style="color: rgb(255, 67, 195);">Contact:- 9696357798</h2>
+                          </div>
+      
+                          <div class="text-danger" style="display: flex; justify-content:center;">
+                            <h1><b class="text-danger"> wwww.thegurkul.com </b></h1>
+                          </div>
+      
+                          <div style="display: flex; justify-content:center; flex-wrap: wrap;">
+                            <b>
+                              <h2 class="mx-2" style="color: #d20076;">IIT</h2>
+                            </b>
+                            <b>
+                              <h2 class="mx-2" style="color: #d20076;">NEET</h2>
+                            </b>
+                            <b>
+                              <h2 class="mx-2" style="color: #d20076;">NDA</h2>
+                            </b>
+                            <b>
+                              <h2 class="mx-2" style="color: #d20076;">UPSC</h2>
+                            </b>
+                            <b>
+                              <h2 class="mx-2" style="color: #d20076;">SUPER TET</h2>
+                            </b>
+                            <b>
+                              <h2 class="mx-2" style="color: #d20076;">CTET</h2>
+                            </b>
+                            <b>
+                              <h2 class="mx-2" style="color: #d20076;">UPTET</h2>
+                            </b>
+                            <b>
+                              <h2 class="mx-2" style="color: #d20076;">UPSSSC</h2>
+                            </b>
+                            <b>
+                              <h2 class="mx-2" style="color: #d20076;">SSC</h2>
+                            </b>
+                            <b>
+                              <h2 class="mx-2" style="color: #d20076;">BANK</h2>
+                            </b>
+                            <b>
+                              <h2 class="mx-2" style="color: #d20076;">RAILWAY</h2>
+                            </b>
+                          </div>
+      
+      
+                        </div>
+      
+      
+                      </div>
+                      <!-- start questions -->
+                      <div id="all_questions_pdf"></div>
+      
+                    </div>
+      
+      
+                  </div>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+      
+      
+      
+      
+      
+          <div>
+            <h3 class="my-4"><b style="color:rgb(255, 0, 0);">List of All Questions with Selected Categories</b></h3>
+            <h3 class="my-4" id="total_questions"></h3>
+      
+          </div>
+      
+      
+          <div>
+      
+            <div style="display: flex; justify-content:space-around">
+              <h5 class="card-header bg-info text-dark" id="show_class">Class</h5>
+              <h5 class="card-header bg-info text-dark" id="show_board">Board</h5>
+              <h5 class="card-header bg-info text-dark" id="show_subject">Subject</h5>
+              <h5 class="card-header bg-info text-dark" id="show_qtype">Question Type</h5>
+            </div>
+      
+            <div id="all_questions">
+      
+              <table class="table table-dark my-4">
+                <thead>
+                  <tr>
+                    <th scope="col" class="bg-dark">Question No.</th>
+                    <th scope="col" class="bg-warning text-dark">Question</th>
+                    <th scope="col" class="bg-success">Option (A)</th>
+                    <th scope="col" class="bg-success">Option (B)</th>
+                    <th scope="col" class="bg-success">Option (C)</th>
+                    <th scope="col" class="bg-success">Option (D)</th>
+                    <th scope="col" class="bg-danger">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="acad_tbody">
+      
+                </tbody>
+              </table>
+      
+      
+            </div>
+      
+      
+            <h3 style="color: blue; display:flex;justify-content:center;padding: 10px;" id="end_list">No Search Category
+              Request Found. Click Show Question Button To Filter With Categories..</h3>
+      
+      
+          </div>
+      
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  
+
+
+
+  </div>
+
+</div>
+
+
+
+<!-- Model for Comptition exam -->
+<div class="modal fade" id="comp_series" style="width: 100%;" tabindex="-1" aria-labelledby="comp_seriesLabel" aria-hidden="true">
+
+
+  <div class="modal-dialog" style="max-width: 90%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-dark" id="comp_seriesLabel">Add/Edit Competition Test Series</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+
+        <div class="card card-body test_series_form_div"
+        style="background-image: linear-gradient(rgb(0, 0, 0), #1100ff, black);">
+    
+        <div style="display: flex; justify-content:space-between">
+          <button class="btn btn-primary my-2 mx-2 w-30" id="comp_show_question">Show Questions With Selected
+            Categoreis below</button>
+    
+          <button class="btn btn-warning mx-2 my-2 w-30" data-bs-toggle="collapse" data-bs-target="#comp_question_add"
+            aria-expanded="false" aria-controls="comp_question_add>Add Question">Add
+            Questions</button>
+        </div>
+    
+        <form class="comp_test_series_form" action="/gurkul_test/test_series/academic_test_series_category/" method="post">
+          {% csrf_token %}
+          <h3><b style="display: flex; justify-content:center;color:red;margin-bottom: 30px;"> Select Your Question
+              Categories</b></h3>
+          <div class="row g-3" style="display: flex; justify-content:center">
+    
+    
+            <div class="row g-3" style="display: flex; justify-content:center">
+              <div class="navbar-dark my-2 col-md-4">
+                <label for="input_language_comp" class="form-label">Choose Language</label>
+                <select id="input_language_comp" name="class" class="form-select bg-dark text-light">
+                  <option value="Hindi" selected>Hindi</option>
+                  <option value="English">English</option>
+                </select>
+              </div>
+    
+              <div class="navbar-dark my-2 col-md-4">
+                <label for="input_exam
+                _type" class="form-label">Choose Exam Type</label>
+                <select id="input_exam_type" name="exam_type" class="form-select bg-dark text-light">
+                  <option value="NEET" selected>NEET</option>
+                  <option value="IIT JEE">IIT JEE</option>
+                  <option value="UPP">UPP (UP Police)/SI</option>
+                  <option value="SSC">SSC</option>
+                  <option value="BANK">BANK</option>
+                  <option value="Railway">Railway</option>
+                  <option value="UPSSC">UPSSC (VDO / Lekhpal)</option>
+                  <option value="UPTET">UPTET</option>
+                  <option value="CTET">CTET</option>
+                  <option value="STET">STET</option>
+                  <option value="TGT">TGT</option>
+                  <option value="PGT">PGT</option>
+                  <option value="PET">PET</option>
+                  <option value="UPSC">UPSC</option>
+                  <option value="NDA">NDA</option>
+                  <option value="GATE">GATE</option>
+                  <option value="Unieversity Exams">Unieversity Exams</option>
+                </select>
+              </div>
+    
+              <div class="navbar-dark my-2 col-md-4">
+                <label for="input_subject_comp" class="form-label">Choose Subject</label>
+                <select id="input_subject_comp" name="subject" class="form-select bg-dark text-light">
+                  <option value="Mathematics" selected>Mathematics</option>
+                  <option value="Physics">Physics</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="Biology">Biology</option>
+                  <option value="English">English</option>
+                  <option value="Hindi">Hindi</option>
+                  <option value="History">History</option>
+                  <option value="Geography">Geography</option>
+                  <option value="Reasoning">Reasoning</option>
+                  <option value="GS/GK">GS/GK</option>
+                </select>
+              </div>
+    
+              <div class="navbar-dark my-2 col-md-6">
+                <label for="input_qtype_comp" class="form-label">Choose Question Type</label>
+                <select id="input_qtype_comp" name="qtype" class="form-select bg-dark text-light">
+                  <option value="MCQ" selected>MCQ (Multiple Choice Question)</option>
+                </select>
+              </div>
+    
+              <hr style="color: red;border:2px solid rgb(0, 0, 0);">
+    
+    
+    
+              <!-- model for adding question -->
+              <div class=" collapse" id="comp_question_add">
+                <div class="card card-body">
+                  <h3 class="text-danger" id="comp_q_id"></h3>
+                  <div class="form-floating navbar-dark my-2">
+                    <textarea class="form-control text-light" placeholder="Write question here" id="comp_question"
+                      name="question" style="height: 200px;background-color: black;" required></textarea>
+                    <label for="question">Write Your Question Here</label>
+                  </div>
+    
+    
+    
+                  <div class="row my-2">
+                    <div class="col">
+                      <input id="comp_q_1" name="acad_q_1" type="text" class="form-control"
+                        placeholder="1st Option (If question is MCQ)" aria-label="1st Option (If question is MCQ)">
+                    </div>
+                    <div class="col">
+                      <input id="comp_q_2" name="acad_q_2" type="text" class="form-control"
+                        placeholder="2nd Option (If question is MCQ)" aria-label="2nd Option (If question is MCQ)">
+                    </div>
+                  </div>
+    
+                  <div class="row my-2">
+                    <div class="col">
+                      <input id="comp_q_3" name="acad_q_3" type="text" class="form-control"
+                        placeholder="3rd Option (If question is optional)"
+                        aria-label="3rd Option (If question is optional)">
+                    </div>
+                    <div class="col">
+                      <input id="comp_q_4" name="acad_q_4" type="text" class="form-control"
+                        placeholder="4th Option (If question is MCQ)" aria-label="4th Option (If question is MCQ)">
+                    </div>
+                  </div>
+                  <input type="hidden" id="comp_edit_q_id" name="comp_edit_q_id" value="-1">
+    
+                  <div class="row mb-3 my-2">
+                    <label for="input_answer_comp" class="col-sm-2 col-form-label text-dark">Answer</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="input_answer_comp" name="Write answer">
+                    </div>
+                  </div>
+    
+    
+                  <div>
+                    <button class="btn btn-primary" style="float: right;">Submit</button>
+                  </div>
+    
+                </div>
+              </div>
+    
+    
+            </div>
+    
+    
+    
+        </form>
+      </div>
+    
+    
+    
+      <!-- Button trigger modal -->
+      <div class="my-2" style="display:flex;justify-content:right;">
+        <button id="btn_comp_pdf" data-bs-toggle="collapse" aria-expanded="false" aria-controls="generate_comp_pdf" class="btn btn-outline-dark text-warning"
+          style="border: 2px solid red;border-radius:7px;" data-bs-target="#generate_comp_pdf">Generate PDF</button>
+      </div>
+    
+    
+    
+      <!-- Modal -->
+      <div class="collapse fade" id="generate_comp_pdf" tabindex="-1" aria-labelledby="generate_comp_pdfLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 90%;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 text-dark" id="generate_comp_pdfLabel">Ready to Download as PDF</h1>
+    
+              <div>
+                <button class="btn btn-primary mx-2" id="comp_pdf_download_btn">Download as PDF</button>
+              </div>
+
+            </div>
+    
+            <div class="modal-body" style="display: flex; justify-content: center; background-color: black;">
+    
+              <div id="make_comp_pdf" style="width: 800px;background-color: white;">
+    
+    
+                <!-- pdf content starting -->
+                <div class="container-fluid" style="padding: 7px 0px 7px 0px; width: 100%;">
+    
+                  <div>
+                    <div>
+    
+                      <div style="display: flex; justify-content:space-between">
+                        <h5><b class="text-dark mx-2"> Digital India </b></h5>
+                        <h5><b class="text-dark mx-2">Clean India </b></h5>
+                      </div>
+    
+                      <div>
+                        <h1 style="display: flex; justify-content:center;"><b style="color: blue;"> Gurkul है, तो Growth
+                            है..</b></h1>
+                      </div>
+    
+                      <div style="display: flex;justify-content:center;">
+                        <h1><b style="font-size: 90px;color: red;">THE GURKUL </b> </h1>
+                      </div>
+    
+                      <div style="display: flex;justify-content:right;">
+                        <h1 id="pdf_exam" style="font-size: 40px; margin-left:20px;color: rgb(117, 0, 0);" class="mx-2">
+                        </h1>
+                      </div>
+    
+                    </div>
+    
+                    <div style="display: flex;justify-content: center;">
+                      <h1 id="pdf_subject_comp" style="font-size: 60px; padding: 20px; color: rgb(0, 0, 0);" class="mx-2">
+                      </h1>
+                    </div>
+    
+    
+                    <div class=" my-2" style="display: flex; justify-content:space-between;">
+    
+                      <div class="mx-2">
+    
+                        <div class="gurkul_logo_owner" style="display: flex;
+                        justify-content: center;
+                        align-items: center;">
+                          <h3><b style="color: #000988 !important;"> Director</b></h3>
+                        </div>
+    
+                        <div class="gurkul_logo_owner" style="display: flex;
+                        justify-content: center;
+                        align-items: center;">
+                          <h4><b style="color: black;"> Mr. Ram Suraj Gupta </b></h4>
+                        </div>
+    
+                      </div>
+    
+                      <img src="{% static 'theGurkul/img/logo/logo_with_name.png' %}" alt="Logo" class="logoImg"
+                        style="width: 200px;">
+    
+                      <div class="mx-2">
+                        <div class="gurkul_logo_owner" style="display: flex;
+                      justify-content: center;
+                      align-items: center;">
+                          <h3><b style="color: #000988 !important;">Co-Director</b></h3>
+                        </div>
+    
+                        <div class="gurkul_logo_owner" style="display: flex;
+                        justify-content: center;
+                        align-items: center;">
+                          <h4><b style="color: black;"> Mr. Sanjay Gupta </b></h4>
+                        </div>
+    
+                      </div>
+    
+                    </div>
+    
+    
+                    <div>
+    
+                      <div class="social_pdf_icons my-2" style="display: flex;
+                      justify-content: space-between;">
+    
+                        <div class="social_pdf_icon" style="display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 10px 5px 10px 5px;">
+                          <h2 class="icon_head" style="display: inline-block;"> <b class=" mx-2" style="color: #6a3200;"> <i
+                                class="fa fa-youtube mx-2" style="color: red;"></i> The
+                              Gurkul </b></h2>
+                        </div>
+    
+                        <div class="social_pdf_icon" style="display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 10px 5px 10px 5px;">
+                          <h2 class="icon_head" style="display: inline-block;"> <b class=" mx-2" style="color: #888803;"> <i
+                                class="fa fa-facebook mx-2" style="color: blue;"></i> THE
+                              GURKUL</b></h2>
+                        </div>
+    
+                      </div>
+    
+                      <div class="social_pdf_icons my-2" style="display: flex;
+                      justify-content: space-between;">
+    
+                        <div class="social_pdf_icon" style="display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 10px 5px 10px 5px;">
+                          <h2 class="icon_head" style="display: inline-block;"> <b class="mx-2" style="color: #6a3200;"><i
+                                class="fa fa-instagram mx-2" style="color: rgb(255, 213, 0);"></i>the_gurkul</b></h2>
+                        </div>
+    
+                        <div class="social_pdf_icon" style="display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 10px 5px 10px 5px;">
+                          <h2 class="icon_head " style="display: inline-block;"> <b class=" mx-2" style="color: #888803;"><i
+                                class="fa fa-telegram mx-2" style="color: blue;"></i> The Gurkul </b></h2>
+                        </div>
+    
+                      </div>
+    
+                      <div class="social_pdf_icons my-2" style="display: flex;
+                      justify-content: space-between;">
+    
+                        <div class="social_pdf_icon" style="display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 10px 5px 10px 5px;">
+                          <h2 class="icon_head" style="display: inline-block;"> <b class=" mx-2" style="color: #6a3200;"><i
+                                class="fa fa-linkedin mx-2" style="color: rgb(0, 153, 255);"></i> The Gurkul </b></h2>
+                        </div>
+    
+                        <div class="social_pdf_icon" style="display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 10px 5px 10px 5px;">
+                          <h2 class="icon_head mx-2" style="display: inline-block;"><b style="color: #888803;"><i
+                                class="fa fa-twitter mx-2" style="color: blue;"></i> @TGurkul</b>
+                          </h2>
+                        </div>
+    
+                      </div>
+    
+                      <div class="mx-2 my-2" style="display: flex;justify-content:right;">
+                        <h2 style="color: rgb(255, 67, 195);">Contact:- 9696357798</h2>
+                      </div>
+    
+                      <div class="text-danger" style="display: flex; justify-content:center;">
+                        <h1><b class="text-danger"> wwww.thegurkul.com </b></h1>
+                      </div>
+    
+                      <div style="display: flex; justify-content:center; flex-wrap: wrap;">
+                        <b>
+                          <h2 class="mx-2" style="color: #d20076;">IIT</h2>
+                        </b>
+                        <b>
+                          <h2 class="mx-2" style="color: #d20076;">NEET</h2>
+                        </b>
+                        <b>
+                          <h2 class="mx-2" style="color: #d20076;">NDA</h2>
+                        </b>
+                        <b>
+                          <h2 class="mx-2" style="color: #d20076;">UPSC</h2>
+                        </b>
+                        <b>
+                          <h2 class="mx-2" style="color: #d20076;">SUPER TET</h2>
+                        </b>
+                        <b>
+                          <h2 class="mx-2" style="color: #d20076;">CTET</h2>
+                        </b>
+                        <b>
+                          <h2 class="mx-2" style="color: #d20076;">UPTET</h2>
+                        </b>
+                        <b>
+                          <h2 class="mx-2" style="color: #d20076;">UPSSSC</h2>
+                        </b>
+                        <b>
+                          <h2 class="mx-2" style="color: #d20076;">SSC</h2>
+                        </b>
+                        <b>
+                          <h2 class="mx-2" style="color: #d20076;">BANK</h2>
+                        </b>
+                        <b>
+                          <h2 class="mx-2" style="color: #d20076;">RAILWAY</h2>
+                        </b>
+                      </div>
+    
+    
+                    </div>
+    
+    
+                  </div>
+    
+                  <!-- start questions -->
+                  <div id="all_questions_comp_pdf"></div>
+    
+                  <!-- end div of pdf content -->
+                </div>
+    
+    
+              </div>
+    
+            </div>
+
+          </div>
+        </div>
+      </div>
+    
+    
+    
+      <div>
+        <h3 class="my-4"><b style="color:rgb(255, 0, 0);">List of All Questions with Selected Categories</b></h3>
+        <h3 class="my-4" id="total_questions_comp"></h3>
+    
+      </div>
+    
+    
+      <div>
+    
+        <div style="display: flex; justify-content:space-around">
+          <h5 class="card-header bg-info text-dark" id="exam_type">Exam Type</h5>
+          <h5 class="card-header bg-info text-dark" id="show_subject_comp">Subject</h5>
+          <h5 class="card-header bg-info text-dark" id="show_qtype_comp">Question Type</h5>
+        </div>
+    
+        <div id="all_questions_comp">
+    
+          <table class="table table-dark my-4">
+            <thead>
+              <tr>
+                <th scope="col" class="bg-dark">Question No.</th>
+                <th scope="col" class="bg-warning text-dark">Question</th>
+                <th scope="col" class="bg-success">Option (A)</th>
+                <th scope="col" class="bg-success">Option (B)</th>
+                <th scope="col" class="bg-success">Option (C)</th>
+                <th scope="col" class="bg-success">Option (D)</th>
+                <th scope="col" class="bg-danger">Action</th>
+              </tr>
+            </thead>
+            <tbody id="comp_tbody">
+    
+            </tbody>
+          </table>
+    
+    
+        </div>
+    
+        <h3 style="color: blue; display:flex;justify-content:center;padding: 10px;" id="comp_end_list">No Search Category
+          Request Found. Click Show Question Button To Filter With Categories..</h3>
+    
+    
+      </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+</div>
+{% endblock %}
+{% block js %}
+<script>
+  // js for submitting academic test series form
+  $(document).ready(function () {
+
+    $('.acad_test_series_form').submit(function (e) {
+
+      e.preventDefault()
+      $.ajax({
+        url: '/gurkul_test/test_series/academic_test_series_category/',
+        type: 'post',
+        data: {
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          language: $('#input_language').val(),
+          class: $('#input_class').val(),
+          board: $('#input_board').val(),
+          subject: $('#input_subject').val(),
+          qtype: $('#input_qtype').val(),
+          question: $('#acad_question').val(),
+          acad_q_1: $('#acad_q_1').val(),
+          acad_q_2: $('#acad_q_2').val(),
+          acad_q_3: $('#acad_q_3').val(),
+          acad_q_4: $('#acad_q_4').val(),
+          answer: $('#input_answer').val(),
+          acad_q_id: $('#acad_q_id').val(),
+          // type variable to send data that we are just adding questions in modal not searching for modal
+          type: 'none',
+          q_id: $('#comp_edit_q_id').val(),
+
+
+        },
+        //function when data is returned from the server
+        success: function (data) {
+          status = data.status
+          msg = data.msg
+          questions = data.questions
+          if (status == '200') {
+
+            if (data.qtype == 'MCQ') {
+
+              output = "";
+              for (let i = 0; i < questions.length; i++) {
+                const element = questions[i];
+                output += `
+                <tr>
+              <th scope="row">${element.sno}</th>
+              <td class="bg-warning text-dark">${element.question}</td>
+              <td class="bg-success">${element.acad_q_1}</td>
+              <td class="bg-success">${element.acad_q_2}</td>
+              <td class="bg-success">${element.acad_q_3}</td>
+              <td class="bg-success">${element.acad_q_4}</td>
+              <td><button class="btn btn-danger edit" data-sno="${element.sno}" data-type="acad">Edit</button></td>
+            </tr> `
+
+              }
+            }
+            else {
+
+
+              output = "";
+              for (let i = 0; i < questions.length; i++) {
+                const element = questions[i];
+                output += `
+                <tr>
+              <th scope="row">${element.sno}</th>
+              <td class="bg-warning text-dark">${element.question}</td>
+              <td class="bg-success">....</td>
+              <td class="bg-success">....</td>
+              <td class="bg-success">....</td>
+              <td class="bg-success">....</td>
+              <td><button class="btn btn-danger edit" data-sno="${element.sno}" data-type="acad">Edit</button></td>
+            </tr> `
+
+              }
+
+            }
+
+
+            $('#acad_tbody').html(output)
+            $('#show_class').text(`Class: ${data.class}`)
+            $('#show_board').text(`Board: ${data.board}`)
+            $('#show_subject').text(`Subject: ${data.subject}`)
+            $('#show_qtype').text(`Question Type: ${data.qtype}`)
+            $('#end_list').text('--#- End of List -#--')
+            $('#total_questions').html(`<b style="color:rgb(51, 255, 0);">Total Questions ${data.length}</b>`)
+
+
+            $('#absoluteMsg_outer').css('visibility', 'unset')
+            $('#absoluteMsg_outer').css('background-color', 'green')
+            $('#strong_msg').css('color', 'white')
+            $('#strong_msg').html(`<i class='far fa-check-circle h3'></i> ${msg}`)
+            setTimeout(function () {
+              $('#absoluteMsg_outer').css('visibility', 'hidden')
+
+            }, 3000)
+
+            $('#acad_q_id').val('-1')
+            $('#acad_question').val("")
+            $('#acad_q_1').val('')
+            $('#acad_q_2').val('')
+            $('#acad_q_3').val('')
+            $('#acad_q_4').val('')
+            $('#input_answer').val('')
+            $('#editing_q_id').text("")
+
+
+
+
+          }
+          else if (status == 400) {
+
+            $('#absoluteMsg_outer').css('visibility', 'unset')
+            $('#absoluteMsg_outer').css('background-color', 'red')
+            $('#strong_msg').css('color', 'white')
+            $('#strong_msg').html(`<i class='fas fa-exclamation-triangle h3'></i> ${msg}`)
+            setTimeout(function () {
+              $('#absoluteMsg_outer').css('visibility', 'hidden')
+
+            }, 3000)
+
+          }
+
+        }
+      })
+
+
+    })
+
+
+
+  })
+</script>
+<script>
+  // js for showing acadmic all question
+  $(document).ready(function () {
+    $('#acad_show_question').click(function () {
+
+      $.ajax({
+        url: '/gurkul_test/test_series/academic_test_series_category/',
+        type: 'post',
+        data: {
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          language: $('#input_language').val(),
+          class: $('#input_class').val(),
+          board: $('#input_board').val(),
+          subject: $('#input_subject').val(),
+          qtype: $('#input_qtype').val(),
+          type: 'show_questions',
+          acad_q_id: $('#acad_q_id').val(),
+
+        },
+        success: function (data) {
+          questions = data.questions
+
+          if (data.qtype == 'MCQ') {
+
+            output = "";
+            for (let i = 0; i < questions.length; i++) {
+              const element = questions[i];
+              output += `
+              <tr>
+                <th scope="row">${element.sno}</th>
+              <td class="bg-warning text-dark">${element.question}</td>
+              <td class="bg-success">${element.acad_q_1}</td>
+              <td class="bg-success">${element.acad_q_2}</td>
+              <td class="bg-success">${element.acad_q_3}</td>
+              <td class="bg-success">${element.acad_q_4}</td>
+              <td><button class="btn btn-danger edit" data-sno="${element.sno}" data-type="acad">Edit</button></td>
+            </tr>
+            `
+
+            }
+
+          }
+          else {
+
+            output = "";
+            for (let i = 0; i < questions.length; i++) {
+              const element = questions[i];
+              output += `
+              <tr>
+              <th scope="row">${element.sno}</th>
+              <td class="bg-warning text-dark">${element.question}</td>
+              <td class="bg-success">.....</td>
+              <td class="bg-success">.....</td>
+              <td class="bg-success">.....</td>
+              <td class="bg-success">.....</td>
+              <td><button class="btn btn-danger edit" data-sno="${element.sno}" data-type="acad">Edit</button></td>
+            </tr> `
+
+            }
+
+          }
+          $('#acad_tbody').html(output)
+          $('#show_class').text(`Class: ${data.class}`)
+          $('#show_board').text(`Board: ${data.board}`)
+          $('#show_subject').text(`Subject: ${data.subject}`)
+          $('#show_qtype').text(`Question Type: ${data.qtype}`)
+          $('#end_list').text('--#- End of List -#--')
+          $('#total_questions').html(`<b style="color:rgb(51, 255, 0);">Total Questions ${data.length}</b>`)
+
+        }
+
+
+      })
+
+
+
+    })
+
+
+  })
+</script>
+<script>
+  // js for submitting competition test series
+  $(document).ready(function () {
+
+
+    $('.comp_test_series_form').submit(function (e) {
+      e.preventDefault()
+      $.ajax({
+        url: '/gurkul_test/test_series/competition_test_series_category/',
+        type: 'post',
+        data: {
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          language: $('#input_language_comp').val(),
+          exam_type: $('#input_exam_type').val(),
+          subject: $('#input_subject_comp').val(),
+          qtype: $('#input_qtype_comp').val(),
+          question: $('#comp_question').val(),
+          comp_q_1: $('#comp_q_1').val(),
+          comp_q_2: $('#comp_q_2').val(),
+          comp_q_3: $('#comp_q_3').val(),
+          comp_q_4: $('#comp_q_4').val(),
+          answer: $('#input_answer_comp').val(),
+          // type variable to send data that we are just adding questions in modal not searching for modal
+          type: 'none',
+          q_id: $('#comp_edit_q_id').val(),
+
+
+        },
+        //function when data is returned from the server
+        success: function (data) {
+          status = data.status
+          msg = data.msg
+          questions = data.questions
+          if (status == '200') {
+            output = "";
+            for (let i = 0; i < questions.length; i++) {
+              const element = questions[i];
+              output += `
+                <tr>
+              <th scope="row">${element.sno}</th>
+              <td class="bg-warning text-dark">${element.question}</td>
+              <td class="bg-success">${element.option_1}</td>
+              <td class="bg-success">${element.option_2}</td>
+              <td class="bg-success">${element.option_3}</td>
+              <td class="bg-success">${element.option_4}</td>
+              <td><button class="btn btn-danger edit" data-sno="${element.sno}" data-type="comp">Edit</button></td>
+            </tr> `
+            }
+
+
+            $('#absoluteMsg_outer').css('visibility', 'unset')
+            $('#absoluteMsg_outer').css('background-color', 'green')
+            $('#strong_msg').css('color', 'white')
+            $('#strong_msg').html(`<i class='far fa-check-circle h3'></i> ${msg}`)
+            setTimeout(function () {
+              $('#absoluteMsg_outer').css('visibility', 'hidden')
+
+            }, 3000)
+            $('#comp_end_list').text('--#- End of List -#--')
+
+            $('#comp_tbody').html(output)
+            $('#exam_type').text(`Exam Type: ${data.exam_type}`)
+            $('#show_subject_comp').text(`Subject: ${data.subject}`)
+            $('#show_qtype_comp').text(`Question Type: ${data.qtype}`)
+            $('#end_list').text('--#- End of List -#--')
+            $('#total_questions_comp').html(`<b style="color:rgb(51, 255, 0);">Total Questions: ${data.length}</b>`)
+
+            $('#comp_question').val("")
+            $('#comp_q_1').val('')
+            $('#comp_q_2').val('')
+            $('#comp_q_3').val('')
+            $('#comp_q_4').val('')
+            $('#input_answer_comp').val('')
+            $('#comp_edit_q_id').val('-1')
+            $('#comp_q_id').text("")
+
+
+
+
+          }
+
+          else if (status == 400) {
+
+            $('#absoluteMsg_outer').css('visibility', 'unset')
+            $('#absoluteMsg_outer').css('background-color', 'red')
+            $('#strong_msg').css('color', 'white')
+            $('#strong_msg').html(`<i class='fas fa-exclamation-triangle h3'></i> ${msg}`)
+            setTimeout(function () {
+              $('#absoluteMsg_outer').css('visibility', 'hidden')
+
+            }, 3000)
+
+          }
+
+
+
+        }
+      })
+
+    })
+
+
+  })
+</script>
+<script>
+  $(document).ready(function () {
+    //  code to search for tha all selected categories in competition database
+    $('#comp_show_question').click(function () {
+
+
+      $.ajax({
+        url: '/gurkul_test/test_series/competition_test_series_category/',
+        type: 'post',
+        data: {
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          language: $('#input_language_comp').val(),
+          exam_type: $('#input_exam_type').val(),
+          subject: $('#input_subject_comp').val(),
+          qtype: $('#input_qtype_comp').val(),
+          type: 'show_questions',
+          q_id: $('#acad_q_id').val(),
+
+        },
+        success: function (data) {
+          questions = data.questions
+
+          output = "";
+          for (let i = 0; i < questions.length; i++) {
+            const element = questions[i];
+            output += `
+              <tr>
+              <th scope="row">${element.sno}</th>
+              <td class="bg-warning text-dark">${element.question}</td>
+              <td class="bg-success">${element.option_1}</td>
+              <td class="bg-success">${element.option_2}</td>
+              <td class="bg-success">${element.option_3}</td>
+              <td class="bg-success">${element.option_4}</td>
+              <td><button class="btn btn-danger edit" data-sno="${element.sno}" data-type="comp">Edit</button></td>
+            </tr>
+
+         `
+
+          }
+
+          $('#comp_tbody').html(output)
+          $('#exam_type').text(`Subject: ${data.exam_type}`)
+          $('#show_subject_comp').text(`Subject: ${data.subject}`)
+          $('#show_qtype_comp').text(`Question Type: ${data.qtype}`)
+          $('#comp_end_list').text('--#- End of List -#--')
+          $('#total_questions_comp').html(`<b style="color:rgb(51, 255, 0);">Total Questions ${data.length}</b>`)
+
+        }
+
+
+      })
+
+
+
+    })
+
+
+  })
+</script>
+<script>
+  // code for editing question academic question
+  $(document).ready(function () {
+
+    $('table').on('click', '.edit', function () {
+      sno = $(this).attr('data-sno')
+      type = $(this).attr('data-type')
+      $.ajax({
+        url: '/gurkul_test/test_series/edit_test_series/',
+        type: 'post',
+        data: {
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          id: sno,
+          class_type: type
+        },
+
+        success: function (data) {
+          class_type = data.class
+          qtype = data.qtype
+          if (class_type == 'acad') {
+            if (qtype == 'MCQ') {
+              question = data.question
+              $(`#input_class option[value='${question[0].test_class}'] `).attr('selected', 'selected')
+              $(`#input_language option[value='${question[0].language}'] `).attr('selected', 'selected')
+              $(`#input_subject option[value='${question[0].subject}'] `).attr('selected', 'selected')
+              $(`#input_qtype option[value='${question[0].qtype}'] `).attr('selected', 'selected')
+              $('#acad_question').val(question[0].question)
+              $('#acad_q_1').val(question[0].acad_q_1)
+              $('#acad_q_2').val(question[0].acad_q_2)
+              $('#acad_q_3').val(question[0].acad_q_3)
+              $('#acad_q_4').val(question[0].acad_q_4)
+              $('#input_answer').val(question[0].answer)
+              $('#acad_q_id').val(question[0].sno)
+              $('#editing_q_id').text(`Question: ${question[0].sno}`)
+
+            }
+            else if (qtype = 'other') {
+              question = data.question
+              $(`#input_class option[value='${question[0].test_class}'] `).attr('selected', 'selected')
+              $(`#input_language option[value='${question[0].language}'] `).attr('selected', 'selected')
+              $(`#input_subject option[value='${question[0].subject}'] `).attr('selected', 'selected')
+              $(`#input_qtype option[value='${question[0].qtype}'] `).attr('selected', 'selected')
+              $('#acad_question').val(question[0].question)
+              $('#acad_q_1').val("")
+              $('#acad_q_2').val("")
+              $('#acad_q_3').val("")
+              $('#acad_q_4').val("")
+              $('#input_answer').val(question[0].answer)
+              $('#acad_q_id').val(question[0].sno)
+              $('#editing_q_id').text(`Question: ${question[0].sno}`)
+
+            }
+
+          }
+
+          else if (class_type == 'comp') {
+            if (qtype == 'MCQ') {
+              question = data.question
+              $(`#input_exam_type option[value='${question[0].exam_type}']`).attr('selected', 'selected')
+              $(`#input_language_comp option[value='${question[0].language}']`).attr('selected', 'selected')
+              $(`#input_subject_comp option[value='${question[0].subject}']`).attr('selected', 'selected')
+              $(`#input_qtype_comp option[value='${question[0].qtype}']`).attr('selected', 'selected')
+              $('#comp_question').val(question[0].question)
+              $('#comp_q_1').val(question[0].option_1)
+              $('#comp_q_2').val(question[0].option_2)
+              $('#comp_q_3').val(question[0].option_3)
+              $('#comp_q_4').val(question[0].option_4)
+              $('#input_answer_comp').val(question[0].answer)
+              $('#comp_q_id').text(`Question: ${question[0].sno}`)
+              $('#comp_edit_q_id').val(question[0].sno)
+
+
+
+            }
+
+
+          }
+
+
+
+
+
+        }
+
+
+
+
+      })
+
+    })
+
+
+  })
+</script>
+<script>
+  // js for download questions pdf with selected category for academic student
+  $(document).ready(function () {
+
+    $('#btn_acad_pdf').click(function () {
+
+      $.ajax({
+        url: '/gurkul_test/test_series/academic_test_series_category/',
+        type: 'post',
+        data: {
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          language: $('#input_language').val(),
+          class: $('#input_class').val(),
+          board: $('#input_board').val(),
+          subject: $('#input_subject').val(),
+          qtype: $('#input_qtype').val(),
+          type: 'show_questions',
+          acad_q_id: $('#acad_q_id').val(),
+
+        },
+        success: function (data) {
+          questions = data.questions
+
+          if (data.qtype == 'MCQ') {
+
+            output = "";
+            for (let i = 0; i < questions.length; i++) {
+              const element = questions[i];
+              output += `
+            <div style="margin: 20px 5px; padding: 20px; border: 5px solid #0c9964; border-radius: 7px;">
+
+              <div style="position:absolute; transform: rotate(-20deg);display:none;">
+                <h1><b style="color: #0000001f;;font-size: 110px;">The Gurkul</b></h1>
+              </div>
+
+            <div
+              style="display: flex; justify-content: space-between; border: 1px solid rgba(0, 0, 255, 0); border-radius: 7px;border-color:blue;">
+
+              <h6 class="mx-2 my-2 text-primary">Class: ${data.class}</h6>
+              <h6 class="mx-2 my-2 "><b class="text-danger"> THE GURKUL </b></h6>
+              <h6 class="mx-2 my-2 text-primary">Subject: ${data.subject}</h6>
+            </div>
+            <div style="display: flex;justify-content:left; margin: 50px 0px 10px 0px;">
+            
+            
+              <div>
+                <h4 class="text-dark my-2 mx-2">${i + 1}.</h4>
+              </div>
+              <div>
+                <h4 class="text-dark my-2 mx-2">${element.question}</h4>
+              </div>
+            
+            </div>
+
+              <div class="my-2" style="display: flex; justify-content:space-between;">
+
+                <div style="display: flex;justify-content:left; width:600px;">
+
+              <div>
+                <h5 class="text-dark my-2 mx-2">(A)</h5>
+              </div>
+
+              <div>
+               <h5 class="text-dark my-2 mx-2">${element.acad_q_1}</h5>
+              </div>
+
+              </div>
+
+              <div style="display: flex;justify-content:left; width:600px;">
+
+              <div>
+                <h5 class="text-dark my-2 mx-2">(B)</h5>
+              </div>
+
+              <div>
+               <h5 class="text-dark my-2 mx-2">${element.acad_q_2}</h5>
+              </div>
+
+              </div>
+
+              </div >
+
+              <div class="my-2" style="display: flex; justify-content:space-between;">
+
+                <div style="display: flex;justify-content:left; width:600px;">
+
+              <div>
+                <h5 class="text-dark my-2 mx-2">(C)</h5>
+              </div>
+
+              <div>
+               <h5 class="text-dark my-2 mx-2">${element.acad_q_3}</h5>
+              </div>
+
+              </div>
+
+              <div style="display: flex;justify-content:left; width:600px;">
+
+              <div>
+                <h5 class="text-dark my-2 mx-2">(D)</h5>
+              </div>
+
+              <div>
+               <h5 class="text-dark my-2 mx-2">${element.acad_q_4}</h5>
+              </div>
+
+              </div>
+
+          </div>
+
+          </div>
+
+
+
+            `
+
+            }
+
+          }
+          else {
+
+            output = "";
+            for (let i = 0; i < questions.length; i++) {
+              const element = questions[i];
+              output += `
+              <div style="margin: 20px 5px; padding: 20px; border: 5px solid #0c9964; border-radius: 7px;">
+
+                <div style="position:absolute; transform: rotate(-20deg);">
+                  <h1><b style="color: #0000001f;;font-size: 110px;">The Gurkul</b></h1>
+             </div>
+
+              <div
+               style="display: flex; justify-content: space-between; border: 1px solid rgba(0, 0, 255, 0); border-radius: 7px;border-color:blue;">
+
+               <h6 class="mx-2 my-2 text-primary">Class: ${data.class}</h6>
+              <h6 class="mx-2 my-2 "><b class="text-danger"> THE GURKUL </b></h6>
+              <h6 class="mx-2 my-2 text-primary">Subject: ${data.subject}</h6>
+              </div>
+              <div style="display: flex;justify-content:left; margin: 50px 0px 10px            0px;">
+
+
+            <div>
+              <h4 class="text-dark my-2 mx-2">${i + 1}.</h4>
+            </div>
+          <div>
+           <h4 class="text-dark my-2 mx-2">${element.question}</h4>
+           </div>
+
+            </div>
+
+          </div>
+
+        </div> 
+            `
+
+            }
+
+          }
+          $('#all_questions_pdf').html(output)
+          $('#pdf_class').text(`Class: ${data.class}`)
+          $('#pdf_subject').text(`${data.subject}`)
+
+
+        }
+
+      })
+
+    })
+
+
+    $('#acad_pdf_download_btn').click(function () {
+
+      // js for generating pdf
+      var makepdf = document.getElementById("make_acad_pdf").innerHTML;
+      var mywindow = window.open("", "height=400,width=600")
+      mywindow.document.write(`<!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Changa:wght@500&family=Libre+Baskerville&family=M+PLUS+1+Code&family=Open+Sans:wght@500&family=Poppins:wght@300&family=Roboto+Slab&family=Secular+One&display=swap" rel="stylesheet">
+
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">`+ makepdf + `</body> </html>`);
+
+      mywindow.document.close();
+      mywindow.focus();
+      mywindow.print();
+      mywindow.close();
+
+      return true;
+
+
+
+
+
+
+    })
+
+
+
+
+
+  });
+</script>
+<script>
+  // js for generating pdf for competative exams pdf question
+
+  $(document).ready(function () {
+
+    $('#btn_comp_pdf').click(function () {
+
+      $.ajax({
+        url: '/gurkul_test/test_series/competition_test_series_category/',
+        type: 'post',
+        data: {
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          language: $('#input_language_comp').val(),
+          exam_type: $('#input_exam_type').val(),
+          subject: $('#input_subject_comp').val(),
+          qtype: $('#input_qtype_comp').val(),
+          type: 'show_questions',
+          q_id: $('#acad_q_id').val(),
+
+        },
+        success: function (data) {
+          questions = data.questions
+
+          if (data.qtype == 'MCQ') {
+
+            output = "";
+            for (let i = 0; i < questions.length; i++) {
+              const element = questions[i];
+              output += `
+        <div style="margin:20px 5px; padding: 20px; border: 5px solid #0c9964; border-radius: 7px;">
+          
+          <div style="transform: rotate(-20deg);position:absolute;display:none;">
+            <h1><b style="color: #0000001f;;font-size: 110px;">The Gurkul</b></h1>
+          </div>
+
+        <div
+          style="display: flex; justify-content: space-between; border: 1px solid rgba(0, 0, 255, 0); border-radius: 7px;border-color:blue;">
+          <h6 class="mx-2 my-2 text-primary">Exam: ${data.exam_type}</h6>
+          <h6 class="mx-2 my-2"><b class="text-danger"> THE GURKUL </b></h6>
+          <h6 class="mx-2 my-2 text-primary">Subject: ${data.subject}</h6>
+        </div>
+        <div style="display: flex;justify-content:left; margin: 50px 0px 10px 0px;">
+        
+        
+          <div>
+            <h5 class="text-dark my-2 mx-2">${i + 1}.</h5>
+          </div>
+          <div>
+            <h5 class="text-dark my-2 mx-2">${element.question}</h5>
+          </div>
+        
+        </div>
+
+          <div class="my-2" style="display: flex; justify-content:space-between;">
+
+         <div style="display: flex;justify-content:left; width:600px;">
+
+          <div>
+            <h5 class="text-dark my-2 mx-2">(A)</h5>
+          </div>
+
+          <div>
+           <h5 class="text-dark my-2 mx-2">${element.option_1}</h5>
+         </div>
+
+         </div>
+
+         <div style="display: flex;justify-content:left; width:600px;">
+
+          <div>
+            <h5 class="text-dark my-2 mx-2">(B)</h5>
+          </div>
+
+          <div>
+         <h5 class="text-dark my-2 mx-2">${element.option_2}</h5>
+         </div>
+
+         </div>
+
+          </div >
+
+          <div class="my-2" style="display: flex; justify-content:space-between;">
+
+         <div style="display: flex;justify-content:left; width:600px;">
+
+          <div>
+            <h5 class="text-dark my-2 mx-2">(C)</h5>
+          </div>
+
+          <div>
+         <h5 class="text-dark my-2 mx-2">${element.option_3}</h5>
+         </div>
+
+        </div>
+
+      <div style="display: flex;justify-content:left; width:600px;">
+
+        <div>
+            <h5 class="text-dark my-2 mx-2">(D)</h5>
+          </div>
+
+          <div>
+         <h5 class="text-dark my-2 mx-2">${element.option_4}</h5>
+         </div>
+
+       </div>
+
+      </div>
+
+      </div>
+
+
+
+        `
+
+            }
+
+          }
+
+          $('#all_questions_comp_pdf').html(output)
+          $('#pdf_exam').text(`Exam: ${data.exam_type}`)
+          $('#pdf_subject_comp').text(`${data.subject}`)
+
+
+        }
+      })
+
+    })
+
+    $('#comp_pdf_download_btn').click(function () {
+
+      // js for generating pdf
+      var makepdf = document.getElementById("make_comp_pdf").innerHTML;
+      var mywindow = window.open("", "height=400,width=600")
+      mywindow.document.write(`<!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Changa:wght@500&family=Libre+Baskerville&family=M+PLUS+1+Code&family=Open+Sans:wght@500&family=Poppins:wght@300&family=Roboto+Slab&family=Secular+One&display=swap" rel="stylesheet">
+
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">`+ makepdf + `</body> </html>`);
+
+      mywindow.document.close();
+      mywindow.focus();
+      mywindow.print();
+      mywindow.close();
+
+      return true;
+
+
+    })
+
+
+
+
+  });
+</script>
+
+
+{% endblock %}

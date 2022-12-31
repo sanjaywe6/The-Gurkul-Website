@@ -1,0 +1,199 @@
+{% extends 'basic.html' %} 
+{% block title %} 
+Contact 
+{% endblock %} 
+{% block active_contact %}
+active
+{% endblock %}
+{% block css %}
+<style>
+  .conContainer {
+    border: 1px solid black;
+    border-radius: 15px;
+  }
+  .conContainer:hover {
+    border-color: greenyellow;
+    box-shadow: 0px 0px 10px black;
+  }
+  .card-text {
+    color: black;
+  }
+  .formDiv{
+    width: 59%; 
+  }
+  /* css for responsiveness */
+  @media screen and (max-width:770px) {
+    #contImg{
+      display: none;
+    }
+    .formDiv{
+      width: 100%;
+    }
+  }
+
+  .contBtn{
+    background-color: blue;
+    color: white;
+  }
+  .contBtn:hover{
+    background-color: red;
+    color: black;
+  }
+</style>
+{% endblock %} {% block body %} {% load static %}
+
+{% if messages %} {% for message in messages %}
+
+
+<div class="bg-{{message.tags}}" style="
+    display: flex; 
+    justify-content: space-around; 
+    border: 1px solid black; 
+    box-shadow: 0px 0px 20px rgb(115, 115, 115);
+    border-radius: 7px;
+    max-width: 300px;
+    position: fixed;
+    bottom: 20%;
+    right: 0%;
+    padding: 10px;
+    z-index: 1000;">
+  <strong>{{message}}</strong>
+  <span style="  
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    top: 3%;
+    right: 3%;"
+    onclick="this.parentElement.style.display='none';"
+    onmouseenter="this.style.color='black';">&times;
+  </span>
+</div>
+
+{% endfor %} {% endif %}
+
+<div
+  style="
+    width: 100vw;
+    height: 100px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  "
+>
+  <h1>Talk with our Experts..</h1>
+</div>
+
+<!-- html of contact info and  contact form-->
+<div
+  class="container-fluid"
+  style="
+    background-color: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  "
+>
+  <!-- contact info.. -->
+  <div
+    class="conContainer my-5"
+    style="overflow: hidden; box-shadow: 0px 0px 20px rgb(132, 131, 131)"
+  >
+    <div class="row">
+      <div class="card">
+        <div class="card-body" style="margin: 3px">
+          <h5 class="card-title" style="color: red">
+            Our Contact Informations--
+          </h5>
+          <h3 class="card-text">Our Email:-</h3>
+          <p class="card-text">thegurkulbharat@gmail.com</p>
+          <h3 class="card-text">Phone:-</h3>
+          <p class="card-text">9696357798</p>
+          <h3 class="card-text">Head Office:-</h3>
+          <p class="card-text">
+            Near Indira Stadium , Civil Line flat No. 16/15 Bahraich (Uttar
+            Pradesh)
+          </p>
+          <a href="/about/" class="btn btn-primary">More About Us >></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- contact form -->
+  <div
+    class="container my-3"
+    style="
+      background-color: black;
+      padding: 5px;
+      border: 1px solid black;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+    "
+  >
+    <div class="formDiv">
+      <h3>Send Your Massage</h3>
+      <div class="contactForm">
+        <form action="/contact/" class="my-3 mx-3" method="POST">{% csrf_token %}
+          <div class="my-3">
+            <label for="inputName" class="form-label">Name</label>
+            <input type="text" name="inputName" class="form-control" id="inputName" required/>
+          </div>
+          <div class="my-3">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="email" name="inputEmail" class="form-control" id="inputEmail" required/>
+          </div>
+          <div class="my-3">
+            <label for="Vtype" class="form-label">Type Visitor</label>
+            <select
+              id="Vtype"
+              name="Vtype"
+              class="form-select"
+              style="
+                border: 1px solid rgb(144, 144, 144);
+                border-radius: 7px;
+                background-color: black;
+              "
+            >
+              <option selected>Choose...</option>
+              <option>Student</option>
+              <option>Teacher</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="mb-3 my-3">
+            <label for="desc" class="form-label"
+              >Describe your querry here</label
+            >
+            <textarea
+              class="form-control"
+              id="desc"
+              rows="3"
+              name="desc"
+            ></textarea>
+          </div>
+          <button class="btn contBtn" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- cont Img -->
+    <div id="contImg" style="width: 40%; height:100%;">
+      <img
+        src="{% static 'theGurkul/img/contact_images/talk_experts.png' %}"
+        alt=""
+        style="width: 100%"
+      />
+    </div>
+  </div>
+</div>
+{% endblock %}

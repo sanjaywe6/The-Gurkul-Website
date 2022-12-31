@@ -1,0 +1,129 @@
+{% extends 'basic.html' %}
+{% block title %}
+{{request.user.username}} Profile
+{% endblock %}
+
+{% block css %}
+<style>
+    .navProLi{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        color: red;
+    }
+    .navProHead{
+        color: rgb(253, 252, 252);
+    }
+    .navProAnch{
+        text-decoration: none;
+        color: rgb(255, 254, 254);
+    }
+    hr{
+        color: rgb(255, 255, 255);
+        width: 100%;
+    }
+    a{
+        text-decoration: none;
+    }
+    .iconbgw{
+        color: red;
+        margin-right: 10px;
+    } 
+    .navCont{
+        width: 400px; 
+        height:600px; 
+        background-color: rgb(0, 0, 0);
+    }
+    #pro_img{
+        width: 200px; 
+        margin: 10px;
+    }
+    .contentCont{
+        width: calc(100% - 400px); 
+        height: 900px; 
+        background-color: rgb(55, 54, 54); 
+        overflow: scroll;
+    }
+
+    @media screen and (max-width:950px){
+        .navCont{
+            width: 100vw;
+            height: auto;
+        }
+        .pro_ul{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        #pro_img{
+            width: 60px;
+        }
+        .navProLi{
+            width: auto;
+            /* display: inline-block; */
+            justify-content: unset;
+            float: left;
+        }
+        .nav_pro_hr{
+            display: none;
+        }
+        .small_width_navProli{
+            display: none;
+        }
+        .contentCont{
+        width: 100%; 
+        height: auto; 
+        background-color: rgb(55, 54, 54); 
+    }
+    }
+</style>
+    {% block cssPro %}
+    {% endblock %}
+{% endblock %}
+
+{% block active_profile %}
+active
+{% endblock %}
+
+{% block body %}
+
+{% load static %}
+
+{% if user.is_authenticated %}
+<div style="flex-wrap:wrap; justify-content: space-between;align-items: center; display: flex; width: 100vw;">
+    <div class="navCont">
+        <li class="navProLi mx-3"><img src="{% static 'usrs/img/unknown_profile/profile.png' %}" alt="" id="pro_img"></li>
+        <ul class="pro_ul">
+            <li class="navProLi mx-3 small_width_navProli">{{request.user.first_name}} {{request.user.last_name}}</li><br>
+            <li class="navProLi mx-3 small_width_navProli"><h3 class="navProHead">Welcome {{request.user.username}}</h3></li><hr class="nav_pro_hr">
+            <li class="navProLi mx-3"><a href="/gurkul_student/student_profile/"><h5 class="navProHead"><i class="fas fa-user iconbgw"></i>Profile</h5></a></li><hr class="nav_pro_hr">
+            <li class="navProLi mx-3"><a href="/gurkul_student/complete_profile/"><h5 class="navProHead"><i class="fas fa-user-cog iconbgw"></i>Complete Your Profile</h5></a></li><hr class="nav_pro_hr">
+            <li class="navProLi mx-3"><a href="/gurkul_student/edit_profile/"><h5 class="navProHead"><i class="fas fa-edit iconbgw"></i> Edit Your Profile</h5></a></li><hr class="nav_pro_hr">
+            <li class="navProLi mx-3"><a href="/gurkul_student/student/join_gurkul/"><h5 class="navProHead"><i class="fas fa-user-plus iconbgw"></i>Join The Gurkul</h5></a></li><hr class="nav_pro_hr">
+        </ul>
+    </div>
+    <div class="contentCont">
+        {% block profile %}
+        {% endblock %}
+    </div>
+</div>
+
+{% else %}
+<div class="forbidden" style="background-image: linear-gradient(red,white,green);
+height: 100vh;
+width: 100vw;
+display: flex;
+justify-content: center;
+align-items: center;
+position: absolute;
+top: 0px;
+right: 0px;">
+    <i class="fas fa-skull-crossbones" style="color: rgb(17, 0, 255); font-size: 10vw;"></i><pre style="color: black; font-size: 5vw;">  You already have logged in..</pre>
+</div>
+
+{% endif %}
+
+{% endblock %}
