@@ -4,8 +4,9 @@
     "\\gurkul_test",
     "\\gurkul_test\\templates",
     "\\gurkul_test\\templates\\gurkul_test",
-    "\\templates"
+    "\\templates",
+    "\\thegurkul"
   ],
-  "SelectedNode": "\\templates\\home.html",
+  "SelectedNode": "\\thegurkul\\views.py",
   "PreviewInSolutionExplorer": false
 }

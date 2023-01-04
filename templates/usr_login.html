@@ -1,18 +1,21 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login to Your Acount</title>
-    <link rel="stylesheet" href="{% static '/theGurkul/css/bootstrap.css' %}" />
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login to Your Acount</title>
+  <link rel="stylesheet" href="{% static '/theGurkul/css/bootstrap.css' %}" />
+</head>
+
+<body>
 
   {% if messages %}
   {% for message in messages %}
-    <div class="bg-{{message.tags}}" style="
+
+  <div class="bg-{{message.tags}}" style="
     display: flex; 
     justify-content: space-around; 
     border: 1px solid black; 
@@ -25,7 +28,7 @@
     padding: 10px;
     z-index: 1000;">
   <strong style="margin: 5px;">{{message}}</strong>
-  <span style="  
+    <span style=" 
     margin-left: 15px;
     color: white;
     font-weight: bold;
@@ -40,18 +43,17 @@
     background-color: rgb(0, 0, 0);
     border: 1px solid black;
     border-radius: 6px;
-    "
-    onclick="this.parentElement.style.display='none';"
-    onmouseenter="this.style.color='red';"
-    onmouseleave="this.style.color='white';"
-    >&times;
-  </span>
-</div>
-{% endfor %}
-{% endif %}
+    " onclick="this.parentElement.style.display='none';" onmouseenter="this.style.color='red';"
+      onmouseleave="this.style.color='white';">&times;
+    </span>
 
-{% if user.is_authenticated %}
-<div class="forbidden" style="background-image: linear-gradient(red,white,green);
+  </div>
+
+  {% endfor %}
+  {% endif %}
+
+  {% if user.is_authenticated %}
+  <div class="forbidden" style="background-image: linear-gradient(red,white,green);
 height: 100vh;
 width: 100vw;
 display: flex;
@@ -60,25 +62,19 @@ align-items: center;
 position: absolute;
 top: 0px;
 right: 0px;">
-    <i class="fas fa-skull-crossbones" style="color: rgb(17, 0, 255); font-size: 10vw;"></i><pre style="color: black; font-size: 5vw;">  You already have logged in..</pre>
-</div>
-{% else %}
-    <img
-      src="{% static 'theGurkul/img/Background/world.jpg' %}"
-      alt="Loading.."
-      style="position: fixed; height: 100vh; width: 100vw; z-index: -1"
-    />
-    <div
-      class="container"
-      style="
+    <i class="fas fa-skull-crossbones" style="color: rgb(17, 0, 255); font-size: 10vw;"></i>
+    <pre style="color: black; font-size: 5vw;">  You already have logged in..</pre>
+  </div>
+  {% else %}
+  <img src="{% static 'theGurkul/img/Background/world.jpg' %}" alt="Loading.."
+    style="position: fixed; height: 100vh; width: 100vw; z-index: -1" />
+  <div class="container" style="
         display: flex;
         height: 100vh;
         justify-content: center;
         align-items: center;
-      "
-    >
-      <div
-        style="
+      ">
+    <div style="
           background-color: black;
           color: white;
           flex-wrap: wrap;
@@ -87,91 +83,124 @@ right: 0px;">
           border: 1px solid rgb(2, 53, 255);
           border-radius: 35px;
           box-shadow: 5px 5px 10px rgb(174, 174, 174);
-        "
-      >
-        <div
-          style="
+        ">
+      <div style="
             display: flex;
             align-items: center;
             flex-wrap: wrap;
             justify-content: space-around;
-          "
-        >
-          <img
-            src="{% static 'usrs/img/unknown_profile/profile.png' %}"
-            alt="Loading.."
-            id="proImg"
-            class="formBlock my-2"
-            style="
+          ">
+        <img src="{% static 'usrs/img/unknown_profile/profile.png' %}" alt="Loading.." id="proImg"
+          class="formBlock my-2" style="
               width: 270px;
               border: 2px solid rgb(34, 255, 34);
               border-radius: 135px;
               box-shadow: 0px 0px 10px rgb(128, 126, 126);
               margin: 10px;
-            "
-          />
-          <div
-            class="formBlock my-2"
-            style="display: inline-block; margin: 10px"
-          >
-            <div
-              class="loginHead"
-              style="width: 100%; display: inline-flex; justify-content: center"
-            >
-              <h2 style="display: flex; align-items:center;"><i class="fas fa-lock mx-3" style="color: red; font-size:45px;"></i> Log In form</h2>
-            </div>
-            <form action="/user_login/" method="post">
-              {% csrf_token %}
-              <div class="row mb-3">
-                <label for="inputUsrname" class="col-sm-3 col-form-label"
-                  >Usrname</label
-                >
-                <div class="col-sm-10">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="inputUsrname"
-                    name="inputUsername"
-                    placeholder="Enter your username"
-                  />
-                </div>
-              </div>
-              <div class="row mb-3">
-                <label for="inputPassword" class="col-sm-3 col-form-label"
-                  >Password</label
-                >
-                <div class="col-sm-10">
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="inputPassword"
-                    name="inputPassword"
-                  />
-                </div>
-              </div>
-
-              <div class="col-md-4 my-3">
-                <label for="vtype" class="form-label">User Type</label>
-                <select id="vtype" class="form-select" name="usertype">
-                  <option value="student" selected>Student</option>
-                  <option value="teacher" >Teacher</option>
-                  <option value="gurkul_branch">Gurkul Branch</option>
-                  <option value="superuser">Gurkul Admin</option>
-                </select>
-              </div>
-
-              <button type="submit" class="btn btn-primary">Sign in</button>
-            </form>
-            <p>Don't have Account? <a href="/user_registration/">Sign Up</a></p>
+            " />
+        <div class="formBlock my-2" style="display: inline-block; margin: 10px">
+          <div class="loginHead" style="width: 100%; display: inline-flex; justify-content: center">
+            <h2 style="display: flex; align-items:center;"><i class="fas fa-lock mx-3"
+                style="color: red; font-size:45px;"></i> Log In form</h2>
           </div>
+          <form action="/user_login/" method="post">
+            {% csrf_token %}
+            <div class="row mb-3">
+              <label for="inputUsrname" class="col-sm-3 col-form-label">Username</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputUsrname" name="inputUsername"
+                  placeholder="Enter your username" />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword" name="inputPassword" />
+              </div>
+            </div>
+
+            <div class="col-md-4 my-3">
+              <label for="vtype" class="form-label">User Type</label>
+              <select id="vtype" class="form-select" name="usertype">
+                <option value="student" selected>Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="gurkul_branch">Gurkul Branch</option>
+                <option value="superuser">Gurkul Admin</option>
+              </select>
+            </div>
+
+
+            <div>
+              <h6 class="mx-2 my-2">Enter captcha without space</h6>
+              <div class="cpatcha_img" style="display: flex;justify-content: center;flex-wrap: wrap;">
+                <div class="mx-2 my-2"
+                  style="background-image: linear-gradient(45deg,red,green,yellow,pink);width: 100px; display: flex; justify-content: space-around; border: 1px solid red;border-radius: 7px;">
+
+                  <hr
+                    style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 5px; width: 100px;">
+                  <hr
+                    style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 10px; width: 100px;">
+                  <hr
+                    style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 15px; width: 100px;">
+                  <hr
+                    style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 20px; width: 100px;">
+                  <hr
+                    style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 25px; width: 100px;">
+                  <hr
+                    style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 30px; width: 100px;">
+                  <hr
+                    style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 35px; width: 100px;">
+
+                  <hr
+                    style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 5px; width: 100px;  transform: rotate(20deg);">
+                  <hr
+                    style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 10px; width: 100px; transform: rotate(20deg);">
+                  <hr
+                    style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 15px; width: 100px; transform: rotate(20deg);">
+                  <hr
+                    style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 20px; width: 100px; transform: rotate(20deg);">
+                  <hr
+                    style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 25px; width: 100px; transform: rotate(20deg);">
+                  <hr
+                    style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 30px; width: 100px; transform: rotate(20deg);">
+                  <hr
+                    style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 35px; width: 100px; transform: rotate(20deg);">
+
+                  <input type="button"
+                    style="background-color: transparent; border: unset; font-size: 25px; transform: rotate(45deg);color: black;"
+                    value="{{captcha.first_character}}">
+                  <input type="button"
+                    style="background-color: transparent; border: unset; font-size: 25px; transform: rotate(-30deg);color: black;"
+                    value="{{captcha.second_character}}">
+                </div>
+                <div>
+                  <input type="text" maxlength="2" minlength="2" id="captcha_value" name="captcha_value" style="max-width: 150px; height: 40px;border: 1px solid black; border-radius: 7px; text-align: center;"
+                    class="mx-2 my-2" placeholder="Enter Captcha Here" required>
+                    <input type="hidden" id="captcha_id" name="captcha_id" value="{{captcha.sno}}">
+                </div>
+              </div>
+            </div>
+
+
+            <div style="margin-top:2px; flex-wrap:wrap">
+              <button type="submit" class="my-2 btn btn-primary my-4">Log In</button>
+              <a href="/" class="mx-2 my-2 btn btn-danger">Back to Home Page</a>
+            </div>
+
+          </form>
+
+
+          <p>Don't have Account? <a href="/user_registration/">Sign Up</a></p>
         </div>
       </div>
     </div>
-  </body>
-  <script src="{% static '/theGurkul/js/jquery-3.6.0 uncompressed.js' %}"></script>
-  <script src="{% static '/theGurkul/js/popper.min.js' %}"></script>
-  <script src="{% static '/theGurkul/js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'theGurkul/js/kit.fontawesome.js' %}"></script>
+  </div>
+</body>
+<script src="{% static '/theGurkul/js/jquery-3.6.0 uncompressed.js' %}"></script>
+<script src="{% static '/theGurkul/js/popper.min.js' %}"></script>
+<script src="{% static '/theGurkul/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'theGurkul/js/kit.fontawesome.js' %}"></script>
+
 </html>
 {% endif %}
 <script src="{% static 'theGurkul/js/kit.fontawesome.js' %}"></script>

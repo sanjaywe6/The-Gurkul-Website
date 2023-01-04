@@ -204,9 +204,65 @@ right: 0px;">
                   <option value="gurkul_branch">Academic Branch</option>
                 </select>
               </div>
-            
 
-              <button type="submit" class="btn btn-primary">Sign in</button>
+
+
+              <div>
+                <h6 class="mx-2 my-2">Enter captcha without space</h6>
+                <div class="cpatcha_img" style="display: flex;justify-content: space-around;flex-wrap: wrap;">
+                  <div class="mx-2 my-2"
+                    style="background-image: linear-gradient(45deg,red,green,yellow,pink);width: 100px; display: flex; justify-content: space-around; border: 1px solid red;border-radius: 7px;">
+  
+                    <hr
+                      style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 5px; width: 100px;">
+                    <hr
+                      style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 10px; width: 100px;">
+                    <hr
+                      style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 15px; width: 100px;">
+                    <hr
+                      style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 20px; width: 100px;">
+                    <hr
+                      style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 25px; width: 100px;">
+                    <hr
+                      style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 30px; width: 100px;">
+                    <hr
+                      style="border: 0.04px solid black;opacity: 40%; position: absolute; margin-top: 35px; width: 100px;">
+  
+                    <hr
+                      style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 5px; width: 100px;  transform: rotate(20deg);">
+                    <hr
+                      style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 10px; width: 100px; transform: rotate(20deg);">
+                    <hr
+                      style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 15px; width: 100px; transform: rotate(20deg);">
+                    <hr
+                      style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 20px; width: 100px; transform: rotate(20deg);">
+                    <hr
+                      style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 25px; width: 100px; transform: rotate(20deg);">
+                    <hr
+                      style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 30px; width: 100px; transform: rotate(20deg);">
+                    <hr
+                      style="border: 0.04px solid black;opacity: 50%; position: absolute; margin-top: 35px; width: 100px; transform: rotate(20deg);">
+  
+                    <input type="button"
+                      style="background-color: transparent; border: unset; font-size: 25px; transform: rotate(45deg);"
+                      value="{{captcha.first_character}}">
+                    <input type="button"
+                      style="background-color: transparent; border: unset; font-size: 25px; transform: rotate(-30deg);"
+                      value="{{captcha.second_character}}">
+                  </div>
+                  <div>
+                    <input type="text" id="captcha_value" maxlength="2" minlength="2" name="captcha_value" style="max-width: 150px; height: 40px;border: 1px solid black; border-radius: 7px; text-align: center;"
+                      class="mx-2 my-2" placeholder="Enter Captcha Here" required>
+                      <input type="hidden" id="captcha_id" name="captcha_id" value="{{captcha.sno}}">
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top:2px; flex-wrap:wrap">
+                <button type="submit" class="my-2 btn btn-primary my-4">Sign In</button>
+                <a href="/" class="mx-2 my-2 btn btn-danger">Back to Home Page</a>
+              </div>
+            
             </form>
             <p>Already have account ? <a href="/user_login/">Log In</a></p>
           </div>

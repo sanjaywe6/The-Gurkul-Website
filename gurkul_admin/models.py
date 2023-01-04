@@ -79,3 +79,15 @@ class vistor_count(models.Model):
 
     def __str__(self):
         return self.ip
+
+
+# model for captcha verification
+class captcha_data(models.Model):
+    sno=models.AutoField(primary_key=True)
+    first_character=models.CharField(max_length=1,default="")
+    second_character=models.CharField(max_length=1,default="")
+    value=models.CharField(max_length=4,default="")
+
+    def __str__(self):
+        return self.value
+
