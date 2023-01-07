@@ -11,7 +11,7 @@ def get_client_ip_address(request):
         ip_addr = req_headers.get('REMOTE_ADDR')
     return ip_addr
 
-
+# fuction to verify captcha
 def captcha_verification(id,value):
     status="False"
     get_captcha=captcha_data.objects.filter(sno=id)
@@ -20,7 +20,17 @@ def captcha_verification(id,value):
 
     return status
 
+# function to determine usertype
+def gurkul_user_type(username):
+    user_type='anon'
+    general_user=all_usrs.objects.filter(username=username)
+    super_user=gurkul_all_superuser.objects.filter(username=username)
+    if len(general_user)>0:
+        user_type=general_user[0].visitor_type
+    elif len(super_user)>0:
+        user_type=super_user[0].visitor_type
 
+    return user_type
 
 
 

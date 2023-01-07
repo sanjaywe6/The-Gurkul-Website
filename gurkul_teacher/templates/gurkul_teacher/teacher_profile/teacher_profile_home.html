@@ -1,0 +1,74 @@
+{% extends 'gurkul_teacher/teacher_profile/teacher_profile_basic.html' %}
+
+{% block cssPro %}
+<style>
+    .achr{
+        color: red;
+    }
+</style>
+{%  endblock %}
+
+{% block profile %}
+<div class="container-fliud">
+    <h1 style="background-color: rgba(0, 0, 255, 0.589); color:red; display:flex; justify-content:center;padding: 5px;">My Account</h1><br>
+    <div class="container-fluid">
+        <h2>Your account details</h2><hr class="achr">
+
+        <table class="table table-dark table-striped">
+
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>Name</td>
+                <td>{{profile_data.0.fname}} {{profile_data.0.lname}} </td>
+              </tr>
+              
+              <tr>
+                <td>Mobile No.</td>
+                <td>{{profile_data.0.mob}}</td>
+              </tr>
+
+              <tr>
+                <td>WhatsApp Mobile No.</td>
+                <td>{{profile_data.0.wmob}}</td>
+              </tr>
+
+              <tr>
+                <td>Major Subject</td>
+                <td>{{profile_data.0.subject}}</td>
+              </tr>
+
+              <tr>
+                <td>Address</td>
+                <td>{{profile_data.0.address}}</td>
+              </tr>
+
+              <tr>
+                <td>State</td>
+                <td>{{profile_data.0.state}}</td>
+              </tr>
+
+              <tr>
+                <td>City</td>
+                <td>{{profile_data.0.city}}</td>
+              </tr>
+
+              <tr>
+                <td>Zip Code</td>
+                <td>{{profile_data.0.zip}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+    </div>
+</div>
+{% endblock %}
+

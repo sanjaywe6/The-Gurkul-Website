@@ -143,6 +143,48 @@
 
 <body>
 
+  {% if messages %}
+  {% for message in messages %}
+
+  <div class="bg-{{message.tags}}" style="
+    display: flex; 
+    justify-content: space-around; 
+    border: 1px solid black; 
+    box-shadow: 0px 0px 10px rgb(115, 115, 115);
+    border-radius: 7px;
+    max-width: 300px;
+    position: fixed;
+    bottom: 20%;
+    right: 0%;
+    padding: 10px;
+    z-index: 1000;">
+  <strong style="margin: 5px; color: black;">{{message}}</strong>
+    <span style=" 
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    background-color: rgb(0, 0, 0);
+    border: 1px solid black;
+    border-radius: 6px;
+    " onclick="this.parentElement.style.display='none';" onmouseenter="this.style.color='red';"
+      onmouseleave="this.style.color='white';">&times;
+    </span>
+
+  </div>
+
+  {% endfor %}
+  {% endif %}
+
+
+
   <!-- social media icon and gurkul logo with text animation -->
   <img src="{% static 'theGurkul/img/Background/world.jpg' %}" alt="Loading.." id="baseBackground" style="  position: fixed;
   height: 100vh;
@@ -229,7 +271,7 @@
     <!-- when user is authenticated -->
     {% if user.is_authenticated %}
 
-    <li class="navList {% block active_profile %}{% endblock %}" style="padding-bottom: 6px; float: right;">
+    <li class="navList {% block active_profile %}{% endblock %}" style="padding-bottom: 6px; float: right; background-color: #484848;">
       <div class="dropdown" style="background-color: transparent; ">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
           data-bs-toggle="dropdown" aria-expanded="false"
@@ -285,7 +327,7 @@
     align-items: center;
     justify-content: center;">
       <div class="logoBottom footerBlocks">
-        <img src="{% static 'theGurkul/img/logo/logo_with_name.png' %}" alt="Logo" style="width: 300px;">
+        <img src="{% static 'theGurkul/img/logo/logo.png' %}" alt="Logo" style="width: 200px;">
       </div>
       <div class="footerBlocks lowerSms" style="max-width: 30px;
       flex-wrap: wrap;">

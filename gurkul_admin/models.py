@@ -64,7 +64,7 @@ class gurkul_all_superuser(models.Model):
     username=models.CharField(max_length=40,null=False)
     passwd=models.CharField(max_length=100,null=False,default='')
     admin_id=models.CharField(max_length=20,null=True,default="")
-    user_type=models.CharField(max_length=40,null=False)
+    visitor_type=models.CharField(max_length=40,null=False)
     user_profile=models.ForeignKey(User,on_delete=models.CASCADE,null=False)
     time=models.DateTimeField(default=now)
 

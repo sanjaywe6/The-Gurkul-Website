@@ -1,0 +1,191 @@
+{% extends 'gurkul_teacher/teacher_profile/teacher_profile_basic.html' %}
+
+{% block cssPro %}
+<style>
+  .achr {
+    color: red;
+  }
+</style>
+{% endblock %}
+
+{% block profile %}
+<div class="container-fliud">
+  
+  <h1 id="complete_profile_head" style="background-color: rgba(0, 0, 255, 0.589); color:red; display:flex; justify-content:center;padding: 5px;">
+    Complete Your Profile</h1><br>
+
+    <div id="profile_complete_sign" style="display: flex; justify-content: center; align-items: center;"></div>
+
+  <div id="profile_form">
+    <div class="container-fluid">
+      <h2>Add Your Profile Deatails</h2>
+      <hr class="achr">
+
+      <form id="profile_data_form">
+        {% csrf_token %}
+        <input type="hidden" id="status" value="{{edit_profile_status}}">
+        <div class="row g-3 my-3">
+          <div class="col">
+            <input id="fname" type="text" class="form-control" placeholder="First name" aria-label="First name">
+          </div>
+          <div class="col">
+            <input id="lname" type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+          </div>
+        </div>
+
+        <div class="row g-3 my-3">
+          <div class="col">
+            <label for="mob" class="form-label">Mob.</label>
+            <input type="phone" class="form-control" id="mob">
+          </div>
+
+          <div class="col">
+            <label for="wmob" class="form-label">WhatsApp Mob.</label>
+            <input type="phone" class="form-control" id="wmob">
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+          <label for="subject" class="form-label">Subject</label>
+          <select id="subject" class="form-select text-dark">
+            <option class="text-dark" selected>Science</option>
+            <option class="text-dark">Mathematics</option>
+            <option class="text-dark">English</option>
+            <option class="text-dark">Hindi</option>
+            <option class="text-dark">Physics</option>
+            <option class="text-dark">Chemistry</option>
+            <option class="text-dark">Biology</option>
+            <option class="text-dark">History</option>
+            <option class="text-dark">Computer Science</option>
+            <option class="text-dark">Reasoning</option>
+            <option class="text-dark">GS/GK</option>
+          </select>
+        </div>
+
+        <div class="col-12 my-3">
+          <label for="addr" class="form-label">Address</label>
+          <input type="text" class="form-control" id="addr" placeholder="Apartment, building, or floor">
+        </div>
+
+        <div class="row g-3 my-3">
+          <div class="col my-3">
+            <label for="state" class="form-label">State</label>
+            <input type="text" class="form-control" id="state">
+          </div>
+          <div class="col my-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city">
+          </div>
+        </div>
+
+        <div class="col-md-2 my-3">
+          <label for="zip" class="form-label">Zip</label>
+          <input type="text" class="form-control" id="zip">
+        </div>
+
+        <div class="form-floating">
+          <textarea class="form-control text-dark" placeholder="Leave a comment here" id="bio"
+            style="height: 100px"></textarea>
+          <label for="bio" class="text-dark">About You</label>
+        </div>
+
+        <button type="submit" class="btn btn-success pro_det_btn my-2" style="float: right;">Submit</button>
+
+      </form>
+      <hr class="achr">
+
+    </div>
+  </div>
+
+
+</div>
+{% endblock %}
+{% block js %}
+<script>
+  $(document).ready(function () {
+
+    // code for submitting techer profile form
+    $('#profile_data_form').submit(function (e) {
+      e.preventDefault()
+      $.ajax({
+        url: '/gurkul_teacher/edit_profile/',
+        type: 'post',
+        data: {
+          csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+          load_old_profile_data:false,
+          data_status: $('#status').val(),
+          fname: $('#fname').val(),
+          lname: $('#lname').val(),
+          mob: $('#mob').val(),
+          wmob: $('#wmob').val(),
+          subject: $('#subject').val(),
+          addr: $('#addr').val(),
+          state: $('#state').val(),
+          city: $('#city').val(),
+          zip: $('#zip').val(),
+          bio: $('#bio').val(),
+        },
+        success: function (data) {
+          status_code=data.code
+          if (status_code == 200) {
+            $('#profile_complete_sign').html(`
+            <i class="fas fa-thumbs-up" style="font-size: 200px; color: rgb(0, 217, 255);"></i>
+            `)
+            $('#profile_form').css('display','none')
+            $('#complete_profile_head').html(`Completed <i class='fas fa-check-double mx-2 text-danger'></i>`)
+
+          }
+          $('#fname').val('')
+          $('#lname').val('')
+          $('#mob').val('')
+          $('#wmob').val('')
+          $('#addr').val('')
+          $('#state').val('')
+          $('#city').val('')
+          $('#zip').val('')
+          $('#bio').val('')
+
+        }
+
+      })
+
+    })
+
+
+  })
+</script>
+<script>
+  // js for loading old profile data of user
+  $(document).ready(function(){
+    $.ajax({
+      url:'/gurkul_teacher/edit_profile/',
+      type:'post',
+      data:{
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        load_old_profile_data:true
+      },
+      success: function(data){
+        status_code=data.code
+        data=data.profile_data
+        if(status_code==200){
+          $('#fname').val(data[0].fname)
+          $('#lname').val(data[0].lname)
+          $('#mob').val(data[0].mob)
+          $('#wmob').val(data[0].wmob)
+          $('#addr').val(data[0].address)
+          $('#state').val(data[0].state)
+          $('#zip').val(data[0].zip)
+          $('#city').val(data[0].city)
+          $('#bio').val(data[0].bio)
+          $(`#subject option[value='${data[0].subject}']`).attr('selected','selected')
+
+
+        }
+      }
+
+    })
+    
+  })
+</script>
+{% endblock %}

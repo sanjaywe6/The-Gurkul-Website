@@ -42,47 +42,6 @@ active
 </style>
 {% endblock %} {% block body %} {% load static %}
 
-{% if messages %}
-{% for message in messages %}
-
-<div class="bg-{{message.tags}}" style="
-  display: flex; 
-  justify-content: space-around; 
-  border: 1px solid black; 
-  box-shadow: 0px 0px 10px rgb(115, 115, 115);
-  border-radius: 7px;
-  max-width: 300px;
-  position: fixed;
-  bottom: 20%;
-  right: 0%;
-  padding: 10px;
-  z-index: 1000;">
-<strong style="margin: 5px; color: black;">{{message}}</strong>
-  <span style=" 
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-  position: absolute;
-  top: 0%;
-  right: 0%;
-  background-color: rgb(0, 0, 0);
-  border: 1px solid black;
-  border-radius: 6px;
-  " onclick="this.parentElement.style.display='none';" onmouseenter="this.style.color='red';"
-    onmouseleave="this.style.color='white';">&times;
-  </span>
-
-
-</div>
-
-{% endfor %}
-{% endif %}
-
 <div
   style="
     width: 100vw;
