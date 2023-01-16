@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9f9887f1-b45c-46bf-a7fd-7a98b4b39b9d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/The Gurkul/v17/.wsuo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/The Gurkul/v17/.wsuo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/slnx.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/slnx.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/complete_profile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/edit_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/edit_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/join_gurkul.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/student_profile_basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/student_profile_basic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/student_profile_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/student_profile_home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_teacher/templates/gurkul_teacher/teacher_profile/edit_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/templates/gurkul_teacher/teacher_profile/edit_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_teacher/templates/gurkul_teacher/teacher_profile/teacher_profile_basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/templates/gurkul_teacher/teacher_profile/teacher_profile_basic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_teacher/templates/gurkul_teacher/teacher_profile/teacher_profile_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/templates/gurkul_teacher/teacher_profile/teacher_profile_home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_teacher/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/views.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2KOcxfhMh1X2kvKlaFpaggRtHI2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9f9887f1-b45c-46bf-a7fd-7a98b4b39b9d" name="Changes" comment="" />
+      <created>1673849319048</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673849319048</updated>
+    </task>
+    <servers />
+  </component>
+</project>

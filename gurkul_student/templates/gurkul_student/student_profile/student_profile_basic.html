@@ -1,56 +1,74 @@
 {% extends 'basic.html' %}
 {% block title %}
-{{request.user.username}} Profile
+{{request.user.first_name}} {{request.user.last_name}} Profile
 {% endblock %}
 
 {% block css %}
 <style>
-    .navProLi{
+    .navProLi {
+        width: 100%;
+        display: flex;
+        justify-content: start;
+        color: red;
+    }
+
+    .main_pro_li {
         width: 100%;
         display: flex;
         justify-content: center;
-        color: red;
+        color: #fbff00;
+        font-size: 25px;
     }
-    .navProHead{
+
+    .navProHead {
         color: rgb(253, 252, 252);
     }
-    .navProAnch{
+
+    .navProAnch {
         text-decoration: none;
         color: rgb(255, 254, 254);
     }
-    hr{
+
+    hr {
         color: rgb(255, 255, 255);
         width: 100%;
     }
-    a{
+
+    a {
         text-decoration: none;
     }
-    .iconbgw{
+
+    .iconbgw {
         color: red;
         margin-right: 10px;
-    } 
-    .navCont{
-        width: 400px; 
-        height:600px; 
+    }
+
+    .navCont {
+        width: 400px;
+        min-height: 1000px;
         background-color: rgb(0, 0, 0);
     }
-    #pro_img{
-        width: 200px; 
+
+    #pro_img {
+        width: 200px;
         margin: 10px;
     }
-    .contentCont{
-        width: calc(100% - 400px); 
-        height: 900px; 
-        background-color: rgb(55, 54, 54); 
+
+    .contentCont {
+        width: calc(100% - 400px);
+        min-height: 1000px;
+        background-color: rgb(55, 54, 54);
         overflow: scroll;
     }
 
-    @media screen and (max-width:950px){
-        .navCont{
-            width: 100vw;
+    @media screen and (max-width:950px) {
+        .navCont {
+            width: 100%;
             height: auto;
+            min-height: unset;
         }
-        .pro_ul{
+
+        .pro_ul {
             width: 100%;
             height: 100%;
             display: flex;
@@ -58,30 +76,39 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        #pro_img{
+
+        #pro_img {
             width: 60px;
         }
-        .navProLi{
+
+        .navProLi {
             width: auto;
             /* display: inline-block; */
             justify-content: unset;
             float: left;
         }
-        .nav_pro_hr{
+
+        .main_pro_li {
+            justify-content: end;
+        }
+
+        .nav_pro_hr {
             display: none;
         }
-        .small_width_navProli{
+
+        .small_width_navProli {
             display: none;
         }
-        .contentCont{
-        width: 100%; 
-        height: auto; 
-        background-color: rgb(55, 54, 54); 
-    }
+
+        .contentCont {
+            width: 100%;
+            height: auto;
+            background-color: rgb(55, 54, 54);
+        }
     }
 </style>
-    {% block cssPro %}
-    {% endblock %}
+{% block cssPro %}
+{% endblock %}
 {% endblock %}
 
 {% block active_profile %}
@@ -93,16 +120,54 @@ active
 {% load static %}
 
 {% if user.is_authenticated %}
-<div style="flex-wrap:wrap; justify-content: space-between;align-items: center; display: flex; width: 100vw;">
+<div style="flex-wrap:wrap; justify-content: space-between;align-items: center; display: flex; width: 100%;">
     <div class="navCont">
-        <li class="navProLi mx-3"><img src="{% static 'usrs/img/unknown_profile/profile.png' %}" alt="" id="pro_img"></li>
+        <li class="main_pro_li"><img src="{% static 'usrs/img/unknown_profile/profile.png' %}" alt="" id="pro_img"></li>
         <ul class="pro_ul">
-            <li class="navProLi mx-3 small_width_navProli">{{request.user.first_name}} {{request.user.last_name}}</li><br>
-            <li class="navProLi mx-3 small_width_navProli"><h3 class="navProHead">Welcome {{request.user.username}}</h3></li><hr class="nav_pro_hr">
-            <li class="navProLi mx-3"><a href="/gurkul_student/student_profile/"><h5 class="navProHead"><i class="fas fa-user iconbgw"></i>Profile</h5></a></li><hr class="nav_pro_hr">
-            <li class="navProLi mx-3"><a href="/gurkul_student/complete_profile/"><h5 class="navProHead"><i class="fas fa-user-cog iconbgw"></i>Complete Your Profile</h5></a></li><hr class="nav_pro_hr">
-            <li class="navProLi mx-3"><a href="/gurkul_student/edit_profile/"><h5 class="navProHead"><i class="fas fa-edit iconbgw"></i> Edit Your Profile</h5></a></li><hr class="nav_pro_hr">
-            <li class="navProLi mx-3"><a href="/gurkul_student/student/join_gurkul/"><h5 class="navProHead"><i class="fas fa-user-plus iconbgw"></i>Join The Gurkul</h5></a></li><hr class="nav_pro_hr">
+            <li class="main_pro_li small_width_navProli">{{request.user.first_name}} {{request.user.last_name}}
+                ({{student_id}})</li><br>
+
+            <div class="{% block active_profile_option_profile %}{% endblock %}"
+                style="margin-top: 10px; border-left: 1px solid red; border-top-left-radius: 7px; border-bottom-left-radius: 7px; padding: 10px;">
+                <li class="navProLi mx-3"><a href="/user/profile">
+                        <h5 class="navProHead"><i class="fas fa-user iconbgw"></i>Profile</h5>
+                    </a></li>
+            </div>
+            <hr class="nav_pro_hr">
+
+            <div class="{% block active_profile_option_personal_details %}{% endblock %}"
+                style="margin-top: 10px; border-left: 1px solid red; border-top-left-radius: 7px; border-bottom-left-radius: 7px;padding: 10px;">
+                {% if profile_data_existence == "False" %}
+                <li class="navProLi mx-3"><a href="/gurkul_student/edit_profile/">
+                        <h5 class="navProHead"><i class="mx-2 text-danger fas fa-exclamation-circle"></i>Complete Your
+                            Profile</h5>
+                    </a></li>
+
+                {% else %}
+                <li class="navProLi mx-3 my-2"><a class="nav-link disabled bg-light"
+                        href="/gurkul_student/edit_profile/">
+                        <h5 class="navProHead"></i><del class="text-dark"> Complete Your Profile </del> <i
+                                class="mx-2 fas fa-check text-primary"></i></h5>
+                    </a></li>
+
+                {% endif %}
+
+                {% if profile_data_existence == "False" %}
+                <li class="navProLi mx-3"><a class="nav-link disabled bg-light" href="/gurkul_student/edit_profile/">
+                        <h5 class="navProHead"><i class="fas fa-edit iconbgw"></i><del class="text-dark">Edit Your
+                                Profile </del></h5>
+                    </a></li>
+
+                {% else %}
+                <li class="navProLi mx-3 my-2"><a href="/gurkul_student/edit_profile/">
+                        <h5 class="navProHead"><i class="fas fa-edit iconbgw"></i>Edit Your Profile</h5>
+                    </a></li>
+
+                {% endif %}
+            </div>
+            <hr class="nav_pro_hr">
+
+
         </ul>
     </div>
     <div class="contentCont">
@@ -121,7 +186,8 @@ align-items: center;
 position: absolute;
 top: 0px;
 right: 0px;">
-    <i class="fas fa-skull-crossbones" style="color: rgb(17, 0, 255); font-size: 10vw;"></i><pre style="color: black; font-size: 5vw;">  You already have logged in..</pre>
+    <i class="fas fa-skull-crossbones" style="color: rgb(17, 0, 255); font-size: 10vw;"></i>
+    <pre style="color: black; font-size: 5vw;">Please login to access profile.....</pre>
 </div>
 
 {% endif %}

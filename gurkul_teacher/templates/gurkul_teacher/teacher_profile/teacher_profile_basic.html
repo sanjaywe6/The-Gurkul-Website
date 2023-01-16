@@ -1,6 +1,6 @@
 {% extends 'basic.html' %}
 {% block title %}
-{{request.user.username}} Profile
+{{request.user.first_name}} {{request.user.last_name}} Profile
 {% endblock %}
 
 {% block css %}
@@ -8,8 +8,15 @@
     .navProLi{
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: start;
         color: red;
+    }
+    .main_pro_li{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        color: #fbff00;
+        font-size: 25px;
     }
     .navProHead{
         color: rgb(253, 252, 252);
@@ -47,7 +54,7 @@
 
     @media screen and (max-width:950px){
         .navCont{
-            width: 100vw;
+            width: 100%;
             height: auto;
             min-height: unset;
         }
@@ -67,6 +74,9 @@
             /* display: inline-block; */
             justify-content: unset;
             float: left;
+        }
+        .main_pro_li{
+            justify-content: end;
         }
         .nav_pro_hr{
             display: none;
@@ -96,23 +106,25 @@ active
 {% if user.is_authenticated %}
 <div style="flex-wrap:wrap; justify-content: space-between;align-items: center; display: flex; width: 100%;">
     <div class="navCont">
-        <li class="navProLi mx-3"><img src="{% static 'usrs/img/unknown_profile/profile.png' %}" alt="" id="pro_img"></li>
+        <li class="main_pro_li"><img src="{% static 'usrs/img/unknown_profile/profile.png' %}" alt="" id="pro_img"></li>
         <ul class="pro_ul">
-            <li class="navProLi mx-3 small_width_navProli">{{request.user.first_name}} {{request.user.last_name}}</li><br>
-            <li class="navProLi mx-3 small_width_navProli"><h3 class="navProHead">{{request.user.username}}</h3></li><hr class="nav_pro_hr">
+            <li class="main_pro_li small_width_navProli">{{request.user.first_name}} {{request.user.last_name}} ({{teacher_id}})</li><br>
             <li class="navProLi mx-3"><a href="/user/profile"><h5 class="navProHead"><i class="fas fa-user iconbgw"></i>Profile</h5></a></li><hr class="nav_pro_hr">
 
+            <div style="margin-top: 10px;border-radius: 7px; background-color: #3a3a3a; padding: 10px;">
             {% if profile_data_existence == "False" %}
-            <li class="navProLi mx-3"><a href="/gurkul_teacher/edit_profile/"><h5 class="navProHead"><i class="mx-2 text-danger fas fa-exclamation-circle"></i>Complete Your Profile</h5></a></li><hr class="nav_pro_hr">
+            <li class="navProLi mx-3"><a href="/gurkul_teacher/edit_profile"><h5 class="navProHead"><i class="mx-2 text-danger fas fa-exclamation-circle"></i>Complete Your Profile</h5></a></li><hr class="nav_pro_hr">
             {% else %}
-            <li class="navProLi mx-3"><a class="nav-link disabled bg-secondary" href="/gurkul_teacher/edit_profile/"><h5 class="navProHead"><i class="mx-2 text-danger fas fa-exclamation-circle"></i>Complete Your Profile <i class="mx-2 fas fa-check text-primary"></i></h5></a></li><hr class="nav_pro_hr">
+            <li class="navProLi mx-3"><a class="nav-link disabled bg-light" href="/gurkul_teacher/edit_profile/"><h5 class="navProHead"></i><del class="text-dark"> Complete Your Profile </del> <i class="mx-2 fas fa-check text-primary"></i></h5></a></li><hr class="nav_pro_hr">
             {% endif %}
 
             {% if profile_data_existence == "False" %}
-            <li class="navProLi mx-3"><a class="nav-link disabled bg-secondary" href="/gurkul_teacher/edit_profile/"><h5 class="navProHead"><i class="fas fa-edit iconbgw"></i>Edit Your Profile</h5></a></li><hr class="nav_pro_hr">
+            <li class="navProLi mx-3"><a class="nav-link disabled bg-light" href="/gurkul_teacher/edit_profile/"><h5 class="navProHead"><i class="fas fa-edit iconbgw"></i><del class="text-dark">Edit Your Profile </del></h5></a></li><hr class="nav_pro_hr">
             {% else %}
             <li class="navProLi mx-3"><a href="/gurkul_teacher/edit_profile/"><h5 class="navProHead"><i class="fas fa-edit iconbgw"></i>Edit Your Profile</h5></a></li><hr class="nav_pro_hr">
             {% endif %}
+        </div>
+
 
         </ul>
     </div>
@@ -132,7 +144,7 @@ align-items: center;
 position: absolute;
 top: 0px;
 right: 0px;">
-    <i class="fas fa-skull-crossbones" style="color: rgb(17, 0, 255); font-size: 10vw;"></i><pre style="color: black; font-size: 5vw;">  You already have logged in..</pre>
+    <i class="fas fa-skull-crossbones" style="color: rgb(17, 0, 255); font-size: 10vw;"></i><pre style="color: black; font-size: 5vw;">Please login to access profile.....</pre>
 </div>
 
 {% endif %}

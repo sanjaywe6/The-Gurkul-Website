@@ -21,7 +21,7 @@ def teacher_profile(request):
         else:
             profile_data_existence="False"
             edit_profile_status='new'
-        param={'profile_data_existence':profile_data_existence,'edit_profile_status':edit_profile_status,"profile_data":profile_data}
+        param={'profile_data_existence':profile_data_existence,'edit_profile_status':edit_profile_status,"profile_data":profile_data,'teacher_id':teacher_id}
         return render(request,'gurkul_teacher/teacher_profile/teacher_profile_home.html',param)
 
     else:
@@ -31,6 +31,8 @@ def teacher_profile(request):
 def edit_profile(request):
     # verifying usertype
     user_type=gurkul_user_type(request.user)
+    # getting teacher id
+    teacher_id=all_usrs.objects.filter(username=request.user)[0].teacher_id
     if request.method=='POST':
         # getting data from page
         load_old_profile_data=request.POST.get('load_old_profile_data')
@@ -56,8 +58,7 @@ def edit_profile(request):
         user_profile=User.objects.get(username=request.user)
         user_profile.first_name=fname
         user_profile.last_name=lname
-        # getting teacher id
-        teacher_id=all_usrs.objects.filter(username=request.user)[0].teacher_id
+        
         if user_type=='teacher' or user_type=='superuser':
             if data_status=="new":
                 profiel_data=teacher_profile_data(teacher_id=teacher_id,fname=fname,lname=lname,mob=mob,wmob=wmob,subject=subject,address=addr,state=state,city=city,zip=zip,bio=bio,user_profile=request.user)
@@ -80,6 +81,8 @@ def edit_profile(request):
                 profile_data_existence="False"
                 edit_profile_status='new'
             
-            param={'profile_data_existence':profile_data_existence,'edit_profile_status':edit_profile_status}
+            param={'profile_data_existence':profile_data_existence,'edit_profile_status':edit_profile_status,'teacher_id':teacher_id}
             return render(request,'gurkul_teacher/teacher_profile/edit_profile.html',param)
 
+        else:
+            return redirect("/")

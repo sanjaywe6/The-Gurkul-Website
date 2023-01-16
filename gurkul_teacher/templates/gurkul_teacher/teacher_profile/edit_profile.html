@@ -26,21 +26,21 @@
         <input type="hidden" id="status" value="{{edit_profile_status}}">
         <div class="row g-3 my-3">
           <div class="col">
-            <input id="fname" type="text" class="form-control" placeholder="First name" aria-label="First name">
+            <input id="fname" type="text" class="form-control" placeholder="First name" aria-label="First name" required>
           </div>
           <div class="col">
-            <input id="lname" type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+            <input id="lname" type="text" class="form-control" placeholder="Last name" aria-label="Last name" required>
           </div>
         </div>
 
         <div class="row g-3 my-3">
           <div class="col">
             <label for="mob" class="form-label">Mob.</label>
-            <input type="phone" class="form-control" id="mob">
+            <input type="phone" class="form-control" id="mob" required>
           </div>
 
           <div class="col">
-            <label for="wmob" class="form-label">WhatsApp Mob.</label>
+            <label for="wmob" class="form-label">WhatsApp Mob.(Optional)</label>
             <input type="phone" class="form-control" id="wmob">
           </div>
 
@@ -65,28 +65,28 @@
 
         <div class="col-12 my-3">
           <label for="addr" class="form-label">Address</label>
-          <input type="text" class="form-control" id="addr" placeholder="Apartment, building, or floor">
+          <input type="text" class="form-control" id="addr" placeholder="Apartment, building, or floor" required>
         </div>
 
         <div class="row g-3 my-3">
           <div class="col my-3">
             <label for="state" class="form-label">State</label>
-            <input type="text" class="form-control" id="state">
+            <input type="text" class="form-control" id="state" required>
           </div>
           <div class="col my-3">
             <label for="city" class="form-label">City</label>
-            <input type="text" class="form-control" id="city">
+            <input type="text" class="form-control" id="city" required>
           </div>
         </div>
 
         <div class="col-md-2 my-3">
           <label for="zip" class="form-label">Zip</label>
-          <input type="text" class="form-control" id="zip">
+          <input type="text" class="form-control" id="zip" required>
         </div>
 
         <div class="form-floating">
-          <textarea class="form-control text-dark" placeholder="Leave a comment here" id="bio"
-            style="height: 100px"></textarea>
+          <textarea maxlength="1000" class="form-control text-dark" placeholder="Leave a comment here" id="bio"
+            style="height: 100px" required></textarea>
           <label for="bio" class="text-dark">About You</label>
         </div>
 

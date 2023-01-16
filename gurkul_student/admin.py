@@ -1,4 +1,5 @@
 from django.contrib import admin
-
+from gurkul_student.models import *
 
 # Register your models here.
+admin.site.register(student_profile_data)

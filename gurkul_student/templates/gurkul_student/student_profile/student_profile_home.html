@@ -1,35 +1,99 @@
 {% extends 'gurkul_student/student_profile/student_profile_basic.html' %}
 
+{% block active_profile_option_profile %}
+active_profile_option_profile
+{% endblock %}
+
 {% block cssPro %}
 <style>
-    .achr{
-        color: red;
-    }
+  .active_profile_option_profile{
+    background-color: rgb(55, 54, 54);
+  }
+  .achr {
+    color: red;
+  }
 </style>
-{%  endblock %}
+{% endblock %}
 
 {% block profile %}
 <div class="container-fliud">
-    <h1 style="background-color: rgba(0, 0, 255, 0.589); color:red; display:flex; justify-content:center;padding: 5px;">My Account</h1><br>
-    <div class="container-fluid">
-        <h2>Your account details</h2><hr class="achr">
+  <h1 style="background-color: rgba(0, 0, 255, 0.589); color:red; display:flex; justify-content:center;padding: 5px;">My
+    Account</h1><br>
+  <div class="container-fluid">
+    <h2>Your account details</h2>
+    <hr class="achr">
 
-        <table class="table table-dark table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-            </tbody>
-          </table>
+    {% if profile_data_existence == "False" %}
+
+    <div
+      style="min-height: 500px;display:flex;justify-content:center;align-items:center;background-color: rgb(189, 189, 189);border: 1px solid black; border-radius: 8px; ">
+      <div>
+      <h1 style="display:flex;justify-content:center;text-align:center;color: rgb(255, 0, 0);">Sorry ! You don't have profile data..</h1>
+      <div style="display: flex;justify-content: center;">
+        <a href="/gurkul_student/edit_profile/" class="btn btn-warning">Complete your profile</a>
+      </div>
+    </div>
 
     </div>
+
+    {% else %}
+
+    <table class="table table-dark table-striped">
+
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>Name</td>
+          <td>{{profile_data.0.fname}} {{profile_data.0.lname}} </td>
+        </tr>
+
+        <tr>
+          <td>Mobile No.</td>
+          <td>{{profile_data.0.mob}}</td>
+        </tr>
+
+        <tr>
+          <td>WhatsApp Mobile No.</td>
+          <td>{{profile_data.0.wmob}}</td>
+        </tr>
+
+        <tr>
+          <td>Address</td>
+          <td>{{profile_data.0.address}}</td>
+        </tr>
+
+        <tr>
+          <td>State</td>
+          <td>{{profile_data.0.state}}</td>
+        </tr>
+
+        <tr>
+          <td>City</td>
+          <td>{{profile_data.0.city}}</td>
+        </tr>
+
+        <tr>
+          <td>Zip Code</td>
+          <td>{{profile_data.0.zip}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <a href="/gurkul_student/edit_profile/" class="btn btn-danger" style="float: right;">Edit Profile</a>
+
+    {% endif %}
+
+
+
+
+  </div>
 </div>
 {% endblock %}
-

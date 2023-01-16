@@ -14,6 +14,21 @@
     <div class="container-fluid">
         <h2>Your account details</h2><hr class="achr">
 
+        {% if profile_data_existence == "False" %}
+
+        <div
+          style="min-height: 500px;display:flex;justify-content:center;align-items:center;background-color: rgb(189, 189, 189);border: 1px solid black; border-radius: 8px; ">
+          <div>
+          <h1 style="display:flex;justify-content:center;text-align:center;color: rgb(255, 0, 0);">Sorry ! You don't have profile data..</h1>
+          <div style="display: flex;justify-content: center;">
+            <a href="/gurkul_teacher/edit_profile/" class="btn btn-warning">Complete your profile</a>
+          </div>
+        </div>
+    
+        </div>
+    
+        {% else %}
+
         <table class="table table-dark table-striped">
 
             <thead>
@@ -67,6 +82,7 @@
 
             </tbody>
           </table>
+          {% endif %}
 
     </div>
 </div>
