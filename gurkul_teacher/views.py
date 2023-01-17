@@ -58,6 +58,7 @@ def edit_profile(request):
         user_profile=User.objects.get(username=request.user)
         user_profile.first_name=fname
         user_profile.last_name=lname
+        user_profile.save()
         
         if user_type=='teacher' or user_type=='superuser':
             if data_status=="new":

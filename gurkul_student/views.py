@@ -53,8 +53,10 @@ def edit_profile(request):
             return JsonResponse({'code':200,'profile_data':profile_data})
 
         # setting up users firstname and last name
-        user_profile=User.objects.update(first_name=fname)
-        user_profile=User.objects.update(last_name=lname)
+        user_profile=User.objects.get(username=request.user)
+        user_profile.first_name=fname
+        user_profile.last_name=lname
+        user_profile.save()
 
         # getting student id
         student_id=all_usrs.objects.filter(username=request.user)[0].student_id
