@@ -39,6 +39,9 @@ def edit_profile(request):
         lname=request.POST.get('lname')
         mob=request.POST.get('mob')
         wmob=request.POST.get('wmob')
+        father_name=request.POST.get('father_name')
+        mother_name=request.POST.get('mother_name')
+        pmob=request.POST.get('wmob')
         addr=request.POST.get('addr')
         state=request.POST.get('state')
         city=request.POST.get('city')
@@ -63,13 +66,13 @@ def edit_profile(request):
         if user_type=='student' or user_type=='superuser':
             # if recive data is new
             if data_status=="new":
-                profiel_data=student_profile_data(student_id=student_id,fname=fname,lname=lname,mob=mob,wmob=wmob,address=addr,state=state,city=city,zip=zip,bio=bio,user_profile=request.user)
+                profiel_data=student_profile_data(student_id=student_id,fname=fname,lname=lname,mob=mob,wmob=wmob,father_name=father_name,mother_name=mother_name,pmob=pmob,address=addr,state=state,city=city,zip=zip,bio=bio,user_profile=request.user)
                 profiel_data.save()
                 return JsonResponse({'code':200,'msg':'Congrates, Your profile data has been saved.....'})
             # 
             elif data_status=='old':
                 student_sno=student_profile_data.objects.filter(student_id=student_id)[0].sno
-                profiel_data=student_profile_data(sno=student_sno,student_id=student_id,fname=fname,lname=lname,mob=mob,wmob=wmob,address=addr,state=state,city=city,zip=zip,bio=bio,user_profile=request.user)
+                profiel_data=student_profile_data(sno=student_sno,student_id=student_id,fname=fname,lname=lname,mob=mob,wmob=wmob,father_name=father_name,mother_name=mother_name,pmob=pmob,address=addr,state=state,city=city,zip=zip,bio=bio,user_profile=request.user)
                 profiel_data.save()
                 return JsonResponse({'code':200,'msg':'Congrates, Your profile data has been saved.....'})
     else:

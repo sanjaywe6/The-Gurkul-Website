@@ -6,22 +6,30 @@ active_profile_option_personal_details
 
 {% block cssPro %}
 <style>
-  .active_profile_option_personal_details{
-    background-color: rgb(55, 54, 54);
+  .active_profile_option_personal_details {
+    background-color: #66c3d7;
   }
+
   .achr {
     color: red;
+  }
+  #profile_data_form{
+    background-color: black;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 7px;
   }
 </style>
 {% endblock %}
 
 {% block profile %}
 <div class="container-fliud">
-  
-  <h1 id="complete_profile_head" style="background-color: rgba(0, 0, 255, 0.589); color:red; display:flex; justify-content:center;padding: 5px;">
+
+  <h1 id="complete_profile_head"
+    style="background-color: rgba(0, 0, 255, 0.589); color:red; display:flex; justify-content:center;padding: 5px;">
     Complete Your Profile</h1><br>
 
-    <div id="profile_complete_sign" style="display: flex; justify-content: center; align-items: center;"></div>
+  <div id="profile_complete_sign" style="display: flex; justify-content: center; align-items: center;"></div>
 
   <div id="profile_form">
     <div class="container-fluid">
@@ -34,14 +42,15 @@ active_profile_option_personal_details
       <hr class="achr">
       {% endif %}
 
-      <a href="/user/profile"><button class="btn btn-warning">Back to Profile </button></a>
+      <a href="/user/profile"><button class="btn btn-warning my-3">Back to Profile </button></a>
 
       <form id="profile_data_form">
         {% csrf_token %}
         <input type="hidden" id="status" value="{{edit_profile_status}}">
         <div class="row g-3 my-3">
           <div class="col">
-            <input id="fname" type="text" class="form-control" placeholder="First name" aria-label="First name" required>
+            <input id="fname" type="text" class="form-control" placeholder="First name" aria-label="First name"
+              required>
           </div>
           <div class="col">
             <input id="lname" type="text" class="form-control" placeholder="Last name" aria-label="Last name" required>
@@ -50,15 +59,33 @@ active_profile_option_personal_details
 
         <div class="row g-3 my-3">
           <div class="col">
-            <label for="mob" class="form-label">Mob.</label>
-            <input type="phone" class="form-control" id="mob" required>
+            <label for="mob" class="form-label">Your Mob.</label>
+            <input type="tel" class="form-control" id="mob" required>
           </div>
 
           <div class="col">
             <label for="wmob" class="form-label">WhatsApp Mob.(Optional)</label>
-            <input type="phone" class="form-control" id="wmob">
+            <input type="tel" class="form-control" id="wmob" required>
           </div>
 
+        </div>
+
+        <div class="row g-3 my-3">
+          <div class="col">
+            <label for="father_name" class="form-label">Father's Name</label>
+            <input type="text" class="form-control" id="father_name" required>
+          </div>
+
+          <div class="col">
+            <label for="mother_name" class="form-label">Mother's Name</label>
+            <input type="text" class="form-control" id="mother_name" required>
+          </div>
+
+        </div>
+
+        <div class="col-md-2 my-3">
+          <label for="pmob" class="form-label">Parent's/Guardian Mob.</label>
+          <input type="tel" class="form-control" id="pmob" required>
         </div>
 
         <div class="col-12 my-3">
@@ -78,7 +105,7 @@ active_profile_option_personal_details
         </div>
 
         <div class="col-md-2 my-3">
-          <label for="zip" class="form-label">Zip</label>
+          <label for="zip" class="form-label">PIN Code</label>
           <input type="text" class="form-control" id="zip" required>
         </div>
 
@@ -88,8 +115,9 @@ active_profile_option_personal_details
           <label for="bio" class="text-dark">About You</label>
         </div>
 
-        <button type="submit" class="btn btn-success pro_det_btn my-2" style="float: right;">Submit</button>
-
+        <div class="my-2" style="display: flex;justify-content: end;">
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
       </form>
       <hr class="achr">
 
@@ -99,7 +127,7 @@ active_profile_option_personal_details
 
 </div>
 {% endblock %}
-{% block js %}
+{% block jsPro %}
 <script>
   $(document).ready(function () {
 
@@ -111,12 +139,15 @@ active_profile_option_personal_details
         type: 'post',
         data: {
           csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-          load_old_profile_data:false,
+          load_old_profile_data: false,
           data_status: $('#status').val(),
           fname: $('#fname').val(),
           lname: $('#lname').val(),
           mob: $('#mob').val(),
           wmob: $('#wmob').val(),
+          father_name:$('#father_name').val(),
+          mother_name:$('#mother_name').val(),
+          pmob:$('#pmob').val(),
           addr: $('#addr').val(),
           state: $('#state').val(),
           city: $('#city').val(),
@@ -124,12 +155,12 @@ active_profile_option_personal_details
           bio: $('#bio').val(),
         },
         success: function (data) {
-          status_code=data.code
+          status_code = data.code
           if (status_code == 200) {
             $('#profile_complete_sign').html(`
             <i class="fas fa-thumbs-up" style="font-size: 200px; color: rgb(0, 217, 255);"></i>
             `)
-            $('#profile_form').css('display','none')
+            $('#profile_form').css('display', 'none')
             $('#complete_profile_head').html(`Completed <i class='fas fa-check-double mx-2 text-danger'></i>`)
 
           }
@@ -142,6 +173,9 @@ active_profile_option_personal_details
           $('#city').val('')
           $('#zip').val('')
           $('#bio').val('')
+          $('#father_name').val('')
+          $('#mother_name').val('')
+          $('#pmob').val('')
 
         }
 
@@ -154,18 +188,18 @@ active_profile_option_personal_details
 </script>
 <script>
   // js for loading old profile data of user
-  $(document).ready(function(){
+  $(document).ready(function () {
     $.ajax({
-      url:'/gurkul_student/edit_profile/',
-      type:'post',
-      data:{
+      url: '/gurkul_student/edit_profile/',
+      type: 'post',
+      data: {
         csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-        load_old_profile_data:true
+        load_old_profile_data: true
       },
-      success: function(data){
-        status_code=data.code
-        data=data.profile_data
-        if(status_code==200){
+      success: function (data) {
+        status_code = data.code
+        data = data.profile_data
+        if (status_code == 200) {
           $('#fname').val(data[0].fname)
           $('#lname').val(data[0].lname)
           $('#mob').val(data[0].mob)
@@ -175,14 +209,15 @@ active_profile_option_personal_details
           $('#zip').val(data[0].zip)
           $('#city').val(data[0].city)
           $('#bio').val(data[0].bio)
-          $(`#subject option[value='${data[0].subject}']`).attr('selected','selected')
-
+          $('#father_name').val(data[0].father_name)
+          $('#mother_name').val(data[0].mother_name)
+          $('#pmob').val(data[0].pmob)
 
         }
       }
 
     })
-    
+
   })
 </script>
 {% endblock %}

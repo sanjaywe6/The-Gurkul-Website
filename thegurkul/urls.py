@@ -20,6 +20,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import include
 
+admin.site.site_header = "The Gurkul Admin"
+admin.site.site_title = "The Gurkul Portal"
+admin.site.index_title = "Designed, Developed and Managed by Mr. Sanjay Gupta ( Co-Director and Founder of The Gurkul )"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 

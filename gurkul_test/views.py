@@ -5,29 +5,32 @@ from gurkul_teacher.models import *
 from gurkul_test.models import *
 from django.contrib import messages
 from django.http import JsonResponse
+from thegurkul.the_gurkul_functions import *
 
 # Create your views here.
 
 # function to forwarding user to add/edit test series
 def gurkul_test_index(request):
-    if str(request.user)=='AnonymousUser':
+    # verifying usertype
+    user_type=gurkul_user_type(request.user)
+
+    if user_type=='anon':
         return render(request,'gurkul_test/all_test_series.html')
-    else:
-        user=all_usrs.objects.filter(userProfile=request.user)
-        usertype=user[0].visitor_type 
-        if usertype=='student':
-                return render(request,'gurkul_test/all_test_series.html')
-        elif usertype=='teacher':
-            teacher_id=user[0].teacher_id
-            teacher_per=teacher_auth.objects.filter(teacher_id=teacher_id).first()
-            permi=teacher_per.edit_test_series
+
+    elif user_type=="student":
+        student_id=all_usrs.objects.filter(username=request.user)[0].student_id
+        return render(request,'gurkul_test/all_test_series.html')
+
+    elif user_type=='teacher':
+            teacher_id=all_usrs.objects.filter(username=request.user)[0].teacher_id
+            auth_to_add_series=teacher_auth.objects.filter(teacher_id=teacher_id).first().edit_test_series
        
-            if permi==True:
+            if auth_to_add_series==True:
                 return render(request,'gurkul_test/add_test_series.html')
             else:
                 return render(request,'gurkul_test/all_test_series.html')
-        else:
-            return render(request,'gurkul_test/all_test_series.html')
+    else:
+        return render(request,'gurkul_test/all_test_series.html')
 
 # funtion to get post data of adding academic test series categories
 def academic_test_series_category(request):

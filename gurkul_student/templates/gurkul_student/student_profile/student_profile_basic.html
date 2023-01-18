@@ -5,6 +5,25 @@
 
 {% block css %}
 <style>
+    .std_profile_base_container {
+        background-color: rgba(0, 0, 0, 0);
+        display: grid;
+        grid-template-columns: 400px 1fr;
+        grid-template-rows: 1fr;
+        margin: 0.5px;
+    }
+
+    .std_profile_base_container_nav {
+        background-color: rgb(0, 0, 0);
+    }
+
+    .std_profile_base_container_data {
+        background-image: linear-gradient(45deg, #bbffb5, #007cff);
+        min-height: 800px;
+    }
+</style>
+
+<style>
     .navProLi {
         width: 100%;
         display: flex;
@@ -12,26 +31,20 @@
         color: red;
     }
 
-    .main_pro_li {
+    .main_pro_show {
         width: 100%;
         display: flex;
         justify-content: center;
-        color: #fbff00;
-        font-size: 25px;
     }
 
     .navProHead {
-        color: rgb(253, 252, 252);
+        color: rgb(163, 0, 255);
     }
 
-    .navProAnch {
-        text-decoration: none;
-        color: rgb(255, 254, 254);
-    }
-
-    hr {
+    .nav_pro_hr{
         color: rgb(255, 255, 255);
         width: 100%;
+        border: 1px dotted red;
     }
 
     a {
@@ -43,72 +56,71 @@
         margin-right: 10px;
     }
 
-    .navCont {
-        width: 400px;
-        min-height: 1000px;
-        background-color: rgb(0, 0, 0);
-    }
-
     #pro_img {
         width: 200px;
         margin: 10px;
     }
-
-    .contentCont {
-        width: calc(100% - 400px);
-        min-height: 1000px;
-        background-color: rgb(55, 54, 54);
-        overflow: scroll;
+    #dropdown_menu_nav{
+        background-color: #2d2d2d; 
+        padding-top: 10px;
+        overflow: hidden;
     }
+    .dropdown_menu_nav_item{
+        margin-top: 10px; 
+        margin-left: 10px;
+        border-left: 1px solid red; 
+        border-top-left-radius: 7px; 
+        border-bottom-left-radius: 7px; 
+        padding: 10px;
+    }
+</style>
+<style>
+    @media screen and (max-width:1250px) {
 
-    @media screen and (max-width:950px) {
-        .navCont {
-            width: 100%;
-            height: auto;
-            min-height: unset;
+        .std_profile_base_container {
+            grid-template-columns: 300px 1fr;
         }
 
-        .pro_ul {
-            width: 100%;
-            height: 100%;
+    }
+</style>
+<style>
+    @media screen and (max-width:1000px) {
+
+        .std_profile_base_container {
+            grid-template-columns: 1fr;
+            grid-template-rows: 70px 1fr;
+        }
+
+        .main_pro_show_container {
             display: flex;
-            justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
+            width: 85px;
         }
 
         #pro_img {
-            width: 60px;
+            width: 50px;
         }
-
-        .navProLi {
-            width: auto;
-            /* display: inline-block; */
-            justify-content: unset;
-            float: left;
+        .user_name_id{
+            display: none;
         }
-
-        .main_pro_li {
-            justify-content: end;
+        .main_pro_show{
+            justify-content: start;
         }
-
-        .nav_pro_hr {
+        
+        /* css for dropdown */
+        #dropdown_menu_nav{
+        background-color: #ffffff; 
+        }
+        .nav_pro_hr{
             display: none;
         }
 
-        .small_width_navProli {
-            display: none;
-        }
 
-        .contentCont {
-            width: 100%;
-            height: auto;
-            background-color: rgb(55, 54, 54);
-        }
     }
 </style>
 {% block cssPro %}
 {% endblock %}
+
 {% endblock %}
 
 {% block active_profile %}
@@ -120,61 +132,61 @@ active
 {% load static %}
 
 {% if user.is_authenticated %}
-<div style="flex-wrap:wrap; justify-content: space-between;align-items: center; display: flex; width: 100%;">
-    <div class="navCont">
-        <li class="main_pro_li"><img src="{% static 'usrs/img/unknown_profile/profile.png' %}" alt="" id="pro_img"></li>
-        <ul class="pro_ul">
-            <li class="main_pro_li small_width_navProli">{{request.user.first_name}} {{request.user.last_name}}
-                ({{student_id}})</li><br>
 
-            <div class="{% block active_profile_option_profile %}{% endblock %}"
-                style="margin-top: 10px; border-left: 1px solid red; border-top-left-radius: 7px; border-bottom-left-radius: 7px; padding: 10px;">
-                <li class="navProLi mx-3"><a href="/user/profile">
-                        <h5 class="navProHead"><i class="fas fa-user iconbgw"></i>Profile</h5>
-                    </a></li>
+<div class="std_profile_base_container">
+    <div class="std_profile_base_container_nav">
+        <div id="profile_dropdown" class="navCont">
+
+            <div class="main_pro_show_container" id="user_img_dropdown">
+                <div class="main_pro_show"><img src="{% static 'usrs/img/unknown_profile/profile.png' %}" alt=""
+                        id="pro_img"></div>
+
+                <div class="main_pro_show user_name_id">
+                    <h4 style="color: yellow;">{{request.user.first_name}} {{request.user.last_name}}
+                        ({{student_id}})</h4>
+                </div>
+
             </div>
-            <hr class="nav_pro_hr">
 
-            <div class="{% block active_profile_option_personal_details %}{% endblock %}"
-                style="margin-top: 10px; border-left: 1px solid red; border-top-left-radius: 7px; border-bottom-left-radius: 7px;padding: 10px;">
-                {% if profile_data_existence == "False" %}
-                <li class="navProLi mx-3"><a href="/gurkul_student/edit_profile/">
-                        <h5 class="navProHead"><i class="mx-2 text-danger fas fa-exclamation-circle"></i>Complete Your
-                            Profile</h5>
-                    </a></li>
+            <div id="dropdown_menu_nav">
 
-                {% else %}
-                <li class="navProLi mx-3 my-2"><a class="nav-link disabled bg-light"
+                <div class="{% block active_profile_option_profile %}{% endblock %} dropdown_menu_nav_item">
+                    <li class="navProLi"><a href="/user/profile">
+                            <h5 class="navProHead"><i class="fas fa-user iconbgw"></i>Profile</h5>
+                        </a></li>
+                </div>
+                <hr class="nav_pro_hr">
+
+                <div class="{% block active_profile_option_personal_details %}{% endblock %} dropdown_menu_nav_item">
+
+                    {% if profile_data_existence == "False" %}
+                    <li class="navProLi"><a href="/gurkul_student/edit_profile/">
+                            <h5 class="navProHead"><i class="mx-2 text-danger fas fa-exclamation-circle"></i>Complete
+                                Your
+                                Profile</h5>
+                        </a></li>
+
+                    {% else %}
+                    <li class="navProLi nav-link disabled"><a 
                         href="/gurkul_student/edit_profile/">
-                        <h5 class="navProHead"></i><del class="text-dark"> Complete Your Profile </del> <i
-                                class="mx-2 fas fa-check text-primary"></i></h5>
+                        <h5 class="navProHead"><i class="mx-2 text-danger fas fa-exclamation-circle"></i>Complete Your
+                                Profile <i class="mx-2 fas fa-check"></i></h5>
                     </a></li>
 
-                {% endif %}
+                    {% endif %}
 
-                {% if profile_data_existence == "False" %}
-                <li class="navProLi mx-3"><a class="nav-link disabled bg-light" href="/gurkul_student/edit_profile/">
-                        <h5 class="navProHead"><i class="fas fa-edit iconbgw"></i><del class="text-dark">Edit Your
-                                Profile </del></h5>
-                    </a></li>
-
-                {% else %}
-                <li class="navProLi mx-3 my-2"><a href="/gurkul_student/edit_profile/">
-                        <h5 class="navProHead"><i class="fas fa-edit iconbgw"></i>Edit Your Profile</h5>
-                    </a></li>
-
-                {% endif %}
+                </div>
+                <hr class="nav_pro_hr">
             </div>
-            <hr class="nav_pro_hr">
-
-
-        </ul>
+        </div>
     </div>
-    <div class="contentCont">
+
+    <div class="std_profile_base_container_data">
         {% block profile %}
         {% endblock %}
     </div>
 </div>
+
 
 {% else %}
 <div class="forbidden" style="background-image: linear-gradient(red,white,green);
@@ -191,5 +203,61 @@ right: 0px;">
 </div>
 
 {% endif %}
+
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+        //  code for profile dropdown
+        var window_size = window.innerWidth
+        if (window_size < 1001) {
+            // adding classes and attribute for dropdown
+            $('#profile_dropdown').addClass('dropdown')
+            $('#user_img_dropdown').addClass('dropdown-toggle')
+            $('#user_img_dropdown').attr('data-bs-toggle', 'dropdown')
+            $('#user_img_dropdown').attr('aria-expanded', 'false')
+            $('#dropdown_menu_nav').addClass('dropdown-menu')
+            $('.dropdown_menu_nav_item').addClass('dropdown-item')
+        }
+        else if(window_size>1000){
+            // adding classes and attribute for dropdown
+            $('#profile_dropdown').removeClass('dropdown')
+            $('#user_img_dropdown').removeClass('dropdown-toggle')
+            $('#user_img_dropdown').removeAttr('data-bs-toggle', 'dropdown')
+            $('#user_img_dropdown').removeAttr('aria-expanded', 'false')
+            $('#dropdown_menu_nav').removeClass('dropdown-menu')
+            $('.dropdown_menu_nav_item').removeClass('dropdown-item')
+            }
+
+        $(window).resize(function(){
+            var window_size = window.innerWidth
+            if(window_size<1001){
+            // adding classes and attribute for dropdown
+            $('#profile_dropdown').addClass('dropdown')
+            $('#user_img_dropdown').addClass('dropdown-toggle')
+            $('#user_img_dropdown').attr('data-bs-toggle', 'dropdown')
+            $('#user_img_dropdown').attr('aria-expanded', 'false')
+            $('#dropdown_menu_nav').addClass('dropdown-menu')
+            $('.dropdown_menu_nav_item').addClass('dropdown-item')
+            }
+            else if(window_size>1000){
+            // adding classes and attribute for dropdown
+            $('#profile_dropdown').removeClass('dropdown')
+            $('#user_img_dropdown').removeClass('dropdown-toggle')
+            $('#user_img_dropdown').removeAttr('data-bs-toggle', 'dropdown')
+            $('#user_img_dropdown').removeAttr('aria-expanded', 'false')
+            $('#dropdown_menu_nav').removeClass('dropdown-menu')
+            $('.dropdown_menu_nav_item').removeClass('dropdown-item')
+            }
+
+
+        })
+
+
+    })
+</script>
+{% block jsPro %}
+{% endblock %}
 
 {% endblock %}
