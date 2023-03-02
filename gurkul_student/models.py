@@ -5,6 +5,7 @@ from django.utils.timezone import now
 
 
 # Create your models here.
+
 # modal adding teacher profile data
 class student_profile_data(models.Model):
     sno=models.AutoField(primary_key=True)
@@ -25,3 +26,22 @@ class student_profile_data(models.Model):
 
     def __str__(self) -> str:
         return self.fname+"~"+self.lname+"~"+self.student_id
+
+# model for student educational deatails
+class student_educational_profile_data(models.Model):
+    sno=models.AutoField(primary_key=True)
+    student_id=models.CharField(max_length=20,default="")
+    data_field=models.IntegerField()
+    standard=models.CharField(max_length=20,default="")
+    stream=models.CharField(max_length=20,default="")
+    college=models.CharField(max_length=100,default="")
+    board=models.CharField(max_length=100,default="")
+    roll_no=models.CharField(max_length=20,default="")
+    maximum_marks=models.IntegerField()
+    obtained_marks=models.IntegerField()
+    marks_percent=models.CharField(max_length=10,default="")
+    year=models.CharField(max_length=10,default="")
+    user_profile=models.ForeignKey(User,on_delete=models.CASCADE,default="")
+
+    def __str__(self) -> str:
+        return self.student_id+"~"+self.standard+"~"+self.board

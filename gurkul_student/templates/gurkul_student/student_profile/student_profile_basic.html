@@ -21,6 +21,12 @@
         background-image: linear-gradient(45deg, #bbffb5, #007cff);
         min-height: 800px;
     }
+    .disabled{
+        background-color: #000000;
+        border: 1px solid black;
+        border-radius: 7px;
+        opacity: 0.4;
+    }
 </style>
 
 <style>
@@ -38,7 +44,7 @@
     }
 
     .navProHead {
-        color: rgb(163, 0, 255);
+        color: rgb(255, 255, 255);
     }
 
     .nav_pro_hr{
@@ -157,25 +163,47 @@ active
                 </div>
                 <hr class="nav_pro_hr">
 
+                
+                {% if profile_data_existence == "False" %}
                 <div class="{% block active_profile_option_personal_details %}{% endblock %} dropdown_menu_nav_item">
-
-                    {% if profile_data_existence == "False" %}
                     <li class="navProLi"><a href="/gurkul_student/edit_profile/">
                             <h5 class="navProHead"><i class="mx-2 text-danger fas fa-exclamation-circle"></i>Complete
                                 Your
                                 Profile</h5>
                         </a></li>
 
+                    </div>
                     {% else %}
                     <li class="navProLi nav-link disabled"><a 
                         href="/gurkul_student/edit_profile/">
-                        <h5 class="navProHead"><i class="mx-2 text-danger fas fa-exclamation-circle"></i>Complete Your
+                        <h5 class="navProHead"></i>Complete Your
                                 Profile <i class="mx-2 fas fa-check"></i></h5>
                     </a></li>
 
                     {% endif %}
 
-                </div>
+
+                <hr class="nav_pro_hr">
+
+                
+                {% if educational_data_existence == "False" %}
+                <div class="{% block active_profile_option_educational_details %}
+                {% endblock %} dropdown_menu_nav_item">
+                    <li class="navProLi"><a href="/gurkul_student/edit_educational_profile/">
+                            <h5 class="navProHead"><i class="mx-2 text-danger fas fa-exclamation-circle"></i>Add Educational Details</h5>
+                        </a></li>
+
+                    </div>
+                    {% else %}
+                    <li class="navProLi nav-link disabled"><a 
+                        href="/gurkul_student/edit_educational_profile/">
+                        <h5 class="navProHead"></i>Add Educational Details<i class="mx-2 fas fa-check"></i></h5>
+                    </a></li>
+
+                    {% endif %}
+
+
+
                 <hr class="nav_pro_hr">
             </div>
         </div>

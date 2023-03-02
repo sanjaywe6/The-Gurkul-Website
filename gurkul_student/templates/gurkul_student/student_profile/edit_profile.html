@@ -13,7 +13,8 @@ active_profile_option_personal_details
   .achr {
     color: red;
   }
-  #profile_data_form{
+
+  #profile_data_form {
     background-color: black;
     padding: 10px;
     border: 1px solid red;
@@ -35,18 +36,22 @@ active_profile_option_personal_details
     <div class="container-fluid">
 
       {% if profile_data_existence == "False" %}
-      <h2>Add Your Profile Details</h2>
+      <h2 class="text-dark">Add Your Profile Details</h2>
       <hr class="achr">
       {% else %}
-      <h2>Edit Your Profile Details</h2>
+      <h2 class="text-dark">Edit Your Profile Details</h2>
       <hr class="achr">
       {% endif %}
 
-      <a href="/user/profile"><button class="btn btn-warning my-3">Back to Profile </button></a>
+      <div style="display: flex;justify-content: right;">
+        <a href="/user/profile"><button class="btn btn-warning my-3"> <i class="fas fa-arrow-left text-dark"></i> Back
+            to Profile </button></a>
+      </div>
 
       <form id="profile_data_form">
         {% csrf_token %}
         <input type="hidden" id="status" value="{{edit_profile_status}}">
+        
         <div class="row g-3 my-3">
           <div class="col">
             <input id="fname" type="text" class="form-control" placeholder="First name" aria-label="First name"
@@ -145,9 +150,9 @@ active_profile_option_personal_details
           lname: $('#lname').val(),
           mob: $('#mob').val(),
           wmob: $('#wmob').val(),
-          father_name:$('#father_name').val(),
-          mother_name:$('#mother_name').val(),
-          pmob:$('#pmob').val(),
+          father_name: $('#father_name').val(),
+          mother_name: $('#mother_name').val(),
+          pmob: $('#pmob').val(),
           addr: $('#addr').val(),
           state: $('#state').val(),
           city: $('#city').val(),

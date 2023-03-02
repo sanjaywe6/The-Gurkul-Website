@@ -1,0 +1,399 @@
+{% extends 'gurkul_student/student_profile/student_profile_basic.html' %}
+
+{% block active_profile_option_educational_details %}
+active_profile_option_educational_details
+{% endblock %}
+
+{% block cssPro %}
+<style>
+    .active_profile_option_educational_details {
+        background-color: #66c3d7;
+    }
+
+    .educational_form_progress_grid {
+        margin: 0px 10px 0px 10px;
+        background-color: blue;
+        border: 2px solid red;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .educational_form_progress_grid_animation {
+        background-color: red;
+    }
+
+    .educational_data_form_div_hide {
+        width: 0px;
+        overflow: hidden;
+    }
+
+    .educational_data_form_div_hide_animation {
+        animation-name: display_educational_form;
+        animation-duration: 1s;
+    }
+
+    @keyframes display_educational_form {
+        0% {
+            width: 0%;
+        }
+
+        100% {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block profile %}
+
+<div class="container-fliud">
+
+    <h1 id="complete_profile_head"
+        style="background-color: rgba(0, 0, 255, 0.589); color:red; display:flex; justify-content:center;padding: 5px;">
+        Your Educational Deatails</h1><br>
+
+    <div class="range_value"></div>
+
+    <div id="profile_complete_sign" style="display: flex; justify-content: center; align-items: center;"></div>
+
+    <div id="profile_form">
+        <div class="container-fluid">
+
+            <div style="display: flex;justify-content: right;">
+                <a href="/user/profile"><button class="btn btn-warning my-3"> <i
+                            class="fas fa-arrow-left text-dark"></i> Back to Profile </button></a>
+            </div>
+
+            <div
+                style="padding: 10px;background-color: black; border: 1px solid black;border-radius: 7px; margin-bottom: 20px; ">
+
+                {% if educational_data_existence == "False" %}
+                <h2>Add Your Educational Deatails</h2>
+                <hr class="achr">
+                {% else %}
+                <h2>Edit Your Educational Details</h2>
+                <hr class="achr">
+                {% endif %}
+
+                <div style="width: 100%;">
+                    <div
+                        style="display:grid;grid-template-columns: 1fr 1fr 1fr 1fr 1fr; grid-template-rows: 32px;position: relative; top: 35px;">
+                        <div class="educational_form_progress_grid" id="educational_form_progress_grid1"><i
+                                class="fas fa-angle-double-right"></i></div>
+                        <div class="educational_form_progress_grid" id="educational_form_progress_grid2"><i
+                                class="fas fa-angle-double-right"></i></div>
+                        <div class="educational_form_progress_grid" id="educational_form_progress_grid3"><i
+                                class="fas fa-angle-double-right"></i></div>
+                        <div class="educational_form_progress_grid" id="educational_form_progress_grid4"><i
+                                class="fas fa-angle-double-right"></i></div>
+                        <div class="educational_form_progress_grid" id="educational_form_progress_grid5"><i
+                                class="fas fa-angle-double-right"></i></div>
+                    </div>
+                </div>
+
+
+                {% csrf_token %}
+                <input type="hidden" value="{{educational_data_type}}" data-num_field="{{sno}}" id="educational_data_type">
+                <div class="educational_data_form_div" id="educational_data_form_div1"></div>
+                <div class="educational_data_form_div" id="educational_data_form_div2"></div>
+                <div class="educational_data_form_div" id="educational_data_form_div3"></div>
+                <div class="educational_data_form_div" id="educational_data_form_div4"></div>
+                <div class="educational_data_form_div" id="educational_data_form_div5"></div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}
+
+{% block jsPro %}
+<script>
+    $(document).ready(function () {
+        // function to generate educational form
+        function generate_form(num) {
+            return ` <form class="educational_data_form" id="educational_data_form${num}"
+                        style="padding: 10px;border: 1px solid red;border-radius: 7px; background-image: linear-gradient(180deg,rgb(0, 0, 104),black); margin-top:20px;">
+                        {% csrf_token %}
+                                                                
+                        <div style="position: relative; top: 15px;">
+                            <h3>Qualification ${num}</h3>
+                        </div>
+                        <input type="hidden" id="data_field_id${num}" value="${num}">
+
+                        <div class="row g-3 my-3">
+
+                            <div class="col">
+                                <div class="my-2">
+
+                                    <label for="input_standard${num}" class="form-label">Choose Standard</label>
+                                    <select id="input_standard${num}" name="standard" class="form-select text-dark">
+                                        <option class="text-dark" value="5">5th</option>
+                                        <option class="text-dark" value="6">6th</option>
+                                        <option class="text-dark" value="7">7th</option>
+                                        <option class="text-dark" value="8">8th</option>
+                                        <option class="text-dark" value="9">9th</option>
+                                        <option class="text-dark" value="10">High School (10nth)</option>
+                                        <option class="text-dark" value="11">11th</option>
+                                        <option class="text-dark" value="12" selected>Intermediate (12th)</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="my-2">
+
+                                    <label for="input_stream${num}" class="form-label">Choose Stream</label>
+                                    <select id="input_stream${num}" name="stream" class="form-select text-dark">
+                                        <option class="text-dark" value="Science" selected>Science</option>
+                                        <option value="art" class="text-dark">Art</option>
+                                        <option value="commerce" class="text-dark">Commerce</option>
+                                        <option value="other" class="text-dark">Other</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row g-3 my-3">
+
+                            <div class="col">
+                                <div class="my-2">
+                                    <label for="input_organization${num}" class="form-label">Organization</label>
+                                    <input id="input_organization${num}" type="text" class="form-control"
+                                        placeholder="Organization" aria-label="Organization" required>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="my-2">
+
+                                <div class="my-2 col-md-4">
+                                    <label for="input_board${num}" class="form-label">Choose Board</label>
+                                    <select id="input_board${num}" name="board" class="form-select text-dark">
+                                        <option class="text-dark" value="UPBoard" selected>U.P. Board</option>
+                                        <option class="text-dark" value="CBSE">C.B.S.E. Board</option>
+                                        <option class="text-dark" value="ICSE">I.C.S.E. Board</option>
+                                        <option class="text-dark" value="NIOS">N.I.O.S. Board</option>
+                                        <option value="other" class="text-dark">Other</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="my-2 col-md-4">
+                            <div class="row g-3 my-3">
+
+                                <div class="col">
+                                    <div class="my-2">
+                                        <label for="roll_no${num}" class="form-label">Roll Number</label>
+                                        <input id="roll_no${num}" type="number" class="form-control" placeholder="Roll Number"
+                                            aria-label="Roll Number" required>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row g-3 my-3">
+                            <div class="col">
+                                <label for="max_marks${num}" class="form-label">Max Marks</label>
+                                <input id="max_marks${num}" type="number" class="form-control" aria-label="Marks" required>
+                            </div>
+                            <div class="col">
+                                <label for="obtained_marks${num}" class="form-label">Obtained Marks</label>
+                                <input id="obtained_marks${num}" type="number" class="form-control" aria-label="Marks" required>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 my-3">
+                            <div class="col">
+                                <label for="year${num}" class="form-label">Year</label>
+                                <input id="year${num}" placeholder="YYYY-YYYY" type="text" class="form-control" aria-label="Year"
+                                required>
+                            </div>
+                            <div class="col">
+                                <label for="percent${num}" class="form-label">Marks in %</label>
+                                <input id="percent${num}" placeholder="00.00%" type="text" class="form-control" aria-label="Percent" required>
+                            </div>
+                        </div>
+                            
+                        <div class="my-2" style="display: flex;justify-content: end;">
+                            <button id="submit_form_btn${num}" data-form_id="${num}" type="submit" class="btn btn-success">Submit</button>
+                          </div>
+
+                    </form>`
+        }
+
+
+        // function to display educational form 
+        function display_educational_form() {
+            // code to either educational data is old or new
+            educational_data_type = $('#educational_data_type').val()
+            if (educational_data_type == 'new') {
+                $.ajax({
+                    url: '/gurkul_student/edit_educational_profile/',
+                    type: 'post',
+                    data: {
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                        data_field_for_empty_slots: 'True',
+
+                    },
+                    success: function (data) {
+
+                        num_lst = data.data_field_num
+
+                        if (num_lst.length > 0) {
+
+                            $(`#educational_data_form_div${num_lst[0]}`).addClass('educational_data_form_div_hide')
+
+                            $(`#educational_data_form_div${num_lst[0]}`).html(generate_form(num_lst[0]))
+
+                            $(`#educational_data_form_div${num_lst[0]}`).addClass('educational_data_form_div_hide_animation')
+                            $(`#educational_data_form_div${num_lst[0]}`).removeClass('educational_data_form_div_hide')
+
+                            $(`#educational_form_progress_grid${num_lst[0]}`).addClass('educational_form_progress_grid_animation')
+
+                        }
+
+                        else {
+
+                            $(`#educational_data_form_div5`).html(`<div style="display:flex; justify-content:center;">
+                            <i class="fas fa-thumbs-up" style="font-size: 200px; color: rgb(0, 217, 255);padding-top: 100px;"></i>
+                            </div>`)
+
+                        }
+
+                    }
+                })
+            }
+            else if(educational_data_type=='old'){
+                sno=$('#educational_data_type').attr('data-num_field')
+                $(`#educational_data_form_div${sno}`).addClass('educational_data_form_div_hide')
+
+                $(`#educational_data_form_div${sno}`).html(generate_form(sno))
+
+                $(`#educational_data_form_div${sno}`).addClass('educational_data_form_div_hide_animation')
+                $(`#educational_data_form_div${sno}`).removeClass('educational_data_form_div_hide')
+
+                $(`#educational_form_progress_grid${sno}`).addClass('educational_form_progress_grid_animation')
+
+
+                $.ajax({
+                    url:'/gurkul_student/load_old_educational_profile/',
+                    type:'post',
+                    data:{
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                        sno:sno,
+                    },
+                    success: function(data){
+                            data=data.profile
+                            $(`#input_organization${data[0].data_field}`).val(data[0].college)
+                            $(`#roll_no${data[0].data_field}`).val(data[0].roll_no)
+                            $(`#max_marks${data[0].data_field}`).val(data[0].maximum_marks)
+                            $(`#obtained_marks${data[0].data_field}`).val(data[0].obtained_marks)
+                            $(`#percent${data[0].data_field}`).val(data[0].marks_percent)
+                            $(`#year${data[0].data_field}`).val(data[0].year)
+                            $(`#input_standard${data[0].data_field} option[value='${data[0].standard}'] `).attr('selected', 'selected')
+                            $(`#input_stream${data[0].data_field} option[value='${data[0].stream}'] `).attr('selected', 'selected')
+                            $(`#input_board${data[0].data_field} option[value='${data[0].board}'] `).attr('selected', 'selected')
+
+                    }
+                })
+
+                
+            }
+
+
+
+
+        }
+
+
+        // function to submit educational form
+        function submit_educational_data_form(num,educational_data_status) {
+            sno=$('#educational_data_type').attr('data-num_field')
+            educational_data_type = $('#educational_data_type').val()
+            $.ajax({
+                url: '/gurkul_student/edit_educational_profile/',
+                type: 'post',
+                data: {
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    sno:sno,
+                    educational_data_status:educational_data_status,
+                    load_old_profile_data: false,
+                    data_field: $(`#data_field_id${num}`).val(),
+                    standard: $(`#input_standard${num}`).val(),
+                    stream: $(`#input_stream${num}`).val(),
+                    college: $(`#input_organization${num}`).val(),
+                    board: $(`#input_board${num}`).val(),
+                    roll_no: $(`#roll_no${num}`).val(),
+                    maximum_marks: $(`#max_marks${num}`).val(),
+                    obtained_marks: $(`#obtained_marks${num}`).val(),
+                    percent: $(`#percent${num}`).val(),
+                    year: $(`#year${num}`).val(),
+                },
+                success: function (data) {
+                    data_field = data.data_field
+
+                    // changing to data field new so display form function can run again
+                    $('#educational_data_type').val('new')
+                    // hiding the form after successfull submission
+                    $(`#educational_data_form_div${data.data_field}`).html('')
+
+                    display_educational_form()
+
+
+                }
+            })
+        }
+
+
+        $('#educational_data_form_div1').on('submit', '#educational_data_form1', function (e) {
+            e.preventDefault()
+            educational_data_type = $('#educational_data_type').val()
+            submit_educational_data_form(1,educational_data_type)
+        })
+
+        $('#educational_data_form_div2').on('submit', '#educational_data_form2', function (e) {
+            e.preventDefault()
+            educational_data_type = $('#educational_data_type').val()
+            submit_educational_data_form(2,educational_data_type)
+        })
+
+        $('#educational_data_form_div3').on('submit', '#educational_data_form3', function (e) {
+            e.preventDefault()
+            educational_data_type = $('#educational_data_type').val()
+            submit_educational_data_form(3,educational_data_type)
+        })
+
+        $('#educational_data_form_div4').on('submit', '#educational_data_form4', function (e) {
+            e.preventDefault()
+            educational_data_type = $('#educational_data_type').val()
+            submit_educational_data_form(4,educational_data_type)
+        })
+
+        $('#educational_data_form_div5').on('submit', '#educational_data_form5', function (e) {
+            e.preventDefault()
+            educational_data_type = $('#educational_data_type').val()
+            submit_educational_data_form(5,educational_data_type)
+        })
+
+        // calling generate and display form function
+        display_educational_form()
+
+    })
+</script>
+{% endblock %}
