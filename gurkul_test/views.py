@@ -6,12 +6,14 @@ from gurkul_test.models import *
 from django.contrib import messages
 from django.http import JsonResponse
 from thegurkul.the_gurkul_functions import *
+from . import gurkul_test_functions
 
 # Create your views here.
 
 # function to forwarding user to add/edit test series
 def gurkul_test_index(request):
     # verifying usertype
+    # gurkul_test_functions.write_questions('comp','English','NEET','Biology','MCQ')
     user_type=gurkul_user_type(request.user)
 
     if user_type=='anon':
