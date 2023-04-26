@@ -14,74 +14,17 @@
     href="https://fonts.googleapis.com/css2?family=Changa:wght@500&family=Libre+Baskerville&family=M+PLUS+1+Code&family=Open+Sans:wght@500&family=Poppins:wght@300&family=Roboto+Slab&family=Secular+One&display=swap"
     rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
   <!-- font-family: 'Changa', sans-serif; -->
   <!-- <link rel="stylesheet" href="{% static '/theGurkul/css/bootstrap.css' %}"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-
-    <style>
-      /* animation for onloading */
-      .loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: rgb(255, 255, 255);
-  z-index: 1000;
-}
-
-.spinner-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.spinner {
-  border-radius: 50%;
-  background-color: rgba(255, 0, 255, 0);
-  position: relative;
-  animation: jump 0.5s ease-in-out infinite;
-  margin-bottom: 20px;
-}
-
-.ball {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #f0f;
-  position: relative;
-  animation: jump 0.5s ease-in-out infinite;
-  margin: 0 10px;
-}
-
-.ball:nth-child(2) {
-  animation-delay: 0.1s;
-}
-
-.ball:nth-child(3) {
-  animation-delay: 0.2s;
-}
-
-@keyframes jump {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-    </style>
-
   <style>
+    /* root css */
     * {
-      background-color: transparent;
-      color: white;
       margin: 0px;
       padding: 0px;
       font-family: 'Open Sans', sans-serif;
@@ -90,22 +33,113 @@
     body {
       width: 100%;
     }
+  </style>
+  <style>
+    /* animation for onloading */
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: rgb(255, 255, 255);
+      z-index: 1000;
+    }
+
+    .spinner-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .spinner {
+      border-radius: 50%;
+      background-color: rgba(255, 0, 255, 0);
+      position: relative;
+      animation: jump 0.5s ease-in-out infinite;
+      margin-bottom: 20px;
+    }
+
+    .ball {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #f0f;
+      position: relative;
+      animation: jump 0.5s ease-in-out infinite;
+      margin: 0 10px;
+    }
+
+    .ball:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .ball:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+
+    @keyframes jump {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+  </style>
+
+  <style>
+    /* css for logo and social media icons */
+    .upperSocialLayer {
+      display: grid;
+      grid-template-columns: 1fr 300px 1fr;
+      justify-items: center;
+      align-items: center;
+      background-color: black;
+    }
+
+    .social_icons {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      align-items: center;
+    }
 
     .upperSM {
-      width: 30px;
-      margin: 10px 50px 10px;
+      font-size: 30px;
+      margin: 10px;
       box-shadow: 0px 0px 10px whitesmoke;
+      border: 1px solid black;
+      border-radius: 7px;
     }
 
     .upperSM:hover {
-      border: 1px solid black;
-      border-radius: 7px;
-      box-shadow: 0px 0px 10px rgb(196, 196, 196);
+      animation-name: social_hover_animation;
+      animation-duration: 0.5s;
+      font-size: 40px;
+      margin: 5px;
+    }
+
+    @keyframes social_hover_animation {
+      from {
+        font-size: 30px;
+        margin: 10px;
+      }
+
+      to {
+        font-size: 40px;
+        margin: 5px;
+      }
     }
 
     /* css for logo of The Gurkul */
     .logoText {
-      font-size: 28px;
+      font-size: 27px;
       color: #ffffff;
       background-color: rgba(0, 0, 0, 0.275);
       box-shadow: 0px 0px 20px black;
@@ -146,35 +180,99 @@
       }
     }
 
-    /* css for navigation bar */
+    @media screen and (max-width:850px) {
+      .upperSocialLayer {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 300px 1fr;
+      }
+
+    }
+  </style>
+
+  <style>
+    /* css for dynamic navigation bar */
+    .navigation_bar_statick {
+      width: 100%;
+      position: fixed;
+      top: 0px;
+      z-index: 1000;
+    }
+
     .active {
-      background-color: green;
+      background-color: #282f28;
       border-radius: 10px;
     }
 
     .navList {
-      list-style: none;
-      padding: 13px;
-      border: 2px solid rgba(12, 12, 12, 0);
-    }
-
-    .navList:hover {
-      background-color: #313131;
-      border-style: dotted;
-      border-color: black;
-      border-radius: 7px;
-
-    }
-
-    .navAnch {
-      text-decoration: none;
+      float: right;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: black;
     }
 
     .dropLink {
       color: white;
     }
 
+    .navigation {
+      display: grid;
+      grid-template-columns: 1fr 180px;
 
+    }
+
+    .list_nav {
+      font-size: 18px;
+      color: rgb(255, 255, 255);
+      font-family: 'M PLUS 1 Code', sans-serif;
+      padding: 6px 20px;
+    }
+
+    #ul_div {
+      list-style: none;
+      margin: 0px;
+    }
+
+    .nav_link {
+      text-decoration: none;
+    }
+
+    .scroll_out_list {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+    }
+
+    .close_button_off_canvas {
+      padding: 0px;
+    }
+
+    /* css when device width is big, 'first' is used to show that this css is for big device with only */
+    .first_nav_link {
+      display: inline-block;
+      margin: 5px;
+    }
+
+    .first_navigation_div {
+      width: 100%;
+    }
+
+    .first_offcanvas_body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .first_ul {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+  </style>
+
+  <style>
     /* css for footer */
     .footerBlocks {
       display: inline-block;
@@ -190,8 +288,6 @@
       border-radius: 7px;
       box-shadow: 0px 0px 10px rgb(196, 196, 196);
     }
-
-
   </style>
 
   {% block css %}
@@ -216,7 +312,7 @@
     right: 0%;
     padding: 10px;
     z-index: 1000;">
-  <strong style="margin: 5px; color: black;">{{message}}</strong>
+    <strong style="margin: 5px; color: black;">{{message}}</strong>
     <span style=" 
     margin-left: 15px;
     color: white;
@@ -244,7 +340,8 @@
 
   <div class="loading" id="loading">
     <div class="spinner-container">
-      <div class="spinner"><img src="{% static 'theGurkul/img/logo/logo.png' %}" alt="Loading..." style="height: 55px;"></div>
+      <div class="spinner"><img src="{% static 'theGurkul/img/logo/logo.png' %}" alt="Loading..." style="height: 55px;">
+      </div>
       <div class="balls" style="display: flex; justify-content: center;">
         <div class="ball" style="background-color: red;"></div>
         <div class="ball" style="background-color: rgb(17, 0, 255);"></div>
@@ -253,138 +350,151 @@
     </div>
   </div>
 
+  <div class="upperSocialLayer" id="upperSocialLayer">
 
-
-
-
-  <!-- social media icon and gurkul logo with text animation -->
-  <img src="{% static 'theGurkul/img/Background/world.jpg' %}" alt="Loading.." id="baseBackground" style="  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  z-index: -1;">
-
-  <!-- Gurkul logo html -->
-  <div class="upperSocialLayer"
-    style="  background-image: radial-gradient(rgba(255, 255, 255, 0.947), rgba(245, 245, 245, 0.568), rgba(53, 255, 53, 0.559), transparent, black);">
-    <div class="upperSMs" style="  display: flex;
-    justify-content: center;
-    flex-wrap: wrap;">
-      <a href=""><img class="upperSM" src="{% static 'theGurkul/img/socialMedia/facebookGolden.png' %}"
-          alt="Youtube"></a>
-      <a href=""><img class="upperSM" src="{% static 'theGurkul/img/socialMedia/facebookGolden.png' %}"
-          alt="Facebook"></a>
-      <a href=""><img class="upperSM" src="{% static 'theGurkul/img/socialMedia/instagramGolden.png' %}"
-          alt="Instagram"></a>
-      <a href=""><img class="upperSM" src="{% static 'theGurkul/img/socialMedia/telegramGolden.png' %}"
-          alt="Telegram"></a>
-      <a href=""><img class="upperSM" src="{% static 'theGurkul/img/socialMedia/linkedinGolden.png' %}"
-          alt="Linkedin"></a>
-      <a href=""><img class="upperSM" src="{% static 'theGurkul/img/socialMedia/twitterGolden.png' %}"
-          alt="Twitter"></a>
+    <div class="social_icons">
+      <a href=""><i class="ri-facebook-circle-fill upperSM" style="color:blue;"></i></a>
+      <a href=""><i class="ri-instagram-fill upperSM" style="color:rgb(251, 255, 0);"></i></a>
+      <a href=""><i class="ri-twitter-fill upperSM" style="color:blue;"></i></a>
     </div>
-    <div class="logo" style="  display: flex;
+
+    <div class="logo" style="display: flex;
     justify-content: center;">
-      <div class="inLogoDiv" style="  max-width: 320px;">
+      <div class="inLogoDiv">
         <div style="width: 300px;display: flex;justify-content: center;">
           <img src="{% static 'theGurkul/img/logo/logo.png' %}" alt="Logo" class="logoImg" style="width: 170px;">
         </div>
         <p class="logoText logoAnimationText">Gurkul है, तो Growth है..</p>
       </div>
     </div>
-  </div>
-  </div>
 
-  <div style="width: 100%; background-color:#484848;">
-    <span data-bs-toggle="offcanvas" data-bs-target="#gurkulNavSlide" aria-controls="gurkulNavSlide"
-      style="cursor:pointer;font-size :35px; margin-left:10px;">&#9776;</span>
-
-    <div class="offcanvas offcanvas-start navbar-dark" data-bs-scroll="true" tabindex="-1" id="gurkulNavSlide"
-      aria-labelledby="gurkulNavSlideLabel" style="background-color: #484848;">
-      <div class="offcanvas-header">
-        <h4 class="offcanvas-title" id="gurkulNavSlideLabel">The Gurkul</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
-          style="background-color: rgb(255, 0, 0);"></button>
-      </div>
-      <div class="offcanvas-body" style="overflow:hidden;">
-
-        <!-- gurkul navigation buttons with animations -->
-
-        <div class="gurkulNav" style="  width: 100vw;
-  background-color: rgb(72, 72, 72);
-  height: 52px;">
-
-          <a href="/" class="navAnch">
-            <li class="navList {% block active_home %}{% endblock %}"><i class=" fa fa-fw fa-home text-danger"></i>Home
-            </li>
-          </a>
-          <a href="/contact/" class="navAnch">
-            <li class="navList {% block active_contact %}{% endblock %}"><i
-                class="fa fa-fw fa-envelope text-danger"></i> Contact Us
-            </li>
-          </a>
-          <a href="/about/" class="navAnch">
-            <li class="navList {% block active_about %}{% endblock %}"><i class="fa fa-fw fa-globe text-danger"></i>
-              About Us</li>
-          </a>
-
-          <a href="/gurkul_test/test_series/" class="navAnch">
-            <li class="navList {% block active_test_series %}{% endblock %}"><i
-                class="fas fa-clipboard-list text-danger"></i> Test Series</li>
-          </a>
-
-
-        </div>
-
-
-      </div>
+    <div class="social_icons">
+      <a href=""><i class="ri-youtube-fill upperSM" style="color:rgb(255, 0, 0);"></i></a>
+      <a href=""><i class="ri-telegram-fill upperSM" style="color:blue;"></i></a>
+      <a href=""><i class="ri-linkedin-box-fill upperSM" style="color:blue;"></i></a>
     </div>
 
-
-    <!-- when user is authenticated -->
-    {% if user.is_authenticated %}
-
-    <li class="navList {% block active_profile %}{% endblock %}" style="padding-bottom: 6px; float: right; background-color: #484848;">
-      <div class="dropdown" style="background-color: transparent; ">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-bs-toggle="dropdown" aria-expanded="false"
-          style="background-color: transparent;border: none;padding-top: 0px; background-color: black; color: white;">
-          <i class="fas fa-user-secret"></i> {{request.user.username}}
-        </button>
-        <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
-          <li><a class="dropdown-item dropLink" href="/user/profile"><i class="fas fa-user-shield text-danger"></i> Go
-              to
-              Profile</a></li>
-          <li><a class="dropdown-item dropLink" href="/user_logout/">Sign Out</a></li>
-        </ul>
-      </div>
-    </li>
-
-
-
-    <!-- when user is not authenticated -->
-    {% else %}
-
-    <li class="navList" style="padding-bottom: 6px; float: right;">
-      <div class="dropdown" style="background-color: transparent; box-shadow: none;">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-bs-toggle="dropdown" aria-expanded="false"
-          style="background-color: transparent;border: none;padding: 0px;">
-          <i class="fas fa-users"></i>
-          Login / Sign Up
-        </button>
-        <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
-          <li><a class="dropdown-item dropLink" href="/user_login/">
-              <i class="fas fa-unlock text-danger"></i>
-              Login</a></li>
-          <li><a class="dropdown-item dropLink" href="/user_registration/">
-              <i class="far fa-id-card text-danger"></i>
-              Sign Up</a></li>
-        </ul>
-      </div>
-    </li>
-    {% endif %}
-
   </div>
+
+  <div>
+    <div style="width: 100%; min-height: 49px; background-color: #990d0d; z-index: 100;">
+      <div id="navigation_bar_statick">
+
+
+        <div class="navigation" style="background-color: #990d0d;">
+          <span id="nav_scroll_btn" data-bs-toggle="offcanvas" data-bs-target="#sanjay_web_nav"
+            aria-controls="sanjay_web_nav"
+            style="cursor:pointer;font-size :35px; margin-left:10px;color: white;">☰</span>
+
+          <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+            id="sanjay_web_nav" aria-labelledby="sanjay_web_navLabel" style="background-color: rgb(153, 13, 13);">
+
+            <div class="offcanvas-header" id="close_button_off_canvas" style="display:flex;justify-content: end;">
+              <button id="btn_nav_close" type="button" class="btn-close bg-danger" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body" id="offcanvas-div" style="padding: 0px;">
+
+              <ul id="ul_div">
+
+
+                <a href="/" id="navigation_bar_logo" style="display:none;">
+                  <li><img src="{% static 'theGurkul/img/logo/logo.png' %}" alt="The Gurkul" style="width: 49px;"></li>
+                </a>
+
+
+                <a href="/" class="nav_link">
+                  <li class="list_nav {% block active_home %}{% endblock %}"><i
+                      class=" fa fa-fw fa-home text-warning"></i> Home</li>
+                </a>
+
+                <a href="/contact/" class="nav_link">
+                  <li class="list_nav {% block active_contact %}{% endblock %}"><i
+                      class="fa fa-fw fa-envelope text-warning"></i> Contact Us</li>
+                </a>
+
+                <a href="/about/" class=" nav_link">
+                  <li class="list_nav {% block active_about %}{% endblock %}"><i
+                      class="fa fa-fw fa-globe text-warning"></i>
+                    About Us</li>
+                </a>
+
+                <a href="/gurkul_test/test_series/" class="nav_link"></a>
+
+                <div class="dropdown-center" style="display: flex; justify-content: center; align-items: center;">
+                  <li class="list_nav {% block active_test_series %}{% endblock %} dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+
+                    <i class="fas fa-clipboard-list text-warning">
+                    </i> Gurkul Test Agency (GTA)
+
+                  </li>
+
+                  <ul class="dropdown-menu"
+                    style="background-color: #212529; border: 1px solid red; border-radius: 7px;">
+                    <li><a class="dropdown-item text-primary" href="#">Test Series</a></li>
+                    <li><a class="dropdown-item text-primary" href="/gurkul_test/test_series/GTA_questions">Add/Edit GTA
+                        Questions</a></li>
+                  </ul>
+                </div>
+
+
+              </ul>
+
+
+            </div>
+
+          </div>
+
+          <div type="button" id="scroll_out_list" data-bs-toggle="modal" data-bs-target="#sanjay_web_login">
+            <!-- when user is authenticated -->
+
+            <li class="navList {% block active_profile %}{% endblock %}" style="background-color: rgb(0, 0, 0);">
+              <div class="dropdown" style="background-color: transparent; ">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-bs-toggle="dropdown" aria-expanded="false"
+                  style="border: none;padding-top: 0px; background-color: black; color: white;box-shadow: none; ">
+                  <i class="fas fa-user-secret text-primary"></i>
+                  {% if user.is_authenticated %}
+                  {{request.user.username}}
+                  {% else %}
+                  Login/SignUp
+                  {% endif %}
+
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                  style="background-color: #212529; border: 1px solid red; border-radius: 7px;">
+
+
+                  {% if user.is_authenticated %}
+                  <li><a class="dropdown-item dropLink" href="/user/profile"><i
+                        class="fas fa-user-shield text-primary"></i> Go
+                      to
+                      Profile</a></li>
+                  <li><a class="dropdown-item dropLink" href="/user_logout/">Sign Out</a></li>
+                  {% else %}
+
+                  <li><a class="dropdown-item dropLink" href="/user_login/">
+                      <i class="fas fa-unlock text-primary"></i>
+                      Login</a></li>
+                  <li><a class="dropdown-item dropLink" href="/user_registration/">
+                      <i class="far fa-id-card text-primary"></i>
+                      Sign Up</a></li>
+
+                  {% endif %}
+                </ul>
+              </div>
+            </li>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 
   <main>
     {% block body %}
@@ -435,9 +545,146 @@
   integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 <script>
-  $(document).ready(function(){
-    $('#loading').css('display','none')
+  $(document).ready(function () {
+    $('#loading').css('display', 'none')
+  })
+</script>
+
+<script>
+  // code for animating top logo background
+
+  $(document).ready(function () {
+
+    let degree = 1;
+    function rotateBackground() {
+      $('#upperSocialLayer').css('background-image', `linear-gradient( ${degree}deg,red,white,green)`);
+      degree++;
+      if (degree > 360) {
+        degree = 1;
+      }
+      setTimeout(rotateBackground, 10); // call the function again after 10 milliseconds
+    }
+
+    rotateBackground();
+
+
+  })
+
+</script>
+
+
+<script>
+  $(document).ready(function () {
+
+    function device_width_navigationbar_static(scroll, width) {
+      if (scroll > 267 & device_width > 779) {
+        $('#navigation_bar_statick').addClass('navigation_bar_statick')
+        $('#navigation_bar_logo').css('display', 'unset')
+      }
+      else if (scroll < 268 & device_width > 779) {
+
+        $('#navigation_bar_statick').removeClass('navigation_bar_statick')
+        $('#navigation_bar_logo').css('display', 'none')
+      }
+      else if (device_width < 780 & scroll > 325) {
+        $('#navigation_bar_statick').addClass('navigation_bar_statick')
+        $('#navigation_bar_logo').css('display', 'unset')
+      }
+      else if (device_width < 780 & scroll < 325) {
+        $('#navigation_bar_statick').removeClass('navigation_bar_statick')
+        $('#navigation_bar_logo').css('display', 'none')
+      }
+
+    }
+
+    $(window).scroll(function () {
+      device_width = window.innerWidth
+      scroll_val = window.scrollY
+      device_width_navigationbar_static(scroll_val, device_width)
+    })
+
+
+  })
+</script>
+
+
+<script>
+  // code for dynamic navigation bar
+  $(document).ready(function () {
+
+    function big_device_width_navigationbar() {
+      // all adding class
+      // css to inline the all navigation link 
+      $('.nav_link').addClass('first_nav_link ')
+      // for justifying all navigation element space around
+      $('#ul_div').addClass('first_ul')
+      // to change the width of navigationbar
+      $('#sanjay_web_nav').addClass('first_navigation_div')
+      $('#offcanvas-div').addClass('first_offcanvas_body')
+      // to remove padding in scroll close btn
+      $('#close_button_off_canvas').addClass('close_button_off_canvas')
+
+      // all removing class
+      // to expand the navigation from scroll to linear
+      $('#sanjay_web_nav').removeClass('offcanvas offcanvas-start')
+      // to float login type outer button to right
+      $('#scroll_out_list').removeClass('scroll_out_list')
+
+      // all adding css
+      // hiding scroll close button
+      $('#btn_nav_close').css('display', 'none')
+      // hiding scroll open button
+      $('#nav_scroll_btn').css('display', 'none')
+      $('#sanjay_web_nav').css('visibility', 'unset')
+
+
+
+    }
+
+    function small_device_width_navigationbar() {
+      $('.nav_link').removeClass('first_nav_link ')
+      $('#ul_div').removeClass('first_ul')
+      $('#sanjay_web_nav').removeClass('first_navigation_div')
+      $('#offcanvas-div').removeClass('first_offcanvas_body')
+      $('#close_button_off_canvas').removeClass('close_button_off_canvas')
+
+      $('#sanjay_web_nav').addClass('offcanvas offcanvas-start')
+      $('#scroll_out_list').addClass('scroll_out_list')
+
+      $('#btn_nav_close').css('display', 'unset')
+      $('#nav_scroll_btn').css('display', 'unset')
+
+    }
+
+
+    // code when window loaded
+    var load_device_width = window.innerWidth
+    if (load_device_width > 999) {
+      big_device_width_navigationbar()
+    }
+
+    else if (load_device_width < 1000) {
+      small_device_width_navigationbar()
+    }
+
+    // code when device with is resizes
+    $(window).resize(function () {
+
+      var load_device_width = window.innerWidth
+      if (load_device_width > 999) {
+        big_device_width_navigationbar()
+      }
+
+      else if (load_device_width < 1000) {
+        small_device_width_navigationbar()
+      }
+
+    })
+
+
   })
 </script>
 

@@ -1,0 +1,74 @@
+{% extends 'basic.html' %}
+
+{% block title %}
+{% block gta_title %}
+{% endblock %}
+{% endblock %}
+
+{% block css %}
+<style>
+    .gta_big_container {
+        display: grid;
+        grid-template-rows: 100px 1fr;
+
+    }
+</style>
+<style>
+    .gta_pages_options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        align-items: center;
+        background-color: black;
+    }
+
+    .gta_navigations {
+        font-size: 22px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .gta_navigations a{
+        text-decoration: none;
+        color: white;
+    }
+    .gta_navigations i{
+        font-size: 30px;
+    }
+    .gta_navigate_add_questions_active{
+        background-color: white;
+    }
+    .gta_navigate_add_questions_active a{
+        color: black;
+    }
+</style>
+
+{% block gta_css %}
+{% endblock %}
+{% endblock %}
+
+{% block body %}
+
+<div class="gta_big_container">
+    <div class="gta_pages_options">
+        <div class="gta_navigations {% block gta_navigate_add_questions %}{% endblock %}"><a href="/gurkul_test/test_series/GTA_questions"><i class="text-warning fas fa-school "></i> ADD/Edit GTA Questions</a>
+        </div>
+        <div class="gta_navigations"><a href="#"></a></div>
+    </div>
+    <div>
+        {% block gta_body %}
+        {% endblock %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+
+
+{% block gta_js %}
+{% endblock %}
+{% endblock %}

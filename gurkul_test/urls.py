@@ -3,11 +3,13 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('test_series/',views.gurkul_test_index,name='Gurkul test index page'),
 
-    path('test_series/academic_test_series_category/',views.academic_test_series_category,name='Academic test series category'),
+    path('test_series/GTA_questions',views.GTA_index,name='GTA Home page'),
 
-    path('test_series/competition_test_series_category/',views.competition_test_series_category,name='Competition test series category'),
+    path('test_series/GTA_questions/get__GTA_question_form',views.get__GTA_question_form,name='Get data of questions from page'),
 
-    path('test_series/edit_test_series/',views.edit_test_series,name='Editing test series questions'),
+    path('test_series/GTA_questions/return_gta_question',views.return_gta_question,name='Return filtered questions'),
+
+    path('test_series/GTA_questions/return_question_with_id',views.return_question_with_id,name='Returning a question filtered with given id'),
+
 ]
