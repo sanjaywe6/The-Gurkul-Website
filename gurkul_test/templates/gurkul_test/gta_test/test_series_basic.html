@@ -1,0 +1,136 @@
+{% extends 'basic.html' %}
+{% block title %}
+Test Series
+{% endblock %}
+
+{% block css %}
+
+<style>
+    /* css of main container */
+    .series_container {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        min-height: 500px;
+    }
+    @media screen and (max-width:1000px){
+        .series_container {
+        display: unset;
+        }
+        
+    }
+</style>
+
+<style>
+    .series_options {
+        border-left: 5px solid red;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        margin: 20px 0px 20px 10px;
+    }
+
+    .series_options a {
+        text-decoration: none;
+        color: white;
+    }
+</style>
+<style>
+    /* css for dynamic navigation */
+    #add_to_base_nav {
+        display: none;
+    }
+
+    @media screen and (max-width:1000px) {
+        #add_to_base_nav {
+            display: unset;
+        }
+
+        #gta_nav {
+            display: none;
+        }
+
+    }
+</style>
+<style>
+    .active_test_series_link {
+        background-color: white;
+    }
+
+    .active_test_series_link a {
+        color: black;
+    }
+</style>
+
+{% block css_test_series %}
+{% endblock %}
+
+{% endblock %}
+
+{% block active_test_series %}
+active
+{% endblock %}
+{% block navigation_from_another_page %}
+<div id="add_to_base_nav">
+
+    <li><a class="dropdown-item dropLink" href="/gurkul_test/test_series/GTA_test_index"><i class="fas fa-layer-group text-primary"></i> All Series</a></li>
+
+    <li><a class="dropdown-item dropLink" href="/gurkul_test/test_series/GTA_test_index"><i class="fas fa-university text-primary"></i> Academic Test Series</a></li>
+
+</div>
+{% endblock %}
+
+{% block body %}
+{% if user.is_authenticated %}
+
+<div class="series_container">
+    <div style="background-color: #343541;text-decoration: none;font-size: 24px;color: white;">
+
+        <div id="gta_nav">
+
+            <div>
+                <p style="display:flex; justify-content: center; margin: 10px 0px 30px 0px; font-size: 70px;"><b
+                        style="color:#d39b29;">GTA</b>
+                </p>
+            </div>
+
+            <div class="series_options {% block all_series_active %}{% endblock %}"
+                style="display: flex; justify-content: space-around;">
+                <a href="/gurkul_test/test_series/GTA_test_index"><i class="fas fa-layer-group text-primary"></i> All Series</a>
+            </div>
+
+
+            <!-- <div class="series_options {% block academic_series_active %}{% endblock %}"
+                style="display: flex; justify-content: space-around;">
+                <a href=""><i class="fas fa-university text-primary"></i> Academic Test Series</a>
+            </div> -->
+
+        </div>
+    </div>
+    <div>{% block test_series_body %}{% endblock %}</div>
+</div>
+
+
+{% else %}
+<div class="forbidden" style="background-image: linear-gradient(red,white,green);
+height: 100vh;
+width: 100vw;
+display: flex;
+align-items: center;">
+    <div style="width:100%;">
+        <div style="display: flex; justify-content: center;"><i class="fas fa-skull-crossbones" style="color: rgb(17, 0, 255); font-size: 8vw;"></i></div>
+    <div style="display: flex; justify-content: center;text-align: center;"><p class="h1">Please login to access profile.....</p></div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+</script>
+
+{% block js_test_series %}
+{% endblock %}
+
+{% endblock %}

@@ -7,7 +7,10 @@ active_profile_option_educational_details
 {% block cssPro %}
 <style>
     .active_profile_option_educational_details {
-        background-color: #66c3d7;
+        background-color: #ffffff;
+    }
+    .active_profile_option_educational_details a{
+       color: black;
     }
 
     .educational_form_progress_grid {
@@ -67,7 +70,7 @@ active_profile_option_educational_details
             </div>
 
             <div
-                style="padding: 10px;background-color: black; border: 1px solid black;border-radius: 7px; margin-bottom: 20px; ">
+                style="padding: 10px;background-color: rgb(255, 255, 255); border: 1px solid black;border-radius: 7px; margin-bottom: 20px; ">
 
                 {% if educational_data_existence == "False" %}
                 <h2>Add Your Educational Deatails</h2>
@@ -118,7 +121,7 @@ active_profile_option_educational_details
         // function to generate educational form
         function generate_form(num) {
             return ` <form class="educational_data_form" id="educational_data_form${num}"
-                        style="padding: 10px;border: 1px solid red;border-radius: 7px; background-image: linear-gradient(180deg,rgb(0, 0, 104),black); margin-top:20px;">
+                        style="padding: 10px;border: 1px solid red;border-radius: 7px; background-image:  linear-gradient(90deg,rgb(0, 219, 255),#60ff06); margin-top:20px;">
                         {% csrf_token %}
                                                                 
                         <div style="position: relative; top: 15px;">

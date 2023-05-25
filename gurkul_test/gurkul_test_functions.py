@@ -1,5 +1,5 @@
 from gurkul_test.models import *
-import json
+import random
 
 def get_form_optioins():
     options={}
@@ -7,33 +7,30 @@ def get_form_optioins():
     id=gta_all_question.objects.last().sno
     options['id']=f"GTA0{id+1}"
     # getting cotegory
-    category=gta_all_question.question_category_choices
+    category=question_category_choices
     options['category']=category
     # getting language
-    languages=gta_all_question.language_choices
+    languages=language_choices
     options['language']=languages
     # getting board
-    boards=gta_all_question.board_choices
+    boards=board_choices
     options['board']=boards
     # getting standard
-    standards=gta_all_question.standard_choices
+    standards=standard_choices
     options['standard']=standards
     # getting subjects
-    subjects=gta_all_question.subject_choices
+    subjects=subject_choices
     options['subject']=subjects
     # getting question types
-    qtypes=gta_all_question.qtype_choices
+    qtypes=qtype_choices
     options['qtype']=qtypes
     # getting answer choices
-    answer_options=gta_all_question.answer_option_choices
+    answer_options=answer_option_choices
     options['answer_option']=answer_options
     return options
 
-
 def validate_gta_questions(input_category,input_language,input_board,input_standard,input_subject,input_qtype,input_question,radio_option,input_option_1,input_option_2,input_option_3,input_option_4,input_answer):
-
     lst=[]
-
     if len(input_category)>0:
         if len(input_language)>0:
             if len(input_board)>0:
@@ -229,25 +226,34 @@ def submit_gta_form(request,input_category,input_language,input_board,input_stan
 
     return fields
 
+def get_gta_modals(request):
+    category=question_category_choices
+    modal_index=0
+    for cat in category:
+        language=language_choices
+        for lang in language:
+            boards=board_choices
+            for board in boards:
+                standard=standard_choices
+                for stand in standard:
+                    subject=subject_choices
+                    for subj in subject:
+                        qtypes=qtype_choices
+                        for qtype in qtypes:
+                            modal=gta_all_question.objects.filter(question_category=cat[0],language=lang[0],board=board[0],standard=stand[0],subject=subj[0],qtype=qtype[0])
+                            lent=len(modal)
+                            if lent>50:
+                                
+                                # os.makedirs(f'static/theGurkul/img/gurkul_test/test_modal_banner/{cat[0]}/{lang[0]}/{board[0]}/{stand[0]}/{subj[0]}/{qtype[0]}')
 
-# function to write questions in database
-# def write_questions(language,standard,subject,qtype):
-#     old_questions=gurkul_academic_test_series_model.objects.filter(language=language,test_class=standard,subject=subject,qtype=qtype).all()
+                                modal_id=f'GTA00{modal_index}'
+                                add_to_series=gta_test_series(id=modal_id,question_category=cat[0],language=lang[0],board=board[0],standard=stand[0],subject=subj[0],qtype=qtype[0],total_length=lent,banner=f"../static/theGurkul/img/gurkul_test/test_modal_banner/{cat[0]}_{lang[0]}_{board[0]}_{stand[0]}_{subj[0]}_{qtype[0]}.jpg")
+                                add_to_series.save()
+                                modal_index=modal_index+1
 
-#     print(old_questions)
-
-#     for item in old_questions:
-#         new_questions=gta_all_question(question_category='Acad',language=language,standard=10,subject=subject,qtype=qtype,question=item.question,option_1=item.option_1,option_2=item.option_2,option_3=item.option_3,option_4=item.option_4,answer=item.answer,answer_option='Other',user_profile=item.user_profile)
-#         new_questions.save()
-
-
-# code for correcting data
-
-    # test_ob=gta_all_question.objects.filter(question_category='Acad',language='Hindi',board='UPBoard',standard='12',subject='Physics',qtype='LTQ')
-
-    # for item in test_ob:
-    #     que= gta_all_question(sno=item.sno,id=item.id,question_category=item.question_category,language=item.language,board=item.board,standard=12,subject=item.subject,qtype=item.qtype,question=item.question,option_1=item.option_1,option_2=item.option_2,option_3=item.option_3,option_4=item.option_4,answer=item.answer,answer_option=item.answer_option,user_profile=item.user_profile,time=item.time)
-    #     que.save()
-
-    # print(test_ob)
-    # print(len(test_ob))
+def get_gta_questions_for_given_question_id(id):
+    questions={}
+    modal=gta_test_series.objects.filter(id=id).first()
+    questions=gta_all_question.objects.filter(question_category=modal.question_category,language=modal.language,board=modal.board,standard=modal.standard,subject=modal.subject,qtype=modal.qtype).values()
+    random_questions=random.sample([x for x in questions],modal.questions_length)
+    return random_questions

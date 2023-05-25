@@ -12,4 +12,12 @@ urlpatterns = [
 
     path('test_series/GTA_questions/return_question_with_id',views.return_question_with_id,name='Returning a question filtered with given id'),
 
+    path('test_series/GTA_test_index',views.GTA_test_index,name='Test Series Index Page'),
+
+    path('test_series/GTA_test_paper_index',views.GTA_test_paper_index,name='Test paper Index Page'),
+
+    path('test_series/GTA_test_paper_data',views.GTA_test_paper_data,name='For fetching test series question and data'),
+
+    path('test_series/match_GTA_test_paper_option',views.match_GTA_test_paper_option,name='Getting que. id and option from page and verifying in database'),
+
 ]

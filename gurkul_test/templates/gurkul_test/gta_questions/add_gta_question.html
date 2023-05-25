@@ -1,4 +1,4 @@
-{% extends 'gurkul_test/gta_basic.html' %}
+{% extends 'gurkul_test/gta_questions/gta_basic.html' %}
 
 {% block gta_title %}
 NEW ADD GTA QUESTIONS
@@ -183,6 +183,10 @@ gta_navigate_add_questions_active
                     </div>
                 </div>
 
+                <div>
+                    <input type="button" class="btn btn-info my-2" value="Show Questions with Selected Category" id="show_question_with_options">
+                </div>
+
                 <div class="form-floating my-4">
                     <textarea class="form-control" placeholder="Type your question here" id="input_question"
                         style="height: 200px" required></textarea>
@@ -324,13 +328,14 @@ gta_navigate_add_questions_active
                 success: function (data) {
                     questions = data.all_question
                     
-                    lst_question = `<div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr  1fr; background-image: linear-gradient(90deg,black,red,green,black); width: 100%; min-height: 60px;justify-items: center;align-items: center;padding:10px;border:1px solid black; border-radius:8px;">
+                    lst_question = `<div style="display: flex; justify-content:center; align-items:center; flex-wrap:wrap; background-image: linear-gradient(90deg,black,red,green,black); width: 100%; min-height: 60px;justify-items: center;align-items: center;padding:10px;border:1px solid black; border-radius:8px;">
                     
-                        <div><p id="show_lang" class="btn btn-primary" style="margin: 0px;">Language: </p></div>
-                        <div><p id="show_board" class="btn btn-primary" style="margin: 0px;">Board: </p></div>
-                        <div><p id="show_standard" class="btn btn-primary" style="margin: 0px;">Standard: </p></div>
-                        <div><p id="show_subject" class="btn btn-primary" style="margin: 0px;">Subject: </p></div>
-                        <div><p id="show_qtype" class="btn btn-primary" style="margin: 0px;">Question Type: </p></div>
+                        <div><p id="show_len" class="btn btn-primary" style="margin: 10px;">Total Questions: </p></div>
+                        <div><p id="show_lang" class="btn btn-primary" style="margin: 10px;">Language: </p></div>
+                        <div><p id="show_board" class="btn btn-primary" style="margin: 10px;">Board: </p></div>
+                        <div><p id="show_standard" class="btn btn-primary" style="margin: 10px;">Standard: </p></div>
+                        <div><p id="show_subject" class="btn btn-primary" style="margin: 10px;">Subject: </p></div>
+                        <div><p id="show_qtype" class="btn btn-primary" style="margin: 10px;">Question Type: </p></div>
                     
                         </div>`;
 
@@ -498,6 +503,7 @@ gta_navigate_add_questions_active
                     // filling all question in html tag
                     $('#all_filtered_question').html(lst_question)
                     
+                    $('#show_len').text(`Total Questions: ${questions.length}`)
                     $('#show_lang').text(`Language: ${language}`)
                     $('#show_board').text(`Board: ${board}`)
                     $('#show_standard').text(`Standard: ${standard}`)
@@ -659,14 +665,19 @@ gta_navigate_add_questions_active
           })
 
 
+        $('#show_question_with_options').click(function(){
+        category=$('#input_category').val()
+        language=$('#input_language').val()
+        board=$('#input_board').val()
+        standard=$('#input_standard').val()
+        subject=$('#input_subject').val()
+        qtype=$('#input_qtype').val()
+        show_questions(category,language,board,standard,subject,qtype,10)
+    })
+
     })
 </script>
 <script>
-    // blocking unusual inputs
-    // $('#display_fields').on('click','#input_category',function(){
-
-    // })
-
 $(document).ready(function(){
 
     $('#input_category').click(function(){

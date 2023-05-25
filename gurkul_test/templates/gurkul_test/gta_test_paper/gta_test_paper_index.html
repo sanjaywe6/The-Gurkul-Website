@@ -1,0 +1,1087 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Paper</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Changa:wght@500&family=Libre+Baskerville&family=M+PLUS+1+Code&family=Open+Sans:wght@500&family=Poppins:wght@300&family=Roboto+Slab&family=Secular+One&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="{% static '/theGurkul/cdn_files/bootstrap/bootstrap.min.css' %}"> -->
+    <!-- <link rel="stylesheet" href="{% static '/theGurkul/cdn_files/bootstrap/bootstrap.min.css.map' %}"> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{% static '/theGurkul/cdn_files/icons/remixicon.css' %}"> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="{% static '/theGurkul/cdn_files/icons/fontawesome.min.js' %}"> -->
+
+
+    <link rel="stylesheet" href="{% static '/theGurkul/css/basic.css' %}">
+
+
+    <style>
+        /* animation for onloading */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(255, 255, 255);
+            z-index: 1000;
+        }
+
+        .spinner-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .spinner {
+            border-radius: 50%;
+            background-color: rgba(255, 0, 255, 0);
+            position: relative;
+            animation: jump 0.5s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        .ball {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #f0f;
+            position: relative;
+            animation: jump 0.5s ease-in-out infinite;
+            margin: 0 10px;
+        }
+
+        .ball:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .ball:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes jump {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <style>
+        .instruction__cont {
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            padding: 10px;
+        }
+
+        .instruction__num {
+            font-size: 20px;
+        }
+
+        .instruction__line {
+            font-size: 18px;
+        }
+    </style>
+    <style>
+        /* css for main container block */
+        .main_container {
+            height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+        }
+
+        .question_and_navigation {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+        }
+
+        .question_actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .question_content {
+            font-size: 20px;
+        }
+
+        .question_navigate {
+            height: 100%;
+            overflow: scroll;
+        }
+
+        @media screen and (max-width:1100px) {
+            .question_and_navigation {
+                grid-template-columns: 1fr 300px;
+            }
+        }
+
+        @media screen and (max-width:750px) {
+            .main_container {
+                height: unset;
+            }
+
+            .question_and_navigation {
+                grid-template-columns: unset;
+                grid-template-rows: 1fr auto;
+            }
+
+            .question_actions {
+                grid-template-columns: unset;
+                grid-template-rows: 1fr 2fr;
+            }
+        }
+    </style>
+    <style>
+        /* css for question status buttons */
+        .current_question {
+            border: 2px solid rgb(0, 0, 0);
+            border-radius: 17px;
+        }
+
+        .visited_question_not_answered {
+            background-color: red;
+            border-bottom: 1px solid red;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .marked_for_review {
+            background-color: #0d6efd;
+            border-bottom: 1px solid #0d6efd;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .saved_and_next {
+            background-color: #198754;
+            border-bottom: 1px solid #198754;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+    </style>
+    <style>
+        /* css for warning prompt window */
+        .prompt_window {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .prompt_window-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 200px;
+            text-align: center;
+        }
+
+        .prompt_window h2 {
+            margin-bottom: 10px;
+        }
+
+        .prompt_window p {
+            margin-bottom: 20px;
+        }
+
+        .prompt_window-buttons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .prompt_window-buttons button {
+            margin: 0 5px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #confirm-button {
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    {% load static %}
+    <main>
+
+        {% if user.is_authenticated %}
+
+        <div id="loading">
+            <div class="loading">
+                <div class="spinner-container">
+                    <div class="spinner"><img src="{% static 'theGurkul/img/logo/logo.png' %}" alt="Loading..."
+                            style="height: 55px;">
+                    </div>
+                    <div class="balls" style="display: flex; justify-content: center;">
+                        <div class="ball" style="background-color: red;"></div>
+                        <div class="ball" style="background-color: rgb(17, 0, 255);"></div>
+                        <div class="ball" style="background-color: rgb(9, 255, 0);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="analyzing_answer" style="display:none;">
+            <div class="loading">
+                <div class="spinner-container">
+                    <div class="spinner">
+                        <h3><b>Analysing Paper</b></h3>
+                    </div>
+                    <div class="balls" style="display: flex; justify-content: center;">
+                        <div class="ball" style="background-color: red;"></div>
+                        <div class="ball" style="background-color: rgb(17, 0, 255);"></div>
+                        <div class="ball" style="background-color: rgb(9, 255, 0);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="margin: 20px; display: none;" id="paper_rules_acknowledgement">
+            <div style="display:flex; justify-content: center;">
+                <h1><b class="text-danger">Note</b></h1>
+            </div>
+
+            <div style="display: flex; justify-content: center;">
+
+                <div
+                    style="margin: 50px 0px 50px 0px; padding: 10px; background-image: linear-gradient(90deg,rgb(217, 217, 217),rgb(217, 162, 162),rgb(8, 197, 255));box-shadow: 0px 0px 20px blueviolet;max-width: 1200px;">
+
+                    <div id="paper_rules">
+
+                        <div class="instruction_div">
+                            <div class="instruction__cont">
+                                <p class="instruction__num"><b>1.</b></p>
+                                <p class="instruction__line"> Make sure you
+                                    understand
+                                    the
+                                    exam instructions before you start. Pay attention to the number of questions, time
+                                    limit,
+                                    and any other special instructions.</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction_div">
+                            <div class="instruction__cont">
+                                <p class="instruction__num"><b>2.</b></p>
+                                <p class="instruction__line"> Make sure you have
+                                    a stable internet connection to
+                                    avoid
+                                    any interruptions during the exam.</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction_div">
+                            <div class="instruction__cont">
+                                <p class="instruction__num"><b>3.</b></p>
+                                <p class="instruction__line"> Use a reliable device that is
+                                    fully charged and has no technical
+                                    issues. You may also want to use a backup device in case of any issues with your
+                                    primary
+                                    device.</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction_div">
+                            <div class="instruction__cont">
+                                <p class="instruction__num"><b>4.</b></p>
+                                <p class="instruction__line"> Choose a quiet place where you can
+                                    concentrate and won't be
+                                    interrupted.
+                                    Turn off any notifications or distractions.</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction_div">
+                            <div class="instruction__cont">
+                                <p class="instruction__num"><b>5.</b></p>
+                                <p class="instruction__line"> Cheating is not acceptable in any form.
+                                    Follow the exam rules and take the
+                                    exam
+                                    honestly.</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction_div">
+                            <div class="instruction__cont">
+                                <p class="instruction__num"><b>6.</b></p>
+                                <p class="instruction__line">Keep an eye on the time and pace
+                                    yourself accordingly. Don't spend too
+                                    much
+                                    time on any one question, and make sure you answer all questions before time runs
+                                    out.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="instruction_div">
+                            <div class="instruction__cont">
+                                <p class="instruction__num"><b>7.</b></p>
+                                <p class="instruction__line"> Before submitting your exam, review
+                                    your answers to make sure you have
+                                    answered all questions and have not made any mistakes.</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction_div">
+                            <div class="instruction__cont">
+                                <p class="instruction__num"><b>2.</b></p>
+                                <p class="instruction__line"> Once you have reviewed your answers,
+                                    submit your exam before the time
+                                    limit
+                                    expires.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {% csrf_token %}
+                    <form id="instructions_form" action="/gurkul_test/test_series/GTA_test_paper_index" method="post"
+                        style="display: none;">
+                        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+                            <div class="my-2 mx-2"><input type="hidden"><input type="checkbox" id="instructions_status">
+                            </div>
+                            <div class="my-2 mx-2">
+                                <p class="instruction__line" style="margin: 0px;"><b>I have read and Understand
+                                        instructions carefully.</b></p>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: center;">
+                            <button id="instructions_btn" data-instructions_status="false"
+                                class="btn btn-warning disabled">Next</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div>
+            <input type="hidden" value="{{model.id}}" id="test_id">
+            <input type="hidden" value="{{model.questions_length}}" id="test_question_length">
+            <input type="hidden" value="{{model.reading_time}}" id="test_reading_time">
+            <input type="hidden" value="{{model.time_period}}" id="test_time_period">
+            <input type="hidden" value="{{model.negative_marking}}" id="test_negative_marking">
+            <input type="hidden" value="{{model.positive_marking}}" id="test_positive_marking">
+            <input type="hidden" value="0" id="obtained_mark">
+            <input type="hidden" value="0" id="right_questions">
+            <input type="hidden" value="0" id="wrong_questions">
+
+            {% for item in q_range %}
+            <input type="hidden" id="question_status_{{forloop.counter0}}" data-question_id="" data-correct_option=""
+                data-question_status_number="{{forloop.counter0}}" data-question_visited="off"
+                data-marked_for_review="off" data-saved_and_next="off">
+            {% endfor %}
+        </div>
+
+        <div id="test_paper_div" style="display: none;">
+            <div class="main_container">
+                <div class="general_navigate" style="background-color: #6c3232; padding: 10px;">
+                    <div style="display:flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                        <div>
+                            <h3><b class="text-light">The Gurkul</b></h3>
+                        </div>
+                        <div><button class="btn btn-success my-2" data-test_id="{{model.id}}">Test Code:
+                                <b>{{model.id}}</b></button></div>
+
+                        <div>
+                            <button class="btn btn-info my-2">Positive Marks <b>{{model.positive_marking}} </b></button>
+                            <button class="btn btn-info my-2">Negative Marks <b>{{model.negative_marking}}</b></button>
+                        </div>
+
+                        <div><button class="btn btn-warning my-2" id="time_left_counter">Time Left <b>{{model.time_period}}</b></button></div>
+                    </div>
+                </div>
+
+                <div class="question_and_navigation">
+
+                    <div class="question_area" id="question_area" style="width: 100%;overflow: scroll;">
+                        <div
+                            style="display: flex; justify-content: center; width: 100%; height: 100%; align-items:flex-start;">
+                            <div style="background-color: #eecbcb;
+                        border: 1px solid red;
+                        border-radius: 8px;padding: 20px; margin: 20px;box-shadow: 0px 0px 20px black; height: calc(100% - 40px); overflow: scroll; width: calc(100% - 40px);"
+                                id="all_questions">
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question_navigate" style="background-color: rgb(196, 196, 196);">
+                        <div>
+
+                            <div style="background-color: #9c9c9c;">
+                                <p class="h5 my-0 mx-2"><b>Status</b></p>
+                                <div style="padding: 10px; display: flex; justify-content: flex-start; flex-wrap: wrap;">
+
+                                    <div style="display: flex; justify-content: center; align-items: center;">
+                                        Not Visited
+                                        <button class="btn btn-light mx-2 my-2" style="width: 30px; height: 30px;">
+                                        </button>
+                                    </div>
+
+                                    <div style="display: flex; justify-content: center;align-items: center;">
+                                        Current Question
+                                        <button class="btn btn-light mx-2 my-2 current_question"
+                                            style="width: 30px; height: 30px;">
+                                        </button>
+                                    </div>
+
+                                    <div style="display: flex; justify-content: center;align-items: center;">
+                                        Not Answered
+                                        <button class="btn btn-light mx-2 my-2 visited_question_not_answered"
+                                            style="width: 30px; height: 30px;">
+                                        </button>
+                                    </div>
+
+                                    <div style="display: flex; justify-content: center;align-items: center;">
+                                        Marked For Review
+                                        <button class="btn btn-light mx-2 my-2 marked_for_review"
+                                            style="width: 30px; height: 30px;">
+                                        </button>
+                                    </div>
+
+                                    <div style="display: flex; justify-content: center;align-items: center;">
+                                        Answered
+                                        <button class="btn btn-light mx-2 my-2 saved_and_next"
+                                            style="width: 30px; height: 30px;">
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div style="background-color: #9c9c9c;">
+                                <p class="h5 my-0 mx-2"><b>Navigate to Questions</b></p>
+                                <div style="padding: 10px; display: flex;flex-wrap: wrap;">
+                                    {% for item in q_range %}
+                                    <button id="question_btn_{{forloop.counter0}}"
+                                        class="btn btn-light mx-2 my-2 question_status_btn"
+                                        data-question_number_btn="{{forloop.counter0}}"
+                                        style="width: 35px; height: 35px;  display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                      ">{{forloop.counter}}</button>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question_actions">
+                    <div id="question_footer" style="background-color: bisque; padding: 5px;">
+                        <div style="display:flex;justify-content: space-between;">
+                            <div style="display:flex; justify-content: center;">
+                                <div><button class="btn btn-primary mx-2" id="mark_for_review">Mark for Review &
+                                        Nex</button></div>
+                                <div><button class="btn btn-danger mx-2" id="clear_response">Clear Response</button>
+                                </div>
+                            </div>
+                            <input type="hidden" id="question_number_for_btns" value="0">
+                            <div><button class="btn btn-success disabled" id="save_and_next">Save & Next</button></div>
+                        </div>
+                    </div>
+
+                    <div
+                        style="display:flex;justify-content: space-around; align-items: center; background-color: black;">
+                        <button class="btn btn-info" id="submit_paper">Submit Paper</button>
+                        <button class="btn btn-danger" id="quit_exam">Quit Exam</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="confirmation-prompt_window" class="prompt_window">
+            <div class="prompt_window-content">
+                <h2>Warning!</h2>
+                <p>Are you sure you want to proceed?</p>
+                <div class="prompt_window-buttons">
+                    <input type="hidden" id="warning_type" data-warning_type="">
+                    <button id="confirm-prompt_window-yes">Yes</button>
+                    <button id="confirm-prompt_window-no">No</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="show_result_container">
+        </div>
+
+        {% else %}
+
+        <div class="forbidden" style="background-image: linear-gradient(red,white,green);
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;">
+            <div style="width:100%;">
+                <div style="display: flex; justify-content: center;"><i class="fas fa-skull-crossbones"
+                        style="color: rgb(17, 0, 255); font-size: 8vw;"></i></div>
+                <div style="display: flex; justify-content: center;text-align: center;">
+                    <p class="h1">Please login to access page.....</p>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+    </main>
+
+
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
+<!-- <script src="{% static '/theGurkul/cdn_files/jQuery/jquery_3.7.0.js' %}"></script> -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+<!-- <script src="{% static '/theGurkul/cdn_files/bootstrap/bootstrap.bundle.min.js' %}"></script> -->
+<!-- <script src="{% static '/theGurkul/cdn_files/bootstrap/bootstrap.bundle.min.js.map' %}"></script> -->
+
+
+<script src="https://kit.fontawesome.com/44c94b5a58.js" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#loading').css('display', 'none')
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+
+        function show_paper_rules(acknowledgement) {
+            if (acknowledgement == 'false') {
+                $('#paper_rules_acknowledgement').css('display', 'unset')
+                $('#instructions_form').css('display', 'unset')
+            }
+            else if (acknowledgement == 'true') {
+                $('#paper_rules_acknowledgement').css('display', 'unset')
+            }
+
+        }
+        function hide_paper_rules() {
+            $('#paper_rules_acknowledgement').css('display', 'none')
+            $('#instructions_form').css('display', 'none')
+
+        }
+        var instructions_status = $('#instructions_btn').attr('data-instructions_status')
+        show_paper_rules(instructions_status)
+
+
+        $('#instructions_form').on('click', '#instructions_status', function () {
+
+            val = $('#instructions_status')[0]
+            if (val.checked) {
+                $('#instructions_btn').removeClass('disabled')
+            }
+            else {
+                $('#instructions_btn').addClass('disabled')
+            }
+        })
+
+        function show_question_paper(data) {
+            if (data == 'show') {
+                $('#test_paper_div').css('display', 'unset')
+            }
+            else if (data == 'hide') {
+                $('#test_paper_div').css('display', 'none')
+            }
+        }
+
+        function show_question_with_number(number) {
+            // question_number = $(`#question_${number}`).attr('data-question_number')
+            question_length = $('#test_question_length').val()
+            for (let index = 0; index < question_length; index++) {
+
+                if (index == number) {
+                    // js for questions
+                    $(`#question_${index}`).css('display', 'unset')
+
+                    // js for question status
+                    $(`#question_status_${index}`).attr('data-question_visited', 'on')
+
+                    // js for btns
+                    $(`#question_btn_${index}`).removeClass('visited_question_not_answered')
+
+                    $('#question_number_for_btns').val(`${index}`)
+
+                    $(`#question_btn_${index}`).removeClass('marked_for_review')
+
+                    $(`#question_btn_${index}`).removeClass('saved_and_next')
+
+                    $(`#question_btn_${index}`).addClass('current_question')
+
+                    // js for disabling save and next btn
+                    $('#save_and_next').addClass('disabled')
+                }
+                else {
+                    // js for questions
+                    $(`#question_${index}`).css('display', 'none')
+
+                    // js for btn
+                    $(`#question_btn_${index}`).removeClass('current_question')
+
+                    question_visit_status = $(`#question_status_${index}`).attr('data-question_visited')
+                    saved_and_next = $(`#question_status_${index}`).attr('data-saved_and_next')
+                    marked_for_review = $(`#question_status_${index}`).attr('data-marked_for_review')
+                    if (question_visit_status == 'on') {
+                        if (saved_and_next == 'on') {
+                            $(`#question_btn_${index}`).addClass('saved_and_next')
+                        }
+                        else {
+                            if (marked_for_review == 'on') {
+
+                                $(`#question_btn_${index}`).addClass('marked_for_review')
+                            }
+                            else {
+                                $(`#question_btn_${index}`).addClass('visited_question_not_answered')
+                            }
+                        }
+                    }
+
+                }
+
+            }
+        }
+
+
+
+        $('#instructions_form').on('submit', function (e) {
+            e.preventDefault()
+            $('#instructions_btn').attr('data-instructions_status', 'true')
+            hide_paper_rules()
+
+            show_question_paper('show')
+
+            // SENDING JS REQUEST for loading questions
+
+            $.ajax({
+                url: '/gurkul_test/test_series/GTA_test_paper_data',
+                type: 'post',
+                data: {
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    test_paper_id: $('#test_id').val(),
+                },
+                success: function (data) {
+                    var output = '';
+                    for (let index = 0; index < data.generated_questions.length; index++) {
+                        const element = data.generated_questions[index];
+
+                        output += `
+
+                        <div id="question_${index}" data-question_number="${index}" style="display:none;">
+                            <input type="hidden" value='${element.id}' id="question_id_${index}">
+                                <div style="display: grid; grid-template-columns: 30px 1fr;">
+                                    <div>
+                                        <p class="question_content"><b>${index + 1}.</b></p>
+                                    </div>
+                                    <div>
+                                        <p class="question_content" id="question_text${index}"><b>${element.question}</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div style="padding: 10px;">
+                                    <div>
+
+                                        <div style="padding: 10px;flex-wrap: wrap;">
+                                            <div style="display: grid; grid-template-columns: 30px 1fr; padding: 10px;">
+                                                <div class="question_content"><input value="A" type="radio" name="options${index}"
+                                                        id="option_radio${index}1"></div>
+                                                <div class="question_content" id="option_text${index}1">${element.option_1}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding: 10px;flex-wrap: wrap;">
+                                            <div style="display: grid; grid-template-columns: 30px 1fr; padding: 10px;">
+                                                <div class="question_content"><input value="B" type="radio" name="options${index}"
+                                                        id="option_radio${index}2"></div>
+                                                <div class="question_content" id="option_text${index}2">${element.option_2}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding: 10px;flex-wrap: wrap;">
+                                            <div style="display: grid; grid-template-columns: 30px 1fr; padding: 10px;">
+                                                <div class="question_content"><input value="C" type="radio" name="options${index}"
+                                                        id="option_radio${index}3"></div>
+                                                <div class="question_content" id="option_text${index}3">${element.option_3}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="padding: 10px;flex-wrap: wrap;">
+                                            <div style="display: grid; grid-template-columns: 30px 1fr; padding: 10px;">
+                                                <div class="question_content"><input value="D" type="radio" name="options${index}"
+                                                        id="option_radio${index}4"></div>
+                                                <div class="question_content" id="option_text${index}4">${element.option_4}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        `
+
+                    }
+                    $('#all_questions').html(output)
+                    run_timer()
+                    show_question_with_number(0)
+
+
+
+
+
+                }
+            })
+
+
+        })
+
+        // js for click event on question status btn
+        $('.question_status_btn').click(function () {
+            question_number = $(this).attr('data-question_number_btn')
+            show_question_with_number(question_number)
+        })
+
+        $('#all_questions').on('click', function () {
+            question_number = $('#question_number_for_btns').val()
+            option = $(`input[type='radio'][name='options${question_number}']:checked`).val()
+            if (option == 'A' || option == 'B' || option == 'C' || option == 'D') {
+                $('#save_and_next').removeClass('disabled')
+            }
+            else {
+                $('#save_and_next').addClass('disabled')
+            }
+
+        })
+
+        // js for event of mark for review btn 
+        $('#mark_for_review').click(function () {
+            question_number = $('#question_number_for_btns').val()
+            $(`#question_status_${question_number}`).attr('data-marked_for_review', 'on')
+            question_length = $('#test_question_length').val()
+            if (Number(question_number) == Number(question_length) - 1) {
+                show_question_with_number(0)
+            }
+            else {
+                show_question_with_number(Number(question_number) + 1)
+            }
+        })
+
+        // js for button save and next
+        $('#save_and_next').click(function () {
+            question_number = $('#question_number_for_btns').val()
+            question_length = $('#test_question_length').val()
+            q_id = $(`#question_id_${question_number}`).val()
+            q_option = $(`input[type='radio'][name='options${question_number}']:checked`).val()
+            $(`#question_status_${question_number}`).attr('data-question_id', q_id)
+            $(`#question_status_${question_number}`).attr('data-correct_option', q_option)
+            $(`#question_status_${question_number}`).attr('data-saved_and_next', 'on')
+            if (Number(question_number) == Number(question_length) - 1) {
+                show_question_with_number(0)
+            }
+            else {
+                show_question_with_number(Number(question_number) + 1)
+            }
+
+        })
+
+        // js for clear response btn
+        $('#clear_response').click(function () {
+            question_number = $('#question_number_for_btns').val()
+            q_id = $(`#question_id_${question_number}`).val()
+            $(`input[name='options${question_number}'][value='A']`).prop("checked", false);
+            $(`input[name='options${question_number}'][value='B']`).prop("checked", false);
+            $(`input[name='options${question_number}'][value='C']`).prop("checked", false);
+            $(`input[name='options${question_number}'][value='D']`).prop("checked", false);
+            $('#save_and_next').addClass('disabled')
+            $(`#question_status_${question_number}`).attr('data-question_id', '')
+            $(`#question_status_${question_number}`).attr('data-correct_option', '')
+            $(`#question_status_${question_number}`).attr('data-saved_and_next', 'off')
+
+        })
+
+        // js for submitting exampaper
+        function match_question_options_with_db(id, answer, negative_mark, positive_mark) {
+            value = "";
+            $.ajax({
+                url: '/gurkul_test/test_series/match_GTA_test_paper_option',
+                type: 'post',
+                data: {
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    q_id: id,
+                    option: answer,
+                },
+                success: function (data) {
+                    val = data.val
+                    if (val == 'on') {
+                        obtained_mark = parseFloat($('#obtained_mark').val())
+                        $('#obtained_mark').val(obtained_mark + positive_mark)
+                        right_questions = Number($('#right_questions').val())
+                        $('#right_questions').val(right_questions + 1)
+                    }
+                    else {
+                        obtained_mark = parseFloat($('#obtained_mark').val())
+                        $('#obtained_mark').val(obtained_mark + negative_mark)
+                        wrong_questions = Number($('#wrong_questions').val())
+                        $('#wrong_questions').val(wrong_questions + 1)
+                    }
+
+                }
+            })
+        }
+
+
+        function show_result() {
+            test_id = $('#test_id').val()
+            test_question_length = $('#test_question_length').val()
+            test_time_period = $('#test_time_period').val()
+            test_negative_marking = $('#test_negative_marking').val()
+            test_positive_marking = $('#test_positive_marking').val()
+            obtained_mark = $('#obtained_mark').val()
+            right_questions = $('#right_questions').val()
+            wrong_questions = $('#wrong_questions').val()
+            not_attempted = Number(test_question_length) - (Number(right_questions) + Number(wrong_questions))
+            total_mark = Number(test_question_length) * Number(test_positive_marking)
+            $('#show_result_container').html(`
+ 
+            <div>
+
+                <div>
+                    <div style="display: flex;
+                    justify-content: center;
+                    padding: 20px;
+                    margin: 20px;
+                    background-color: #ff6e6e;
+                    box-shadow: 0px 0px 20px #000;">
+                        <h1><b>Your Result</b></h1>
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <div style="max-width: 1200px; width: 100%;padding: 30px 10px 0px 10px;border: 1px solid black;border-radius: 10px;margin: 10px;">
+                            <table class="table table-dark table-striped">
+                                <thead>
+                                    <tr>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Test ID</td>
+                                        <td><b> ${test_id} </b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Questions</td>
+                                        <td><b> ${test_question_length} </b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Time Period</td>
+                                        <td><b> ${test_time_period} </b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Positive Marking per Question</td>
+                                        <td><b> ${test_positive_marking} </b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Negative Marking per Question</td>
+                                        <td><b> ${test_negative_marking} </b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maximum Marks</td>
+                                        <td><b> ${total_mark} </b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Obtained Marks</td>
+                                        <td><b> ${obtained_mark} </b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Right Questions</td>
+                                        <td><b> ${right_questions} </b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Wrong Questions</td>
+                                        <td><b> ${wrong_questions} </b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Not attempted Questions</td>
+                                        <td><b> ${not_attempted} </b></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            `)
+        }
+
+        function submit_exam_paper() {
+            question_length = $('#test_question_length').val()
+            negative_marking = parseFloat($('#test_negative_marking').val())
+            positive_marking = parseFloat($('#test_positive_marking').val())
+            for (let index = 0; index < question_length; index++) {
+                id = $(`#question_status_${index}`).attr('data-question_id')
+                option = $(`#question_status_${index}`).attr('data-correct_option')
+                if (option != "") {
+                    match_question_options_with_db(id, option, negative_marking, positive_marking)
+
+                }
+
+            }
+        }
+
+        function complete_exam() {
+            show_question_paper('hide')
+            $('#analyzing_answer').css('display', 'unset')
+            $('#obtained_mark').val(0)
+            $('#right_questions').val(0)
+            $('#wrong_questions').val(0)
+            submit_exam_paper()
+        }
+
+        $('#submit_paper').click(function () {
+            $('#warning_type').attr('data-warning_type', 'submit_paper')
+            prompt_window.style.display = 'block';
+        })
+
+        $('#quit_exam').click(function () {
+            $('#warning_type').attr('data-warning_type', 'quit_exam')
+            prompt_window.style.display = 'block';
+        })
+
+        window.addEventListener('beforeunload', function(event) {
+        event.preventDefault();
+        event.returnValue = ''; // This is required for Chrome and newer browsers
+        return ''; // This is required for older browsers
+        });
+
+
+        const prompt_window = document.getElementById('confirmation-prompt_window');
+        const confirmYesButton = document.getElementById('confirm-prompt_window-yes');
+        const confirmNoButton = document.getElementById('confirm-prompt_window-no');
+
+        confirmYesButton.addEventListener('click', function () {
+            // User clicked "Yes" in the custom confirmation prompt_window
+            // Perform your desired action here
+            warning_type = $('#warning_type').attr('data-warning_type')
+            if (warning_type == 'submit_paper') {
+                complete_exam()
+                setTimeout(function () {
+                    show_result()
+                    $('#analyzing_answer').css('display', 'none')
+                }, 5000)
+            }
+            else if (warning_type == 'quit_exam') {
+                // Load a new page within the same website
+                window.location.href = '/gurkul_test/test_series/GTA_questions';
+            }
+
+
+            $('#warning_type').attr('data-warning_type', '')
+            close_prompt_window();
+        });
+
+        confirmNoButton.addEventListener('click', function () {
+            // User clicked "No" in the custom confirmation prompt_window
+            // Perform any necessary cancellation logic here
+            $('#warning_type').attr('data-warning_type', '')
+            close_prompt_window();
+        });
+
+        function close_prompt_window() {
+            prompt_window.style.display = 'none';
+        }
+
+        function time_to_seconds(time){
+            var split_values=time.split(':')
+            var hours=Number(split_values[0])
+            var minutes=Number(split_values[1])
+            var seconds=Number(split_values[2])
+            total_second=(hours*60*60)+(minutes*60)+seconds
+            return total_second
+
+        }
+
+
+        function run_timer(){
+            var time_limit=Number(time_to_seconds($('#test_time_period').val()))
+            var reading_time=Number(time_to_seconds($('#test_reading_time').val()))
+            total_time_period=Number(reading_time)+Number(time_limit)
+            var countdown=setInterval(function(){
+                total_time_period--;
+                var hours=Math.floor(total_time_period / 3600)
+                var minutes=Math.floor(total_time_period / 60)
+                var seconds=total_time_period % 60
+                // Add leading zeros
+                if (hours < 10) {
+                    hours = "0" + hours;
+                }
+                if (minutes < 10) {
+                    minutes = "0" + minutes;
+                }
+                if (seconds < 10) {
+                    seconds = "0" + seconds;
+                }
+                
+                $('#time_left_counter').html(`Time Left <b>${hours}:${minutes}:${seconds}</b>`)
+
+                if (total_time_period <= 0) {
+                clearInterval(countdown);
+                // Perform any actions needed when the timer reaches zero
+                complete_exam()
+                setTimeout(function () {
+                    show_result()
+                    $('#analyzing_answer').css('display', 'none')
+                }, 5000)
+                }
+
+            },1000)
+
+        }
+
+    })
+
+</script>
+
+</html>

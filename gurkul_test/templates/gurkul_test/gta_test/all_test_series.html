@@ -1,0 +1,147 @@
+{% extends 'gurkul_test/gta_test/test_series_basic.html' %}
+
+{% block css_test_series %}
+<style>
+    .modal_images{
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+    }
+    .card-img-top{
+        height: 100%;
+        width: 100%;
+    }
+
+    .test_modal_div{
+        position: relative;
+        display: inline-block;
+    }
+
+    .card{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        transition: all 0.4s ease-in-out;
+    }
+
+    .card:hover{
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0px 0px 20px black;
+    }
+
+
+</style>
+{% endblock %}
+
+{% block all_series_active %}
+active_test_series_link
+{% endblock %}
+
+{% block test_series_body %}
+<div class="container-fluid" style="max-height: 2000px; overflow-y: scroll;">
+
+    <div
+        style="min-height: 500px; background-image: linear-gradient(90deg,rgb(255, 255, 255),rgb(0, 204, 255),rgb(113, 113, 238));display: flex; align-items: center;flex-wrap: wrap;">
+
+        <div style="width: 100%; padding: 10px;">
+
+            <div style="width: 100%; padding: 10px;">
+                <div style="text-align: center;">
+                    <i class="fas fa-clock fa-xs text-warning"></i>
+                    <i class="fas fa-clock fa-sm text-warning"></i>
+                    <i class="fas fa-clock fa-lg text-warning"></i>
+                    <i class="fas fa-clock fa-2x text-warning"></i>
+                    <i class="fas fa-clock fa-5x text-warning"></i>
+                </div>
+            </div>
+            <div style="width: 100%; padding: 10px;">
+                <div style="display: flex; justify-content: center; text-align: center;">
+                    <p
+                        style="font-size: 28px; color: #ffe406; background-color: rgba(61, 61, 61, 0.541); box-shadow: 0px 0px 20px black; padding: 10px;">
+                        <b>A New Way Of Preparation </b>
+                    </p>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center; text-align: center;">
+                <p style="font-size: 25px;">Accelerate your Exam preparation with The Gurkul Test Series for
+                    NEET,IIT-JEE, SSC, Banking, Railway & All other Government Exams</p>
+            </div>
+            <div>
+                <form class="d-flex" role="search"
+                    style="width:100%;display: flex;justify-content: center; align-items: center; ">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        style="width: 80%;">
+                    <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div>
+        <div class="my-4" style="display: flex; justify-content: center;">
+            <h2><b>Popular Test Series</b></h2>
+        </div>
+        <div class="all-test-series"
+            style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; padding: 10px;">
+
+
+            {% for item in test_modal %}
+
+            <div style="width:250px;margin: 20px; height: 630px;" class="test_modal_div">
+
+            <div class="card"
+                style="width: 100%; overflow: hidden; height: 100%; background-color: #dfdfdf;">
+                <div style="background-color: rgb(0, 68, 255); display: flex; justify-content: center;">
+                    <h5 class="card-title text-light"><b>{{item.get_question_category_display}}</b></h5>
+                </div>
+                <div class="modal_images">
+                    <img src="/media/{{item.banner}}" class="card-img-top" alt="..." style="height: 100%;">
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><b>{{item.get_standard_display}} (2022-2023)</b></p>
+                    <p class="card-text"><b>{{item.subject}},</b> <i class="fas fa-language text-primary"
+                            style="font-size: 20px;"></i> {{item.language}}</p>
+                    <p class="card-text">{{item.get_qtype_display}}</p>
+                    <p class="card-text">{{item.total_length}}+ Total Questions </p>
+                    <p class="card-text">Test Series Code: <b>{{item.id}}</b></p>
+
+                    <form action="/gurkul_test/test_series/GTA_test_paper_index" method="post">{% csrf_token %}
+                        <input type="hidden" name="test_paper_id" value="{{item.id}}">
+                        <div>
+                            <button type="submit" class="btn btn-success w-100">View Test Series</button>
+                        </div>
+                    </form>
+
+                    <div class="card-footer text-muted my-2">
+                        Updated on {{item.add_time}}
+                    </div>
+
+                </div>
+            </div>
+
+            </div>
+
+            {% endfor %}
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+</div>
+{% endblock %}
+
+{% block js_test_series %}
+{% endblock %}

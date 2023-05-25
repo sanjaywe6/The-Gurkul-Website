@@ -7,7 +7,10 @@ active_profile_option_personal_details
 {% block cssPro %}
 <style>
   .active_profile_option_personal_details {
-    background-color: #66c3d7;
+    background-color: #ffffff;
+  }
+  .active_profile_option_personal_details a{
+    color: black;
   }
 
   .achr {
@@ -15,7 +18,7 @@ active_profile_option_personal_details
   }
 
   #profile_data_form {
-    background-color: black;
+    background-color: rgb(255, 255, 255);
     padding: 10px;
     border: 1px solid red;
     border-radius: 7px;
@@ -163,7 +166,7 @@ active_profile_option_personal_details
           status_code = data.code
           if (status_code == 200) {
             $('#profile_complete_sign').html(`
-            <i class="fas fa-thumbs-up" style="font-size: 200px; color: rgb(0, 217, 255);"></i>
+            <i class="fas fa-thumbs-up" style="font-size: 280px; color: black;"></i>
             `)
             $('#profile_form').css('display', 'none')
             $('#complete_profile_head').html(`Completed <i class='fas fa-check-double mx-2 text-danger'></i>`)
