@@ -5,24 +5,6 @@ $(document).ready(function(){
     $('#loading').css('display', 'none')
     })
 
-    // window.onscroll=function(){
-    //     var scroll=window.scrollY
-    //     if(scroll>309){
-    //         $('.gurkulNav').addClass('gurkulNavSticky')
-    //     }
-    //     if(scroll<309){
-    //         $('.gurkulNav').removeClass('gurkulNavSticky')
-    //     }
-    // }
-
-    //     // function for animated navigation
-    // $('.openBtn').click(function(){
-    //     $('.sidenav').css('width','250px')
-    // })
-    // $('.closeBtn').click(function(){
-    //     $('.sidenav').css('width','0')
-    // })
-
     //  function to make navigation bar stickey
     function device_width_navigationbar_static(scroll, width) {
       if (scroll > 267 & device_width > 779) {
@@ -123,27 +105,5 @@ $(document).ready(function(){
       setTimeout(rotateBackground, 10); // call the function again after 10 milliseconds
     }
     rotateBackground();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         
     })

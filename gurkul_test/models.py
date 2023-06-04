@@ -157,8 +157,8 @@ class gta_test_series(models.Model):
     reading_time=models.DurationField(choices=test_series_reading_time_choices,default=timedelta(minutes=30))
     time_period=models.DurationField(choices=test_series_time_period_choices,default=timedelta(minutes=30))
     questions_length=models.IntegerField(choices=test_series_questions_length_choices,default=15)
-    negative_marking=models.DecimalField(max_digits=5,decimal_places=2,choices=test_series_negative_marking_choices)
-    positive_marking=models.DecimalField(max_digits=5,decimal_places=2,choices=test_series_positive_marking_choices)
+    negative_marking=models.DecimalField(max_digits=5,decimal_places=2,choices=test_series_negative_marking_choices,default=-1.00)
+    positive_marking=models.DecimalField(max_digits=5,decimal_places=2,choices=test_series_positive_marking_choices,default=2.00)
     banner=models.ImageField(upload_to='img/gurkul_test/all_gta_test_modals/banners',default="")
     add_time=models.DateTimeField(default=now)
 

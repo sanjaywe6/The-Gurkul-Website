@@ -1051,7 +1051,7 @@
             var countdown=setInterval(function(){
                 total_time_period--;
                 var hours=Math.floor(total_time_period / 3600)
-                var minutes=Math.floor(total_time_period / 60)
+                var minutes=Math.floor((total_time_period % 3600) / 60)
                 var seconds=total_time_period % 60
                 // Add leading zeros
                 if (hours < 10) {
@@ -1079,6 +1079,12 @@
             },1000)
 
         }
+
+        // preventing user righ click
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+            });
+
 
     })
 

@@ -3,23 +3,101 @@
   <component name="ChangeListManager">
     <list default="true" id="9f9887f1-b45c-46bf-a7fd-7a98b4b39b9d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/The Gurkul/v17/.wsuo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/The Gurkul/v17/.wsuo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/The Gurkul.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/The Gurkul.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/slnx.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/slnx.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_admin/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_admin/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_admin/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_admin/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_admin/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_admin/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_admin/templates/gurkul_admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_admin/templates/gurkul_admin/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_admin/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_admin/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_admin/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_admin/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_admin/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_admin/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_branch/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_branch/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_branch/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_branch/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_branch/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_branch/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_branch/templates/gurkul_branch/branch_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_branch/templates/gurkul_branch/branch_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_branch/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_branch/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_branch/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_branch/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_branch/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_branch/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gurkul_student/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/gurkul_student_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/gurkul_student_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/migrations/0006_student_educational_profile_data_time_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/migrations/0006_student_educational_profile_data_time_and_more.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gurkul_student/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/complete_profile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/edit_educational_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/edit_educational_profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/edit_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/edit_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/join_gurkul.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/student_profile_basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/student_profile_basic.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/student_profile_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/templates/gurkul_student/student_profile/student_profile_home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_student/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gurkul_student/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gurkul_student/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_student/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_teacher/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_teacher/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_teacher/migrations/0008_teacher_auth_send_request_esdit_test_series.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/migrations/0008_teacher_auth_send_request_esdit_test_series.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_teacher/migrations/0009_rename_send_request_esdit_test_series_teacher_auth_send_request_edit_test_series.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/migrations/0009_rename_send_request_esdit_test_series_teacher_auth_send_request_edit_test_series.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_teacher/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gurkul_teacher/templates/gurkul_teacher/teacher_profile/edit_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/templates/gurkul_teacher/teacher_profile/edit_profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gurkul_teacher/templates/gurkul_teacher/teacher_profile/teacher_profile_basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/templates/gurkul_teacher/teacher_profile/teacher_profile_basic.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gurkul_teacher/templates/gurkul_teacher/teacher_profile/teacher_profile_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/templates/gurkul_teacher/teacher_profile/teacher_profile_home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_teacher/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_teacher/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gurkul_teacher/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_teacher/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/gurkul_test_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/gurkul_test_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0003_gurkul_competition_test_series_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0003_gurkul_competition_test_series_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0004_gurkul_academic_test_series_model_language_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0004_gurkul_academic_test_series_model_language_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0008_remove_all_competition_available_test_series_user_profile_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0008_remove_all_competition_available_test_series_user_profile_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0009_alter_gta_all_question_qtype.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0009_alter_gta_all_question_qtype.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0010_gta_all_question_question_img.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0010_gta_all_question_question_img.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0011_alter_gta_all_question_question_img.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0011_alter_gta_all_question_question_img.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0012_gta_all_question_answer_img_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0012_gta_all_question_answer_img_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0013_remove_gurkul_competition_test_series_model_user_profile_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0013_remove_gurkul_competition_test_series_model_user_profile_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0014_gta_test_series_alter_gta_all_question_answer_img_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0014_gta_test_series_alter_gta_all_question_answer_img_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0015_alter_gta_test_series_banner.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0015_alter_gta_test_series_banner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0016_remove_gta_test_series_category_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0016_remove_gta_test_series_category_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0017_gta_test_series_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0017_gta_test_series_time.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0018_alter_gta_all_question_standard_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0018_alter_gta_all_question_standard_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0019_rename_time_gta_test_series_add_time_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0019_rename_time_gta_test_series_add_time_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0020_gta_test_series_negative_marking_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0020_gta_test_series_negative_marking_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0021_alter_gta_test_series_negative_marking_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0021_alter_gta_test_series_negative_marking_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/migrations/0022_gta_test_series_reading_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/migrations/0022_gta_test_series_reading_time.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/templates/gurkul_test/gta_questions/add_gta_question.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/templates/gurkul_test/gta_questions/add_gta_question.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/templates/gurkul_test/gta_questions/gta_basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/templates/gurkul_test/gta_questions/gta_basic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/templates/gurkul_test/gta_test/all_test_series.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/templates/gurkul_test/gta_test/all_test_series.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/templates/gurkul_test/gta_test/test_series_basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/templates/gurkul_test/gta_test/test_series_basic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/templates/gurkul_test/gta_test_paper/gta_test_paper_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/templates/gurkul_test/gta_test_paper/gta_test_paper_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gurkul_test/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gurkul_test/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/theGurkul/cdn_files/bootstrap/bootstrap.bundle.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/theGurkul/cdn_files/bootstrap/bootstrap.bundle.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/theGurkul/cdn_files/bootstrap/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/theGurkul/cdn_files/bootstrap/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/theGurkul/cdn_files/icons/fontawesome.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/theGurkul/cdn_files/icons/fontawesome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/theGurkul/cdn_files/icons/fontawesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/theGurkul/cdn_files/icons/fontawesome.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/theGurkul/cdn_files/icons/remixicon.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/theGurkul/cdn_files/icons/remixicon.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/theGurkul/cdn_files/jQuery/jquery_3.7.0.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/theGurkul/cdn_files/jQuery/jquery_3.7.0.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/theGurkul/css/basic.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/theGurkul/css/basic.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/theGurkul/js/basic.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/theGurkul/js/basic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/basic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/usr_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usr_login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/usr_registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usr_registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thegurkul/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/thegurkul/asgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thegurkul/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/thegurkul/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thegurkul/the_gurkul_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/thegurkul/the_gurkul_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thegurkul/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/thegurkul/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thegurkul/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/thegurkul/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thegurkul/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/thegurkul/wsgi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +115,11 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "full.screen.before.presentation.mode": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/media/sanjay/New Volume/Programming Data/Working Websites/thegurkul/The_Gurkul",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
