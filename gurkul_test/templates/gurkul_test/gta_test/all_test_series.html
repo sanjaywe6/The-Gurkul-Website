@@ -31,6 +31,9 @@
         transform: translate(-50%, -50%) scale(1.1);
         box-shadow: 0px 0px 20px black;
     }
+    .card p{
+        margin: 0px;
+    }
 
 
 </style>
@@ -88,12 +91,12 @@ active_test_series_link
             <h2><b>Popular Test Series</b></h2>
         </div>
         <div class="all-test-series"
-            style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; padding: 10px;">
+            style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; padding: 10px; margin-bottom: 50px;">
 
 
             {% for item in test_modal %}
 
-            <div style="width:250px;margin: 20px; height: 630px;" class="test_modal_div">
+            <div style="width:300px;margin: 20px; height: 630px;" class="test_modal_div">
 
             <div class="card"
                 style="width: 100%; overflow: hidden; height: 100%; background-color: #dfdfdf;">
@@ -104,9 +107,12 @@ active_test_series_link
                     <img src="/media/{{item.banner}}" class="card-img-top" alt="..." style="height: 100%;">
                 </div>
                 <div class="card-body">
-                    <p class="card-text"><b>{{item.get_standard_display}} (2022-2023)</b></p>
-                    <p class="card-text"><b>{{item.subject}},</b> <i class="fas fa-language text-primary"
+                    <p class="card-text text-danger"><b>{{item.get_standard_display}} (2022-2023)</b></p>
+                    <p class="card-text"><b>{{item.subject}}</b>,{{item.get_board_display}},<i class="fas fa-language text-primary"
                             style="font-size: 20px;"></i> {{item.language}}</p>
+                    <p class="card-text text-primary"><b>{{item.get_time_period_display}},{{item.get_questions_length_display}}</b></p>
+                    <p class="card-text"><i>+{{item.get_positive_marking_display}}</i></p>
+                    <p class="card-text"><i>{{item.get_negative_marking_display}}</i></p>
                     <p class="card-text">{{item.get_qtype_display}}</p>
                     <p class="card-text">{{item.total_length}}+ Total Questions </p>
                     <p class="card-text">Test Series Code: <b>{{item.id}}</b></p>
@@ -119,7 +125,7 @@ active_test_series_link
                     </form>
 
                     <div class="card-footer text-muted my-2">
-                        Updated on {{item.add_time}}
+                    Added {{item.add_time}}
                     </div>
 
                 </div>

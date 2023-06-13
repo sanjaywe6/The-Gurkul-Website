@@ -1,0 +1,224 @@
+/* root css */
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Open Sans', sans-serif;
+}
+body {
+    width: 100%;
+}
+
+/* animation for onloading */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    z-index: 1000;
+}
+.spinner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.spinner {
+    border-radius: 50%;
+    background-color: rgba(255, 0, 255, 0);
+    position: relative;
+    animation: jump 0.5s ease-in-out infinite;
+    margin-bottom: 20px;
+}
+.ball {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #f0f;
+    position: relative;
+    animation: jump 0.5s ease-in-out infinite;
+    margin: 0 10px;
+}
+.ball:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.ball:nth-child(3) {
+    animation-delay: 0.2s;
+}
+@keyframes jump {
+    0% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+}
+
+/* css upper box of navigatioin bar which contain serchabar*/
+.log_search_container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.logoText {
+    font-size: 17px;
+    color: #ffffff;
+    background-image: linear-gradient(45deg,#ffbf00,blue);
+    box-shadow: 0px 0px 5px black;
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+    padding: 0px 10px 0px 10px;
+}
+.logoAnimationText {
+    overflow: hidden;
+    border-right: 2px solid red;
+    animation:
+      typing 2s steps(30, end),
+      blinkCursor 0.5s step-end infinite;
+    max-height: 25px;
+}
+@keyframes typing {
+    from {
+      width: 0;
+    }
+
+    to {
+      width: 100%;
+    }
+}
+@keyframes blinkCursor {
+    from {
+      border-color: transparent;
+    }
+
+    50% {
+      border-color: rgb(255, 0, 0);
+    }
+
+    to {
+      border-color: transparent;
+    }
+}
+.search_bar{
+    width: 400px;
+    height: 50px;
+    padding: 10px;
+    font-size: 20px;
+}
+.search_btn{
+    padding: 12px;
+    background-color: #9f9f9f;
+    border: none;
+    width: 70px;
+}
+
+@media screen and (max-width:850px) {
+    .search_bar{
+        width: 250px;
+        height: 40px;
+    }
+    .search_btn{
+        padding: 5px;
+    }
+}
+
+/* css for dynamic navigation bar */
+.navigation_bar_statick {
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 1000;
+}
+.active {
+    background-color: #282f28;
+    border-radius: 10px;
+}
+.navList {
+    float: right;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+.dropLink {
+    color: white;
+}
+.navigation {
+    display: grid;
+    grid-template-columns: 1fr 180px;
+}
+.list_nav {
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    font-family: 'M PLUS 1 Code', sans-serif;
+    padding: 6px 20px;
+}
+#ul_div {
+    list-style: none;
+    margin: 0px;
+}
+.nav_link {
+    text-decoration: none;
+}
+.dropdown-menu li a {
+    text-decoration: none;
+    color: white;
+}
+
+.dropdown-menu li a:hover {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    background-color: white;
+}
+
+.scroll_out_list {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+.close_button_off_canvas {
+    padding: 0px;
+}
+/* css when device width is big, 'first' is used to show that this css is for big device with only */
+.first_nav_link {
+    display: inline-block;
+    margin: 5px;
+}
+.first_navigation_div {
+    width: 100%;
+}
+.first_offcanvas_body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.first_ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+/* css for footer */
+.footerBlocks {
+    display: inline-block;
+}
+.lowerSM {
+  width: 30px;
+  margin: 10px 0px 10px;
+}
+.lowerSM:hover {
+  border: 1px solid black;
+  border-radius: 7px;
+  box-shadow: 0px 0px 10px rgb(196, 196, 196);
+}

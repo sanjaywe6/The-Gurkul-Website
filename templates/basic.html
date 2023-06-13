@@ -7,36 +7,38 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}{% endblock %} </title>
-    
+
 
   <!-- font cdn -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-  href="https://fonts.googleapis.com/css2?family=Changa:wght@500&family=Libre+Baskerville&family=M+PLUS+1+Code&family=Open+Sans:wght@500&family=Poppins:wght@300&family=Roboto+Slab&family=Secular+One&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Changa:wght@500&family=Libre+Baskerville&family=M+PLUS+1+Code&family=Open+Sans:wght@500&family=Poppins:wght@300&family=Roboto+Slab&family=Secular+One&display=swap"
     rel="stylesheet">
-    
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="{% static '/theGurkul/cdn_files/bootstrap/bootstrap.min.css' %}"> -->
-    <!-- <link rel="stylesheet" href="{% static '/theGurkul/cdn_files/bootstrap/bootstrap.min.css.map' %}"> -->
-    
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{% static '/theGurkul/cdn_files/icons/remixicon.css' %}"> -->
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="{% static '/theGurkul/cdn_files/icons/fontawesome.min.js' %}"> -->
 
 
-    <link rel="stylesheet" href="{% static '/theGurkul/css/basic.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="{% static '/theGurkul/cdn_files/bootstrap/bootstrap.min.css' %}"> -->
+  <!-- <link rel="stylesheet" href="{% static '/theGurkul/cdn_files/bootstrap/bootstrap.min.css.map' %}"> -->
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="{% static '/theGurkul/cdn_files/icons/remixicon.css' %}"> -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="{% static '/theGurkul/cdn_files/icons/fontawesome.min.js' %}"> -->
 
 
+  <link rel="stylesheet" href="{% static '/theGurkul/thegurkul/css/basic.css' %}">
+
+  <link rel="stylesheet" href="{% block cssLink %}
+  {% endblock %}">
   {% block css %}
   {% endblock %}
 
 </head>
 
-<body>
+<body style="overflow-x: hidden;">
 
   {% if messages %}
   {% for message in messages %}
@@ -81,7 +83,7 @@
   <div style="display:none;">
     <div class="loading" id="loading">
       <div class="spinner-container">
-        <div class="spinner"><img src="{% static 'theGurkul/img/logo/logo.png' %}" alt="Loading..."
+        <div class="spinner"><img src="{% static 'theGurkul/thegurkul/img/logo/logo.png' %}" alt="Loading..."
             style="height: 55px;">
         </div>
         <div class="balls" style="display: flex; justify-content: center;">
@@ -93,155 +95,158 @@
     </div>
   </div>
 
-  <div class="upperSocialLayer" id="upperSocialLayer">
+  <div>
 
-    <div class="social_icons">
-      <a href=""><i class="ri-facebook-circle-fill upperSM" style="color:blue;"></i></a>
-      <a href=""><i class="ri-instagram-fill upperSM" style="color:rgb(251, 255, 0);"></i></a>
-      <a href=""><i class="ri-twitter-fill upperSM" style="color:blue;"></i></a>
-    </div>
+    <div style="background-image: linear-gradient(45deg,red,white,green);">
+      <div class="log_search_container">
 
-    <div class="logo" style="display: flex;
-    justify-content: center;">
-      <div class="inLogoDiv">
-        <div style="width: 300px;display: flex;justify-content: center;">
-          <img src="{% static 'theGurkul/img/logo/logo.png' %}" alt="Logo" class="logoImg" style="width: 170px;">
+        <div style="display: flex;justify-content: center; padding: 20px;">
+          <img src="{% static 'theGurkul/thegurkul/img/logo/logo.png' %}" alt="Logo" class="logoImg"
+            style="width: 80px; padding-right: 10px;">
+          <div>
+            <h3 style="margin: 10px 0px 10px 0px; display: flex; justify-content: center;color: white;"><b>The
+                Gurkul</b>
+            </h3>
+            <p class="logoText logoAnimationText">Gurkul है, तो Growth है..</p>
+          </div>
         </div>
-        <p class="logoText logoAnimationText">Gurkul है, तो Growth है..</p>
+
+        <div class="search_bar_container" style="padding: 10px;">
+          <div style="display: flex; align-items: center; border: 1px solid #9f9f9f;">
+            <form action="" style="display: flex;">
+              <input type="text" class="search_bar" placeholder="Search">
+              <button class="search_btn"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+
+
       </div>
     </div>
 
-    <div class="social_icons">
-      <a href=""><i class="ri-youtube-fill upperSM" style="color:rgb(255, 0, 0);"></i></a>
-      <a href=""><i class="ri-telegram-fill upperSM" style="color:blue;"></i></a>
-      <a href=""><i class="ri-linkedin-box-fill upperSM" style="color:blue;"></i></a>
-    </div>
+    <div>
+      <div style="width: 100%; min-height: 49px; z-index: 100;">
+        <div id="navigation_bar_statick">
+          <div class="navigation">
+            <span id="nav_scroll_btn" data-bs-toggle="offcanvas" data-bs-target="#sanjay_web_nav"
+              aria-controls="sanjay_web_nav"
+              style="cursor:pointer;font-size :35px; margin-left:10px;color: white;">☰</span>
 
-  </div>
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+              id="sanjay_web_nav" aria-labelledby="sanjay_web_navLabel" style="background-color: rgb(153, 13, 13);">
 
-  <div>
-    <div style="width: 100%; min-height: 49px; background-color: #990d0d; z-index: 100;">
-      <div id="navigation_bar_statick">
+              <div class="offcanvas-header" id="close_button_off_canvas" style="display:flex;justify-content: end;">
+                <button id="btn_nav_close" type="button" class="btn-close bg-danger" data-bs-dismiss="offcanvas"
+                  aria-label="Close"></button>
+              </div>
 
+              <div class="offcanvas-body" id="offcanvas-div" style="padding: 0px; overflow: unset;">
 
-        <div class="navigation" style="background-color: #990d0d;">
-          <span id="nav_scroll_btn" data-bs-toggle="offcanvas" data-bs-target="#sanjay_web_nav"
-            aria-controls="sanjay_web_nav"
-            style="cursor:pointer;font-size :35px; margin-left:10px;color: white;">☰</span>
-
-          <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
-            id="sanjay_web_nav" aria-labelledby="sanjay_web_navLabel" style="background-color: rgb(153, 13, 13);">
-
-            <div class="offcanvas-header" id="close_button_off_canvas" style="display:flex;justify-content: end;">
-              <button id="btn_nav_close" type="button" class="btn-close bg-danger" data-bs-dismiss="offcanvas"
-                aria-label="Close"></button>
-            </div>
-
-            <div class="offcanvas-body" id="offcanvas-div" style="padding: 0px; overflow: unset;">
-
-              <ul id="ul_div">
+                <ul id="ul_div">
 
 
-                <a href="/" id="navigation_bar_logo" style="display:none;">
-                  <li><img src="{% static 'theGurkul/img/logo/logo.png' %}" alt="The Gurkul" style="width: 49px;"></li>
-                </a>
+                  <a href="/" id="navigation_bar_logo" style="display:none;">
+                    <li><img src="{% static 'theGurkul/thegurkul/img/logo/logo.png' %}" alt="The Gurkul"
+                        style="width: 49px;"></li>
+                  </a>
 
 
-                <a href="/" class="nav_link">
-                  <li class="list_nav {% block active_home %}{% endblock %}"><i
-                      class=" fa fa-fw fa-home text-warning"></i> Home</li>
-                </a>
+                  <a href="/" class="nav_link">
+                    <li class="list_nav {% block active_home %}{% endblock %}"><i
+                        class=" fa fa-fw fa-home text-warning"></i> Home</li>
+                  </a>
 
-                <a href="/contact/" class="nav_link">
-                  <li class="list_nav {% block active_contact %}{% endblock %}"><i
-                      class="fa fa-fw fa-envelope text-warning"></i> Contact Us</li>
-                </a>
+                  <a href="/contact/" class="nav_link">
+                    <li class="list_nav {% block active_contact %}{% endblock %}"><i
+                        class="fa fa-fw fa-envelope text-warning"></i> Contact Us</li>
+                  </a>
 
-                <a href="/about/" class=" nav_link">
-                  <li class="list_nav {% block active_about %}{% endblock %}"><i
-                      class="fa fa-fw fa-globe text-warning"></i>
-                    About Us</li>
-                </a>
+                  <a href="/about/" class=" nav_link">
+                    <li class="list_nav {% block active_about %}{% endblock %}"><i
+                        class="fa fa-fw fa-globe text-warning"></i>
+                      About Us</li>
+                  </a>
 
-                <div class="dropdown-center" style="display: flex; justify-content: center; align-items: center;">
-                  <li class="list_nav {% block active_test_series %}{% endblock %} dropdown-toggle" type="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="dropdown-center" style="display: flex; justify-content: center; align-items: center;">
+                    <li class="list_nav {% block active_test_series %}{% endblock %} dropdown-toggle" type="button"
+                      data-bs-toggle="dropdown" aria-expanded="false">
 
-                    <i class="fas fa-clipboard-list text-warning">
-                    </i> Gurkul Test Agency (GTA)
+                      <i class="fas fa-clipboard-list text-warning">
+                      </i> Gurkul Test Agency (GTA)
 
-                  </li>
+                    </li>
 
-                  <ul class="dropdown-menu"
-                    style="background-color: #212529; border: 1px solid red; border-radius: 7px;">
-                    <li><a class="dropdown-item" href="/gurkul_test/test_series/GTA_questions"><i
-                          class=" 	fas fa-file-signature text-primary"></i> Add/Edit GTA Questions</a></li>
-                    <li><a class="dropdown-item" href="/gurkul_test/test_series/GTA_test_index"><i
-                          class="fas fa-file-alt text-primary"> </i> Test Series</a></li>
-                  </ul>
-                </div>
-
-
-              </ul>
-
-
-            </div>
-
-          </div>
-
-          <div type="button" id="scroll_out_list" data-bs-toggle="modal" data-bs-target="#sanjay_web_login">
-            <!-- when user is authenticated -->
-
-            <li class="navList {% block active_profile %}{% endblock %}" style="background-color: rgb(0, 0, 0);">
-              <div class="dropdown" style="background-color: transparent; ">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                  data-bs-toggle="dropdown" aria-expanded="false"
-                  style="border: none;padding-top: 0px; background-color: black; color: white;box-shadow: none; ">
-                  <i class="h5 fas fa-user-circle text-primary"></i>
-                  {% if user.is_authenticated %}
-                  {{request.user.username}}
-                  {% else %}
-                  Login/SignUp
-                  {% endif %}
-
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
-                  style="background-color: #212529; border: 1px solid red; border-radius: 7px;">
-
-
-                  {% if user.is_authenticated %}
-                  <li><a class="dropdown-item dropLink" href="/user/profile"><i
-                        class="fas fa-user-shield text-primary"></i> Go
-                      to
-                      Profile</a></li>
-                  <li><a class="dropdown-item dropLink" href="/user_logout/"><i
-                        class="fas fa-lock-open text-primary"></i> Sign Out</a></li>
-                  {% else %}
-
-                  <li><a class="dropdown-item dropLink" href="/user_login/">
-                      <i class="fas fa-unlock text-primary"></i>
-                      Login</a></li>
-                  <li><a class="dropdown-item dropLink" href="/user_registration/">
-                      <i class="far fa-id-card text-primary"></i>
-                      Sign Up</a></li>
-
-                  {% endif %}
-
-                  {% block navigation_from_another_page %} {% endblock %}
-
-
-
+                    <ul class="dropdown-menu"
+                      style="background-color: #212529; border: 1px solid red; border-radius: 7px;">
+                      <li><a class="dropdown-item" href="/gurkul_test/test_series/GTA_questions"><i
+                            class=" 	fas fa-file-signature text-primary"></i> Add/Edit GTA Questions</a></li>
+                      <li><a class="dropdown-item" href="/gurkul_test/test_series/GTA_test_index"><i
+                            class="fas fa-file-alt text-primary"> </i> Test Series</a></li>
+                    </ul>
+                  </div>
 
 
                 </ul>
+
+
               </div>
-            </li>
+
+            </div>
+
+            <div type="button" id="scroll_out_list" data-bs-toggle="modal" data-bs-target="#sanjay_web_login">
+              <!-- when user is authenticated -->
+
+              <li class="navList {% block active_profile %}{% endblock %}" style="background-color: rgb(0, 0, 0);">
+                <div class="dropdown" style="background-color: transparent; ">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown" aria-expanded="false"
+                    style="border: none;padding-top: 0px; background-color: black; color: white;box-shadow: none; ">
+                    <i class="h5 fas fa-user-circle text-primary"></i>
+                    {% if user.is_authenticated %}
+                    {{request.user.username}}
+                    {% else %}
+                    Login/SignUp
+                    {% endif %}
+
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                    style="background-color: #212529; border: 1px solid red; border-radius: 7px;">
+
+
+                    {% if user.is_authenticated %}
+                    <li><a class="dropdown-item dropLink" href="/user/profile"><i
+                          class="fas fa-user-shield text-primary"></i> Go
+                        to
+                        Profile</a></li>
+                    <li><a class="dropdown-item dropLink" href="/user_logout/"><i
+                          class="fas fa-lock-open text-primary"></i> Sign Out</a></li>
+                    {% else %}
+
+                    <li><a class="dropdown-item dropLink" href="/user_login/">
+                        <i class="fas fa-unlock text-primary"></i>
+                        Login</a></li>
+                    <li><a class="dropdown-item dropLink" href="/user_registration/">
+                        <i class="far fa-id-card text-primary"></i>
+                        Sign Up</a></li>
+
+                    {% endif %}
+
+                    {% block navigation_from_another_page %} {% endblock %}
+
+
+
+
+
+                  </ul>
+                </div>
+              </li>
+
+            </div>
 
           </div>
-
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
 
@@ -259,21 +264,21 @@
     align-items: center;
     justify-content: center;">
       <div class="logoBottom footerBlocks">
-        <img src="{% static 'theGurkul/img/logo/logo.png' %}" alt="Logo" style="width: 200px;">
+        <img src="{% static 'theGurkul/thegurkul/img/logo/logo.png' %}" alt="Logo" style="width: 200px;">
       </div>
       <div class="footerBlocks lowerSms" style="max-width: 30px;
       flex-wrap: wrap;">
-        <a href=""><img class="lowerSM" src="{% static 'theGurkul/img/socialMedia/youtubeGolden.png' %}"
+        <a href=""><img class="lowerSM" src="{% static 'theGurkul/thegurkul/img/socialMedia/youtubeGolden.png' %}"
             alt="Youtube"></a>
-        <a href=""><img class="lowerSM" src="{% static 'theGurkul/img/socialMedia/facebookGolden.png' %}"
+        <a href=""><img class="lowerSM" src="{% static 'theGurkul/thegurkul/img/socialMedia/facebookGolden.png' %}"
             alt="Facebook"></a>
-        <a href=""><img class="lowerSM" src="{% static 'theGurkul/img/socialMedia/instagramGolden.png' %}"
+        <a href=""><img class="lowerSM" src="{% static 'theGurkul/thegurkul/img/socialMedia/instagramGolden.png' %}"
             alt="Instagram"></a>
-        <a href=""><img class="lowerSM" src="{% static 'theGurkul/img/socialMedia/telegramGolden.png' %}"
+        <a href=""><img class="lowerSM" src="{% static 'theGurkul/thegurkul/img/socialMedia/telegramGolden.png' %}"
             alt="Telegram"></a>
-        <a href=""><img class="lowerSM" src="{% static 'theGurkul/img/socialMedia/linkedinGolden.png' %}"
+        <a href=""><img class="lowerSM" src="{% static 'theGurkul/thegurkul/img/socialMedia/linkedinGolden.png' %}"
             alt="Linkedin"></a>
-        <a href=""><img class="lowerSM" src="{% static 'theGurkul/img/socialMedia/twitterGolden.png' %}"
+        <a href=""><img class="lowerSM" src="{% static 'theGurkul/thegurkul/img/socialMedia/twitterGolden.png' %}"
             alt="Twitter"></a>
       </div>
     </div>
@@ -282,23 +287,18 @@
 </body>
 
 
-<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+  crossorigin="anonymous"></script>
 <!-- <script src="{% static '/theGurkul/cdn_files/jQuery/jquery_3.7.0.js' %}"></script> -->
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 <!-- <script src="{% static '/theGurkul/cdn_files/bootstrap/bootstrap.bundle.min.js' %}"></script> -->
 <!-- <script src="{% static '/theGurkul/cdn_files/bootstrap/bootstrap.bundle.min.js.map' %}"></script> -->
-
-
 <script src="https://kit.fontawesome.com/44c94b5a58.js" crossorigin="anonymous"></script>
 <!-- <script src="{% static '/theGurkul/cdn_files/icons/fontawesome.js' %}"></script> -->
+<script src="{% static '/theGurkul/thegurkul/js/basic.js' %}"></script>
 
-
-<script src="{% static '/theGurkul/js/basic.js' %}"></script>
-
-
-{% block js %}
-{% endblock %}
+<script src="{% block jsLink %} {% endblock %}"></script>
+{% block js %} {% endblock %}
 
 </html>
