@@ -47,9 +47,6 @@ $(document).ready(function () {
 
     // js for showing animation gurkul quotes when scrolled but fixed device size
     var device_width = window.innerWidth
-
-
-    // when device with greater than 1350px
     if (device_width > 1351) {
 
       window.addEventListener("scroll", function () {
@@ -65,8 +62,6 @@ $(document).ready(function () {
       });
 
     }
-
-    // when device with greater than 676px but less than 1350
     else if (device_width > 676 && device_width < 1350) {
 
       window.addEventListener("scroll", function () {

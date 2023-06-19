@@ -40,236 +40,164 @@
   }
 }
 
-/* css for welcome div */
-#welcome_book_thegurkul {
-  font-size: 150px;
+/* css for main page image slider */
+.img_slide_container_img_slide1 {
+  position: relative;
+  display: flex;
+  justify-content: end;
 }
-.card-im{
-  animation-name: index_image_zoom_animation;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  animation-fill-mode: both;
+.slider_images_img_slide1 {
+  width: 0%;
+  height: 700px;
 }
-@keyframes index_image_zoom_animation {
-  0%{
-    transform: scale(1);
-  }
-  50%{
-    transform: scale(5);
-  }
-  100%{
-    transform: scale(1);
-  }
-  
+.compress_slide_img_img_slide1 {
+  animation: compress_slide_img_animation_img_slide1;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  width: 0%;
 }
-#welcome_head_thegurkul {
-  font-family: "Acme", sans-serif;
-  font-size: 100px;
-  border: 1px solid rgb(0, 0, 255);
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgb(112, 112, 112);
-  background-color: rgba(0, 0, 0, 0.521);
-  color: #00f3ff;
+@keyframes compress_slide_img_animation_img_slide1 {
+  from {
+      width: 100%;
+  }
+
+  to {
+      width: 0%;
+  }
+}
+.decompress_slide_img_img_slide1 {
+  animation: decompress_slide_img_animation_img_slide1;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  width: 100%;
+}
+@keyframes decompress_slide_img_animation_img_slide1 {
+  from {
+      width: 0%;
+  }
+
+  to {
+      width: 100%;
+  }
+}
+.slider_image_data_img_slide1 {
+  position: absolute;
+  bottom: 15%;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.slider_image_text_img_slide1 {
+  background-color: transparent;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  display: none;
+  margin: 10px;
+}
+.slider_image_indicators_img_slide1 {
   display: flex;
   justify-content: center;
 }
-#welcome_div_thegurkul {
-  border: none;
+.slider_image_indicator_img_slide1 {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(0, 47, 255);
+  width: 25px;
+  height: 6px;
+  margin: 6px;
+}
+@media screen and (max-width:1200px) {
+  .slider_images_img_slide1 {
+      height: 600px;
+  }
+}
+@media screen and (max-width:800px) {
+  .slider_images_img_slide1 {
+      height: 450px;
+  }
+}
+@media screen and (max-width:500px) {
+  .slider_images_img_slide1 {
+      height: 300px;
+  }
+}
+
+/* css for the gurkul facility */
+.gurkul_facility_cont_div{
+  position:relative;
+  bottom: 100px;
+  z-index: 1;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+
+}
+.gurkul_facility_cont{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  width: 80%;
+  background-color: white; 
+  border: 1px solid transparent; 
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px black;
+}
+.gurkul_facility_cont p{
+  text-align: center;
+}
+.gurkul_facility_cont i{
   width: 100%;
-  color: rgb(0, 0, 255);
+  display: flex;
+  justify-content: center;
 }
-#welcome_div_bac_img_thegurkul {
-  max-height: 1000px;
-  filter: blur(2px);
-}
-.welcome_div_card_thegurkul {
+.gurkul_facility{
+  width: 200px;
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  padding: 10px;
+  border: 1px solid transparent; 
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px black;
+  margin: 10px 5px 10px 5px;
 }
-.welcome_cotext_thegurkul {
-  color: rgb(255, 251, 0);
-  display: flex;
-  justify-content: center;
-  font-size: 28px;
+.gurkul_facility a{
+  text-decoration: none;
 }
-@media screen and (max-width: 1200px) {
-  #welcome_div_bac_img_thegurkul {
-    height: 650px;
-  }
-}
+
 @media screen and (max-width: 1000px) {
-  #welcome_div_bac_img_thegurkul {
-    height: 650px;
+  .gurkul_facility_cont_div{
+    bottom: 50px;
   }
-}
-@media screen and (max-width: 980px) {
-  #welcome_head_thegurkul {
-    font-size: 80px;
+  .gurkul_facility{
+    width: 150px;
+    height: 150px;
   }
-  #welcome_book_thegurkul {
-    font-size: 120px;
+  .gurkul_facility_cont{
+    width: 55%;
   }
-}
-@media screen and (max-width: 850px) {
-  #welcome_div_bac_img_thegurkul {
-    height: 650px;
-  }
-
-  #welcome_head_thegurkul {
-    font-size: 60px;
-  }
-
-  #welcome_book_thegurkul {
-    font-size: 100px;
-  }
-
-  .welcome_cotext_thegurkul {
-    font-size: 22px;
-  }
-}
-@media screen and (max-width: 700px) {
-  #welcome_div_bac_img_thegurkul {
-    height: 500px;
-  }
-  #welcome_head_thegurkul {
-    font-size: 50px;
-  }
-  #welcome_book_thegurkul {
-    font-size: 80px;
-  }
-  .welcome_cotext_thegurkul {
-    font-size: 18px;
-  }
-  .join_head1 {
-    font-size: 20px;
-  }
-}
-@media screen and (max-width: 500px) {
-  #welcome_div_bac_img_thegurkul {
-    height: 500px;
-  }
-  #welcome_head_thegurkul {
-    font-size: 40px;
-  }
-  #welcome_book_thegurkul {
-    font-size: 60px;
-  }
-}
-@media screen and (max-width: 450px) {
-  #welcome_div_bac_img_thegurkul {
-    height: 400px;
-  }
-  #welcome_head_thegurkul {
-    font-size: 30px;
-  }
-  #welcome_book_thegurkul {
-    font-size: 50px;
-  }
-  .join_btn {
-    padding: 2px 6px;
-  }
-  .join_head1 {
-    font-size: 10px;
-  }
+  
 }
 
-/* css for main page image slider */
-.img_slide_container_img_slide1 {
-    position: relative;
-    display: flex;
-    justify-content: end;
-    overflow: hidden;
+/* css for director and codiretor */
+.director{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
 }
-
-.slider_images_img_slide1 {
-    width: 0%;
-    height: 700px;
+.co-director{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap-reverse;
 }
-
-.compress_slide_img_img_slide1 {
-    animation: compress_slide_img_animation_img_slide1;
-    animation-duration: 2s;
-    animation-iteration-count: 1;
-    width: 0%;
-}
-
-@keyframes compress_slide_img_animation_img_slide1 {
-    from {
-        width: 100%;
-    }
-
-    to {
-        width: 0%;
-    }
-}
-
-.decompress_slide_img_img_slide1 {
-    animation: decompress_slide_img_animation_img_slide1;
-    animation-duration: 2s;
-    animation-iteration-count: 1;
-    width: 100%;
-}
-
-@keyframes decompress_slide_img_animation_img_slide1 {
-    from {
-        width: 0%;
-    }
-
-    to {
-        width: 100%;
-    }
-}
-
-.slider_image_data_img_slide1 {
-    position: absolute;
-    bottom: 0%;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.slider_image_text_img_slide1 {
-    background-color: transparent;
-    color: white;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    text-align: center;
-    display: none;
-    margin: 10px;
-}
-
-.slider_image_indicators_img_slide1 {
-    display: flex;
-    justify-content: center;
-}
-
-.slider_image_indicator_img_slide1 {
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(0, 47, 255);
-    width: 25px;
-    height: 6px;
-    margin: 6px;
-}
-
-@media screen and (max-width:1200px) {
-    .slider_images_img_slide1 {
-        height: 600px;
-    }
-}
-
-@media screen and (max-width:800px) {
-    .slider_images_img_slide1 {
-        height: 450px;
-    }
-}
-
-@media screen and (max-width:500px) {
-    .slider_images_img_slide1 {
-        height: 300px;
-    }
+.director_img{
+  padding: 20px;
 }
 
 /* css for gurkul base quote */
@@ -369,16 +297,6 @@
     color: red;
   }
 }
-
-/* css for owners */
-@media screen and (max-width: 980px) {
-  /* css for line of owners images */
-  .hr_owners {
-    display: none;
-  }
-
-}
-
 /* css for visitor counter */
 .count_box_thegurkul {
   width: 80px;
@@ -389,7 +307,6 @@
   border-radius: 16px;
   box-shadow: 10px 9px 12px black;
 }
-
 .count_number_thegurkul {
   font-size: 54px;
   display: flex;
@@ -397,7 +314,6 @@
   align-items: center;
 }
 @media screen and (max-width: 500px) {
-  /* css for visitor counter */
   .count_box_thegurkul {
     height: 50px;
     margin: 5px;
@@ -405,5 +321,4 @@
   .count_number_thegurkul {
     font-size: 30px;
   }
-
 }

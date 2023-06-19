@@ -33,6 +33,8 @@
 
   <link rel="stylesheet" href="{% block cssLink %}
   {% endblock %}">
+  <link rel="stylesheet" href="{% block cssLink_2 %}
+  {% endblock %}">
   {% block css %}
   {% endblock %}
 
@@ -299,6 +301,8 @@
 <script src="{% static '/theGurkul/thegurkul/js/basic.js' %}"></script>
 
 <script src="{% block jsLink %} {% endblock %}"></script>
+<script src="{% block jsLink_2 %} {% endblock %}"></script>
+
 {% block js %} {% endblock %}
 
 </html>

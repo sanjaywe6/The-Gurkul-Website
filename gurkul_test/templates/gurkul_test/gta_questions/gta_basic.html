@@ -1,52 +1,16 @@
 {% extends 'basic.html' %}
+{% load static %}
 
 {% block title %}
 {% block gta_title %}
 {% endblock %}
 {% endblock %}
 
-{% block css %}
-<style>
-    .gta_big_container {
-        display: grid;
-        grid-template-rows: 100px 1fr;
-
-    }
-</style>
-<style>
-    .gta_pages_options {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        justify-items: center;
-        align-items: center;
-        background-color: black;
-    }
-
-    .gta_navigations {
-        font-size: 22px;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .gta_navigations a{
-        text-decoration: none;
-        color: white;
-    }
-    .gta_navigations i{
-        font-size: 30px;
-    }
-    .gta_navigate_add_questions_active{
-        background-color: white;
-    }
-    .gta_navigate_add_questions_active a{
-        color: black;
-    }
-</style>
-
-{% block gta_css %}
+{% block cssLink %}
+{% static 'theGurkul/gurkul_test/css/gta_basic.css' %}
 {% endblock %}
+
+{% block cssLink_2 %}
 {% endblock %}
 
 {% block body %}
@@ -65,10 +29,9 @@
 
 {% endblock %}
 
-{% block js %}
-
-
-
-{% block gta_js %}
+{% block jsLink %}
+{% static 'theGurkul/gurkul_test/js/gta_basic.js' %}
 {% endblock %}
+
+{% block jsLink_2 %}
 {% endblock %}

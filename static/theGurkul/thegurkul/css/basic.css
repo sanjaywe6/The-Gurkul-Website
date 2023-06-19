@@ -155,6 +155,7 @@ body {
 .navigation {
     display: grid;
     grid-template-columns: 1fr 180px;
+    background-color: #990d0d;
 }
 .list_nav {
     font-size: 18px;

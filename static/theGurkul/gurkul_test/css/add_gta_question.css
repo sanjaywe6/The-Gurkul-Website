@@ -1,0 +1,50 @@
+    /* css for msg */
+    #absoluteMsg_outer {
+        display: grid;
+        grid-template-columns: 70px 1fr 20px;
+        background-color: #bdbdbd;
+        position: fixed;
+        bottom: 2%;
+        right: 2%;
+        width: 400px;
+        align-items: center;
+        justify-items: center;
+        padding: 10px;
+        border: 2px solid red;
+        border-radius: 10px;
+        visibility: hidden;
+        z-index: 1000;
+    }
+
+    .absoluteMsg_outer_incoming {
+        animation-name: absoluteMsg_outer_incoming;
+        animation-duration: 1s;
+    }
+
+    @keyframes absoluteMsg_outer_incoming {
+        from {
+            right: 100%;
+        }
+
+        to {
+            right: 2%;
+        }
+    }
+
+    #msg_bell {
+        animation-name: msg_bell_anim;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes msg_bell_anim {
+        from {
+            font-size: 50px;
+            color: blue;
+        }
+
+        to {
+            font-size: 65px;
+            color: red;
+        }
+    }
