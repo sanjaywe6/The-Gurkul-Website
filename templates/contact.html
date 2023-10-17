@@ -1,47 +1,19 @@
 {% extends 'basic.html' %} 
+{% load static %}
+
 {% block title %} 
-Contact 
+Contact Us
 {% endblock %} 
+
+{% block cssLink %}
+{% static '/theGurkul/thegurkul/css/contact.css' %}
+{% endblock %}
+
 {% block active_contact %}
 active
 {% endblock %}
-{% block css %}
-<style>
-  .conContainer {
-    border: 1px solid black;
-    border-radius: 15px;
-  }
-  .conContainer:hover {
-    border-color: greenyellow;
-    box-shadow: 0px 0px 10px black;
-  }
-  .card-text {
-    color: black;
-  }
-  .formDiv{
-    width: 59%; 
-  }
-  /* css for responsiveness */
-  @media screen and (max-width:770px) {
-    #contImg{
-      display: none;
-    }
-    .formDiv{
-      width: 100%;
-    }
-  }
 
-  .contBtn{
-    background-color: blue;
-    color: white;
-  }
-  .contBtn:hover{
-    background-color: red;
-    color: black;
-  }
-</style>
-{% endblock %} {% block body %} {% load static %}
-
+ {% block body %}
 <div
   style="
     width: 100vw;

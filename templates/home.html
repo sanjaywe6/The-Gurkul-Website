@@ -4,9 +4,6 @@
 The Gurkul
 {% endblock %}
 
-
-
-
 {% block cssLink %}
 {% static '/theGurkul/thegurkul/css/home.css' %}
 {% endblock %}
@@ -19,23 +16,28 @@ active
 <div class="social_icons">
 
   <div class="social_icon_div">
-    <a href="https://www.facebook.com/profile.php?id=100066606020722&mibextid=ZbWKwL" class="upperSM h4" style="color:blue;"><i class="h1 ri-facebook-circle-fill my-0"></i>Facebook</a>
+    <a href="https://www.facebook.com/profile.php?id=100066606020722&mibextid=ZbWKwL" class="upperSM h4"
+      style="color:blue;"><i class="h1 ri-facebook-circle-fill my-0"></i>Facebook</a>
   </div>
 
   <div class="social_icon_div" style="top: 50px;">
-    <a href="https://instagram.com/the_gurkul?igshid=NGExMmI2YTkyZg==" class="upperSM h4" style="color:rgb(251, 255, 0);"><i class="h1 ri-instagram-fill my-0"></i>Instagram</a>
+    <a href="https://instagram.com/the_gurkul?igshid=NGExMmI2YTkyZg==" class="upperSM h4"
+      style="color:rgb(251, 255, 0);"><i class="h1 ri-instagram-fill my-0"></i>Instagram</a>
   </div>
 
   <div class="social_icon_div" style="top: 100px;">
-    <a href="https://twitter.com/thegurkul" class="upperSM h4" style="color:blue;"><i class="h1 ri-twitter-fill my-0"></i>Twitter</a>
+    <a href="https://twitter.com/thegurkul" class="upperSM h4" style="color:blue;"><i
+        class="h1 ri-twitter-fill my-0"></i>Twitter</a>
   </div>
 
   <div class="social_icon_div" style="top: 150px;">
-    <a href="https://youtube.com/@thegurkul" class="upperSM h4" style="color:rgb(255, 0, 0);"><i class="h1 ri-youtube-fill my-0"></i>Youtube</a>
+    <a href="https://youtube.com/@thegurkul" class="upperSM h4" style="color:rgb(255, 0, 0);"><i
+        class="h1 ri-youtube-fill my-0"></i>Youtube</a>
   </div>
 
   <div class="social_icon_div" style="top: 200px;">
-    <a href="https://t.me/+g4-B-h-BJrA4Y2Q1" class="upperSM h4" style="color: white;"><i class="h1 ri-telegram-fill my-0"></i>Telegram</a>
+    <a href="https://t.me/+g4-B-h-BJrA4Y2Q1" class="upperSM h4" style="color: white;"><i
+        class="h1 ri-telegram-fill my-0"></i>Telegram</a>
   </div>
 
   <div class="social_icon_div" style="top: 250px;">
@@ -98,31 +100,8 @@ active
     </div>
   </div>
 
-  <div>
-    <div class="director">
-      <img src="{% static 'theGurkul/thegurkul/img/homeImg/owner/ramsuraj_transparent.png' %}" alt=""
-        style="max-width: 100%;" class="director_img">
-      <div>
-        <div style="display: flex; justify-content:center; align-items:center;">
-          <pre>  <h2 class="card-title"><b>Director and Founder</b></h2>
-              <h4 class="card-text text-danger" style="display: flex; justify-content:center; align-items:center;
-              box-shadow: 0px 0px 10px red;"><b>Mr. Ram Suraj Gupta</b></h4>
-            </pre>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="co-director">
-    <div>
-      <div style="display: flex; justify-content:center; align-items:center;">
-        <pre>  <h2 class="card-title"><b>Co-Director and Founder</b></h2>
-            <h4 class="card-text" style="display: flex; justify-content:center; align-items:center; box-shadow: 0px 0px 10px rgb(0, 17, 255);color: #002fff;"><b>Mr. Sanjay Gupta</b></h4>
-            </pre>
-      </div>
-    </div>
-    <img src="{% static 'theGurkul/thegurkul/img/homeImg/owner/sanjay.png' %}" alt="" style="max-width: 100%;"
-      class="director_img">
-  </div>
+
+
 </div>
 
 
@@ -135,30 +114,32 @@ active
 
   <div style="max-width: 650px; margin: 5px;">
     <div>
-      <h1 style="padding: 10px; color: rgb(255, 0, 0);"><b>We welcomes you to The Gurkul, A place of technology , education , and innovation. The Gurkul encompasses the best of infrastructure for the young learners.</b></h1>
+      <h1 style="padding: 10px; color: rgb(255, 0, 0);"><b>We welcomes you to The Gurkul, A place of technology ,
+          education , and innovation. The Gurkul encompasses the best of infrastructure for the young learners.</b></h1>
       <h4 style="color: black;">
         Join <b class="text-danger"> The Gurkul </b> team accelerate your progress</h4>
-      
 
-        {% if user.is_authenticated %}
 
-        <a href="/user/profile" style="text-decoration: none;"><button class="btn btn-success join_btn"
-            style="display: flex; justify-content: center; align-items: center">
-            <h2 class="join_head1" style="display: flex; justify-content: center; align-items: center">
-              Go to Your Profile
-            </h2>
-          </button></a>
+      {% if user.is_authenticated %}
 
-        {% else %}
-        <a href="/user_login/" style="text-decoration: none;"><button class="btn btn-info join_btn"
-            style="display: flex; justify-content: center; align-items: center">
-            <h2 class="join_head1" style="display: flex; justify-content: center; align-items: center"><i class="fas fa-arrow-left mx-4"></i>
-               <b>Join The Gurkul</b>
-            </h2>
-          </button></a>
-        {% endif%}
+      <a href="/user/profile" style="text-decoration: none;"><button class="btn btn-success join_btn"
+          style="display: flex; justify-content: center; align-items: center">
+          <h2 class="join_head1" style="display: flex; justify-content: center; align-items: center">
+            Go to Your Profile
+          </h2>
+        </button></a>
 
-      
+      {% else %}
+      <a href="/user_login/" style="text-decoration: none;"><button class="btn btn-info join_btn"
+          style="display: flex; justify-content: center; align-items: center">
+          <h2 class="join_head1" style="display: flex; justify-content: center; align-items: center"><i
+              class="fas fa-arrow-left mx-4"></i>
+            <b>Join The Gurkul</b>
+          </h2>
+        </button></a>
+      {% endif%}
+
+
     </div>
   </div>
 </div>
@@ -224,8 +205,6 @@ active
         <i class="fas fa-quote-right fa-pull-right quote_symbol_thegurkul"></i>
       </div>
     </div>
-
-
   </div>
 
   <div style="
@@ -300,16 +279,16 @@ active
               </div>
               <div>
                 <div>
-                  <h5 class="card-text my-2 text-primary"
+                  <h5 class="card-text my-2 text-info"
                     style="display: flex; justify-content: center; text-align: center;">{{item.about}}</h5>
                 </div>
                 <div class="my-4">
-                  <i class="fa fa-quote-left fa-x fa-pull-left fa-border quote_symbol_thegurkul "
-                    style="border: unset;"></i>
-                  <p class="card-text"
+
+                  <i class="fas fa-quote-left fa-pull-left quote_symbol_thegurkul " style="border: unset;"></i>
+                  <p class="card-text text-light"
                     style="display: flex; justify-content: center; margin: unset; text-align: center;">{{item.quote}}
                   </p>
-                  <i class="fa fa-quote-right fa-x fa-pull-right fa-border quote_symbol_thegurkul"></i>
+                  <i class="fas fa-quote-right fa-pull-right quote_symbol_thegurkul"></i>
 
                 </div>
               </div>
@@ -341,16 +320,17 @@ active
               </div>
               <div>
                 <div>
-                  <h5 class="card-text my-2 text-primary"
+                  <h5 class="card-text my-2 text-info"
                     style="display: flex; justify-content: center;text-align: center;">{{item.about}}</h5>
                 </div>
                 <div class="my-4">
-                  <i class="fa fa-quote-left fa-x fa-pull-left fa-border quote_symbol_thegurkul "
-                    style="border: unset;"></i>
-                  <p class="card-text"
+
+                  <i class="fas fa-quote-left fa-pull-left quote_symbol_thegurkul " style="border: unset;"></i>
+                  <p class="card-text text-light"
                     style="display: flex; justify-content: center; margin: unset; text-align: center;">{{item.quote}}
                   </p>
-                  <i class="fa fa-quote-right fa-x fa-pull-right fa-border quote_symbol_thegurkul"></i>
+                  <i class="fas fa-quote-right fa-pull-right quote_symbol_thegurkul"></i>
+
 
                 </div>
               </div>
@@ -435,6 +415,38 @@ active
   </div>
 
 </div>
+
+
+<div class="founders">
+
+  <div>
+    <div class="director">
+      <img src="{% static 'theGurkul/thegurkul/img/homeImg/owner/ramsuraj_transparent.png' %}" alt=""
+        style="max-width: 100%;" class="director_img">
+      <div>
+        <div style="display: flex; justify-content:center; align-items:center;">
+          <pre>  <h2 class="card-title"><b>Director and Founder</b></h2>
+              <h4 class="card-text text-danger" style="display: flex; justify-content:center; align-items:center;
+              box-shadow: 0px 0px 10px red;"><b>Mr. Ram Suraj Gupta</b></h4>
+            </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="co-director">
+    <div>
+      <div style="display: flex; justify-content:center; align-items:center;">
+        <pre>  <h2 class="card-title"><b>Co-Director and Founder</b></h2>
+            <h4 class="card-text" style="display: flex; justify-content:center; align-items:center; box-shadow: 0px 0px 10px rgb(0, 17, 255);color: #002fff;"><b>Mr. Sanjay Gupta</b></h4>
+            </pre>
+      </div>
+    </div>
+    <img src="{% static 'theGurkul/thegurkul/img/homeImg/owner/sanjay.png' %}" alt="" style="max-width: 100%;"
+      class="director_img">
+  </div>
+
+</div>
+
 
 
 

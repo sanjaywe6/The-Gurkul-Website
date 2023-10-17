@@ -43,6 +43,8 @@ urlpatterns = [
 
     path('user_logout/',views.usrLogout,name="User Logout Form"),
 
+    #  including apps in home project urls
+
     path('gurkul_student/',include('gurkul_student.urls')),
 
     path('gurkul_teacher/',include('gurkul_teacher.urls')),
@@ -52,5 +54,7 @@ urlpatterns = [
     path('gurkul_administration/',include('gurkul_admin.urls')),
 
     path('gurkul_test/',include('gurkul_test.urls')),
+
+    path('smsExam/',include('smsExam.urls')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

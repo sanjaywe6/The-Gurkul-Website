@@ -1,15 +1,11 @@
 {% extends 'basic.html' %}
-
+{% load static %}
 {% block title %}
 About
 {% endblock %}
-{% block css %}
-<style>
-    .about_p{
-        font-size: 22px;
-        color: white;
-    }
-</style>
+
+{% block cssLink %}
+{% static '/theGurkul/thegurkul/css/about.css' %}
 {% endblock %}
 
 {% block active_about %}

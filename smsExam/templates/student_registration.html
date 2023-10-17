@@ -1,0 +1,323 @@
+{% extends 'sms_basic.html' %}
+{% load static %}
+
+{% block file_css2 %}
+<style>
+  /* css for msg */
+  #absoluteMsg_outer {
+    display: grid;
+    grid-template-columns: 70px 1fr 20px;
+    background-color: #bdbdbd;
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    width: 400px;
+    align-items: center;
+    justify-items: center;
+    padding: 10px;
+    border: 2px solid red;
+    border-radius: 10px;
+    visibility: hidden;
+    z-index: 1000;
+  }
+
+  .absoluteMsg_outer_incoming {
+    animation-name: absoluteMsg_outer_incoming;
+    animation-duration: 1s;
+  }
+
+  @keyframes absoluteMsg_outer_incoming {
+    from {
+      right: 100%;
+    }
+
+    to {
+      right: 2%;
+    }
+  }
+
+  #msg_bell {
+    animation-name: msg_bell_anim;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes msg_bell_anim {
+    from {
+      font-size: 50px;
+      color: blue;
+    }
+
+    to {
+      font-size: 65px;
+      color: red;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block std_reg_active %}
+active_sms_exam_link
+{% endblock %}
+
+{% block content_body %}
+<div id="absoluteMsg_outer">
+  <div style="height: 65px; width: 65px; display: flex; justify-content: center; align-items: center;"><i id="msg_bell"
+      class="fas fa-bell" style="color: red; font-size: 65px;"></i></div>
+  <div>
+    <p id="show_msg"></p>
+  </div>
+  <div id="hide_msg" onmouseenter="this.style.color='red';" onmouseleave="this.style.color='white';"><i
+      class="	fas fa-angle-double-right" style="font-size: 20px; cursor: pointer;"></i></div>
+
+</div>
+
+
+
+<div>
+  <div class="my-2" style="display: flex; justify-content: center;">
+    <h2 class="text-primary" id="regist_form_title">Registration Form</h2>
+  </div>
+  <hr>
+  <div
+    style="border: 1px csolid blue; border-radius: 7px; margin: 10px; padding: 10px; background-color: rgb(202, 201, 201);">
+
+    <form id="student_registration">
+      {% csrf_token %}
+
+      <div class="row g-3">
+
+        <div class="col-md-6">
+          <label for="input_fname" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="input_fname" required>
+        </div>
+        <div class="col-md-6">
+          <label for="input_lname" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="input_lname" required>
+        </div>
+
+        <div class="col-md-6">
+          <label for="input_dob" class="form-label">Date of Birth</label>
+          <input type="date" class="form-control" id="input_dob" required>
+        </div>
+        <div class="col-md-6">
+          <label for="input_email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="input_email" placeholder="xyz@gmail.com" required>
+        </div>
+
+        <div class="col-md-6">
+          <label for="input_father" class="form-label">Father Name</label>
+          <input type="text" class="form-control" id="input_father" required>
+        </div>
+        <div class="col-md-6">
+          <label for="input_mother" class="form-label">Mother Name</label>
+          <input type="text" class="form-control" id="input_mother" required>
+        </div>
+
+        <div class="col-md-6">
+          <div class="col-md-8">
+            <label for="input_class" class="form-label">Class</label>
+            <select id="input_class" class="form-select">
+              <option value="Other" selected>Other</option>
+              <option value="9" selected>9th</option>
+              <option value="10" selected>10th</option>
+              <option value="11" selected>11th</option>
+              <option value="12" selected>12th</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <label for="input_aadhar" class="form-label">Aadhar Number</label>
+          <input type="text" class="form-control" id="input_aadhar" required>
+        </div>
+
+        <div class="col-md-6">
+          <label for="input_mob" class="form-label">Mob. Number</label>
+          <input type="text" class="form-control" id="input_mob" required>
+        </div>
+        <div class="col-md-6">
+          <label for="input_wmob" class="form-label">Whatsapp Number</label>
+          <input type="text" class="form-control" id="input_wmob" required>
+        </div>
+
+        <div class="col-md-6">
+          <div class="col-md-8">
+            <label for="input_subject" class="form-label">Subject</label>
+            <select id="input_subject" class="form-select">
+              <option value="Other" selected>Other</option>
+              <option value="Mathematics" selected>Mathematics</option>
+              <option value="Biology" selected>Biology</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <label for="input_institution" class="form-label">Institution</label>
+          <input type="text" class="form-control" id="input_institution" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="input_img" class="form-label">Upload Your Image</label>
+          <input type="file" id="input_img"
+            style="height: 200px; width: 300px; background-color: white; display: flex; align-items: center; padding: 80px 10px;border: 5px double rgb(0, 0, 0); border-radius: 7px;"
+            placeholder="Upload Your Image" required>
+        </div>
+
+
+        <div class="col-12">
+          <label for="input_addr" class="form-label">Address</label>
+          <input type="text" class="form-control" id="input_addr" placeholder="1234 Main St" required>
+        </div>
+
+      </div>
+
+
+      <div class="form_warning my-4 bg-light" style="border: 1px solid #cac9c9; border-radius: 7px; padding: 7px;">
+        <h4 class="text-danger">Read Carefully !</h4>
+        <ul>
+          <li>
+            <p>Hereby I declare that all information provided above by me is right as per my preference. If any data is wrong, I will be disqualified from the SMS Exam.</p>
+          </li>
+          <li>
+            <p>Once the form is submitted, you will not be able to change it. To change your data you have to contact with academic staff.</p>
+          </li>
+          <li style="list-style: none;">
+            <div>
+              <div style="display: flex; justify-content: flex-start;">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="form_warnings_check" style="border: 2px solid black;">
+                  <label class="form-check-label" for="form_warnings_check">
+                    click here
+                  </label>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+
+
+      <div class="my-4">
+        <div class="cpatcha_img" style="display: flex;justify-content: center;flex-wrap: wrap;">
+          <div class="mx-2"
+            style="background-image: linear-gradient(45deg,red,green,yellow,pink);width: 100px; display: flex; justify-content: space-around; border: 1px solid red;border-radius: 7px;">
+
+            <input type="button"
+              style="background-color: transparent; border: unset; font-size: 25px; transform: rotate(45deg);color: black; opacity: 50%;"
+              value="{{captcha.first_character}}">
+            <input type="button"
+              style="background-color: transparent; border: unset; font-size: 25px; transform: rotate(-30deg);color: black; opacity: 50%;"
+              value="{{captcha.second_character}}">
+          </div>
+          <div>
+            <input type="text" maxlength="2" minlength="2" id="captcha_value" name="captcha_value"
+              style="max-width: 150px; height: 40px;border: 1px solid black; border-radius: 7px; text-align: center;"
+              class="mx-2 my-2" placeholder="Enter Captcha Here" required>
+            <input type="hidden" id="captcha_id" name="captcha_id" value="{{captcha.sno}}">
+          </div>
+        </div>
+      </div>
+
+
+
+      <div style="display: flex; justify-content: end;" class="my-2">
+        <button type="submit" class="btn btn-success disabled" id="form_submit_btn"> Submit</button>
+      </div>
+
+
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block file_js2 %}
+<script>
+  $(document).ready(function () {
+
+    function show_message(msg) {
+      $('#absoluteMsg_outer').css('visibility', 'unset')
+      $('#absoluteMsg_outer').addClass('absoluteMsg_outer_incoming')
+      $('#show_msg').text(msg)
+    }
+
+    $('#hide_msg').click(function () {
+      $('#absoluteMsg_outer').css('visibility', 'hidden')
+      $('#absoluteMsg_outer').removeClass('absoluteMsg_outer_incoming')
+    })
+
+
+    //  cofirmation checkbox before form submition
+
+    $('#form_warnings_check').click(function(){
+      checkbox_val = $('#form_warnings_check')
+      if(checkbox_val.prop('checked') ){
+        $('#form_submit_btn').removeClass('disabled')
+      }
+      else{
+        $('#form_submit_btn').addClass('disabled')
+      }
+    })
+
+    // code for submitting student registration form for sms
+    $('#student_registration').submit(function (e) {
+      e.preventDefault()
+      var formData = new FormData()
+      formData.append('csrfmiddlewaretoken', $('input[name=csrfmiddlewaretoken]').val())
+      formData.append('fname', $('#input_fname').val())
+      formData.append('lname', $('#input_lname').val())
+      formData.append('dob', $('#input_dob').val())
+      formData.append('email', $('#input_email').val())
+      formData.append('father', $('#input_father').val())
+      formData.append('mother', $('#input_mother').val())
+      formData.append('std_class', $('#input_class').val())
+      formData.append('aadhar', $('#input_aadhar').val())
+      formData.append('mob', $('#input_mob').val())
+      formData.append('wmob', $('#input_wmob').val())
+      formData.append('subject', $('#input_subject').val())
+      formData.append('institution', $('#input_institution').val())
+      formData.append('addr', $('#input_addr').val())
+      formData.append('img', $('#input_img')[0].files[0])
+      formData.append('captcha_value', $('#captcha_value').val())
+      formData.append('captcha_id', $('#captcha_id').val())
+
+      // sending request to save form
+
+      $.ajax({
+        url: '/smsExam/student_registration/',
+        type: 'POST',
+        data: formData,
+        processData: false, //prevent jquery to process data
+        contentType: false, //set contentType false to let the browser handle it
+        success: function (data) {
+          return_msg_status = data.submit_student_form
+          show_message(return_msg_status.msg)
+          if (return_msg_status.code == 200) {
+            $('#input_fname').val('')
+            $('#input_lname').val('')
+            $('#input_dob').val('')
+            $('#input_email').val('')
+            $('#input_father').val('')
+            $('#input_mother').val('')
+            $('#input_aadhar').val('')
+            $('#input_mob').val('')
+            $('#input_wmob').val('')
+            $('#input_institution').val()
+            $('#regist_form_title').text('Successful')
+            $('#student_registration').html(`<div style="display:flex; justify-content:center;">
+                            <i class="fas fa-thumbs-up" style="font-size: 200px; color: #0d6efd;padding-top: 100px;"></i>
+                            </div>`)
+
+
+          }
+        }
+
+      })
+
+    })
+  })
+</script>
+{% endblock %}

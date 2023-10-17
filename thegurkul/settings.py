@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'gurkul_test.apps.GurkulTestConfig',
     'gurkul_student.apps.GurkulStudentConfig',
     'gurkul_teacher.apps.GurkulTeacherConfig',
+    'smsExam.apps.SmsexamConfig'
 ]
 
 MIDDLEWARE = [

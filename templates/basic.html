@@ -35,6 +35,9 @@
   {% endblock %}">
   <link rel="stylesheet" href="{% block cssLink_2 %}
   {% endblock %}">
+  <link rel="stylesheet" href="{% block cssLink_3 %}
+  {% endblock %}">
+
   {% block css %}
   {% endblock %}
 
@@ -138,7 +141,7 @@
               id="sanjay_web_nav" aria-labelledby="sanjay_web_navLabel" style="background-color: rgb(153, 13, 13);">
 
               <div class="offcanvas-header" id="close_button_off_canvas" style="display:flex;justify-content: end;">
-                <button id="btn_nav_close" type="button" class="btn-close bg-danger" data-bs-dismiss="offcanvas"
+                <button id="btn_nav_close" type="button" class="btn-close bg-info" data-bs-dismiss="offcanvas"
                   aria-label="Close"></button>
               </div>
 
@@ -169,21 +172,31 @@
                       About Us</li>
                   </a>
 
-                  <div class="dropdown-center" style="display: flex; justify-content: center; align-items: center;">
+                  <div class="dropdown-center" style="display: flex; align-items: center;">
                     <li class="list_nav {% block active_test_series %}{% endblock %} dropdown-toggle" type="button"
                       data-bs-toggle="dropdown" aria-expanded="false">
-
                       <i class="fas fa-clipboard-list text-warning">
                       </i> Gurkul Test Agency (GTA)
-
                     </li>
-
                     <ul class="dropdown-menu"
                       style="background-color: #212529; border: 1px solid red; border-radius: 7px;">
                       <li><a class="dropdown-item" href="/gurkul_test/test_series/GTA_questions"><i
                             class=" 	fas fa-file-signature text-primary"></i> Add/Edit GTA Questions</a></li>
                       <li><a class="dropdown-item" href="/gurkul_test/test_series/GTA_test_index"><i
                             class="fas fa-file-alt text-primary"> </i> Test Series</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="dropdown-center" style="display: flex; align-items: center;">
+                    <li class="list_nav {% block active_sms_competition %}{% endblock %} dropdown-toggle" type="button"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fas fa-clipboard-list text-warning">
+                      </i> SMS Competition
+                    </li>
+                    <ul class="dropdown-menu"
+                      style="background-color: #212529; border: 1px solid red; border-radius: 7px;">
+                      <li><a class="dropdown-item" href="/smsExam/student_registration"><i class="fas fa-fax"></i>
+                          Register Students</a></li>
                     </ul>
                   </div>
 
@@ -302,6 +315,7 @@
 
 <script src="{% block jsLink %} {% endblock %}"></script>
 <script src="{% block jsLink_2 %} {% endblock %}"></script>
+<script src="{% block jsLink_3 %} {% endblock %}"></script>
 
 {% block js %} {% endblock %}
 

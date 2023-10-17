@@ -1,0 +1,106 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %}
+SMS Exam
+{% endblock %}
+
+{% block css %}
+<style>
+    /* css of main container */
+.series_container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    min-height: 500px;
+}
+
+@media screen and (max-width:1000px) {
+    .series_container {
+        display: unset;
+    }
+
+}
+
+.series_options {
+    border-left: 5px solid red;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin: 20px 0px 20px 10px;
+}
+
+.series_options a {
+    text-decoration: none;
+    color: white;
+}
+
+    /* css for dynamic navigation */
+    #add_to_base_nav {
+        display: none;
+    }
+
+    @media screen and (max-width:1000px) {
+        #add_to_base_nav {
+            display: unset;
+        }
+
+        #gta_nav {
+            display: none;
+        }
+
+    }
+
+    .active_sms_exam_link {
+        background-color: white;
+    }
+
+    .active_sms_exam_link a {
+        color: black;
+    }
+</style>
+{% block file_css2 %}{% endblock %}
+{% endblock %}
+
+{% block active_sms_competition %}
+active
+{% endblock %}
+
+{% block navigation_from_another_page %}
+<div id="add_to_base_nav">
+
+    <li><a class="dropdown-item dropLink" href="#"><i class="fas fa-layer-group text-primary"></i> All Series</a></li>
+
+    <li><a class="dropdown-item dropLink" href="#"><i class="fas fa-university text-primary"></i> Academic Test Series</a></li>
+
+</div>
+{% endblock %}
+
+{% block body %}
+
+<div class="series_container">
+    <div style="background-color: #343541;text-decoration: none;font-size: 24px;color: white;">
+
+        <div id="gta_nav">
+
+            <div>
+                <p style="display:flex; justify-content: center; margin: 10px 0px 30px 0px; font-size: 70px;"><b
+                        style="color:#d39b29;">S.M.S.</b>
+                </p>
+            </div>
+
+            <div class="series_options {% block std_reg_active %}{% endblock %}"
+                style="display: flex; justify-content: space-around;">
+                <a href="/smsExam/student_registration"><i class="fas fa-fax text-primary"></i> Student Registration</a>
+            </div>
+
+        </div>
+    </div>
+    <div>{% block content_body %}{% endblock %}</div>
+</div>
+
+{% block js %}
+
+
+{% block file_js2 %}
+{% endblock %}
+{% endblock %}
+
+{% endblock %}
