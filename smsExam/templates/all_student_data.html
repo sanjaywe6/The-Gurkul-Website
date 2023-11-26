@@ -1,0 +1,74 @@
+{% extends 'sms_basic.html' %}
+{% load static %}
+
+{% block file_css2 %}
+<style>
+  /* css for modal boxes */
+  .student_data_box{
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: unset;
+  }
+  @media screen and (max-width:500px) {
+    .student_data_box{
+      grid-template-columns: unset;
+    grid-template-rows: 200px 1fr;
+  }
+  }
+</style>
+{% endblock %}
+
+{% block all_studen_data_active %}
+active_sms_exam_link
+{% endblock %}
+
+{% block content_body %}
+
+
+<div id="student_profile">
+
+  {% for student in student_data %}
+
+  <div class="student_data_box" style="margin: 10px; padding: 10px; border: 1px solid black; border-radius: 7px; background-color: rgb(190, 190, 190);">
+    <div class="student_image"><img src="/media/{{student.img}}" alt="Loading" style="width: 200px; height: 200px;"></div>
+    <div class="student_data">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">UIN. No.</th>
+            <th scope="col">{{student.uin_no}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>{{student.fname}} {{student.lname}}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{{student.email}}</td>
+          </tr>
+          <tr>
+            <td>Mob.</td>
+            <td>{{student.mob}}</td>
+          </tr>
+          <tr>
+            <td colspan="2"><a href="/smsExam/all_student_data/{{student.sno}}"><button class="btn btn-warning w-100">View More</button></a></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  {% endfor %}
+
+</div>
+
+
+{% endblock %}
+
+{% block file_js2 %}
+
+{% endblock %}

@@ -20,6 +20,8 @@ class teacher_auth(models.Model):
     send_request_edit_test_series=models.CharField(choices=send_request_edit_test_series_choice,max_length=30,default="none")
     edit_test_series=models.BooleanField(default=False)
 
+    edit_sms_exam_student_data=models.BooleanField(default=False)
+
     def __str__(self) -> str:
         return self.teacher_id+"~"+self.teacher_username
 

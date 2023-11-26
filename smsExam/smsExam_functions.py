@@ -6,11 +6,11 @@ def validate_gta_questions(fname,lname,dob,email,father,mother,std_class,aadhar,
     if len(fname)>0:
         if len(lname)>0:
             if len(dob)>0:
-                if len(email)>0:
+                if len(email)<50:
                     if len(father)>0:
                         if len(mother)>0:
                             if len(std_class)>0:
-                                if len(aadhar)>0:
+                                if len(aadhar)<15:
                                     if len(mob)>0:
                                         if len(captcha_value)>0:
                                             if len(subject)>0:
@@ -55,7 +55,7 @@ def validate_gta_questions(fname,lname,dob,email,father,mother,std_class,aadhar,
                                 else:
                                     code=300
                                     lst.append(code)
-                                    msg="Sorry! 'Aadhar' field was empty..."
+                                    msg="Sorry! 'Aadhar' number was wrong..."
                                     lst.append(msg)
                             else:
                                 code=300
@@ -75,7 +75,7 @@ def validate_gta_questions(fname,lname,dob,email,father,mother,std_class,aadhar,
                 else:
                     code=300
                     lst.append(code)
-                    msg="Sorry! 'Email' option was empty..."
+                    msg="Sorry! 'Email' option length was too big..."
                     lst.append(msg)
             else:
                 code=300
@@ -118,5 +118,3 @@ def submit_std_reg_form(fname,lname,dob,email,father,mother,std_class,aadhar,mob
             fields["msg"]="Failed! An error ocured. Please try again..."
 
     return fields
-
-

@@ -1,0 +1,274 @@
+{% extends 'sms_basic.html' %}
+{% load static %}
+
+{% block file_css2 %}
+
+{% endblock %}
+
+{% block all_studen_data_active %}
+active_sms_exam_link
+{% endblock %}
+
+{% block content_body %}
+
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Message: </strong> {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+<div class="profile">
+    <div style="display: flex; justify-content: center;">
+        <h3>{{student_data.uin_no}}</h3>
+    </div>
+
+    <div
+        style="background-color: rgb(212, 212, 212); padding: 10px; margin: 10px;border: 1px solid white; border-radius: 7px;">
+
+        <div class="student_image" style="display: flex; justify-content: end;">
+            <img src="/media/{{student_data.img}}" alt="Loading.."
+                style="width: 300px;border: 1px solid black; border-radius: 7px;">
+        </div>
+
+        <input type="hidden" value="{{student_data.sno}}" id="student_sno">
+
+        <div class="data_profile p-4">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">UIN No.</th>
+                        <th scope="col">{{student_data.uin_no}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>First Name</td>
+                        <td>{{student_data.fname}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="std_data" required>
+                                <input type="hidden" name="std_data_type" value="fname">
+                                <button type="submit" class="btn btn-danger my-2 mx-2">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Last Name</td>
+                        <td>{{student_data.lname}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="std_data" required>
+                                <input type="hidden" name="std_data_type" value="lname">
+                                <button type="submit" class="btn btn-danger my-2 mx-2">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Father Name</td>
+                        <td>{{student_data.father_name}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="std_data" required>
+                                <input type="hidden" name="std_data_type" value="father_name">
+                                <button type="submit" class="btn btn-danger my-2 mx-2">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mother Name</td>
+                        <td>{{student_data.mother_name}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="std_data" required>
+                                <input type="hidden" name="std_data_type" value="mother_name">
+                                <button type="submit" class="btn btn-danger my-2 mx-2">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Email</td>
+                        <td>{{student_data.email}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="email" name="std_data" required>
+                                <input type="hidden" name="std_data_type" value="email">
+                                <button type="submit" class="btn btn-danger my-2 mx-2">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Mobile No.</td>
+                        <td>{{student_data.mob}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="number" name="std_data" required>
+                                <input type="hidden" name="std_data_type" value="mob">
+                                <button type="submit" class="btn btn-danger my-2 mx-2">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>whatsapp Mobile No.</td>
+                        <td>{{student_data.wmob}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="number" name="std_data" required>
+                                <input type="hidden" name="std_data_type" value="wmob">
+                                <button type="submit" class="btn btn-danger my-2 mx-2">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Date of Birth</td>
+                        <td>{{student_data.dob}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="date" name="std_data" required>
+                                <input type="hidden" name="std_data_type" value="dob">
+                                <button type="submit" class="btn btn-danger my-2 mx-2">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Aadhar</td>
+                        <td>{{student_data.aadhar}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="number" name="std_data" required>
+                                <input type="hidden" name="std_data_type" value="aadhar">
+                                <button type="submit" class="btn btn-danger my-2 mx-2">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Class</td>
+                        <td>{{student_data.std_class}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <select class="form-select" name="std_data" required>
+                                    <option value="Other" selected>Other</option>
+                                    <option value="9" selected>9th</option>
+                                    <option value="10" selected>10th</option>
+                                    <option value="11" selected>11th</option>
+                                    <option value="12" selected>12th</option>
+                                  </select>
+                                <input type="hidden" name="std_data_type" value="std_class">
+                                <button type="submit" class="btn btn-danger my-2 mx-2">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Subject</td>
+                        <td>{{student_data.subject_class}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <select class="form-select" name="std_data" required>
+                                    <option value="Other" selected>Other</option>
+                                    <option value="Mathematics" selected>Mathematics</option>
+                                    <option value="Biology" selected>Biology</option>
+                                  </select>
+                                <input type="hidden" name="std_data_type" value="subject">
+                                <button type="submit" class="btn btn-danger my-2 mx-2">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Institution</td>
+                        <td>{{student_data.institution}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="std_data" required>
+                                <input type="hidden" name="std_data_type" value="institution">
+                                <button type="submit" class="btn btn-danger my-2 mx-2">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Address</td>
+                        <td>{{student_data.addr}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="std_data" required>
+                                <input type="hidden" name="std_data_type" value="addr">
+                                <button type="submit" class="btn btn-danger my-2 mx-2">
+                                    Update
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block file_js2 %}
+
+<script>
+
+</script>
+
+{% endblock %}

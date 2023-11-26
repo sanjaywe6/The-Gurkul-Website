@@ -102,7 +102,7 @@ active_sms_exam_link
         </div>
         <div class="col-md-6">
           <label for="input_email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="input_email" placeholder="xyz@gmail.com" required>
+          <input type="email" class="form-control" id="input_email" placeholder="xyz@gmail.com">
         </div>
 
         <div class="col-md-6">
@@ -129,7 +129,7 @@ active_sms_exam_link
         </div>
         <div class="col-md-6">
           <label for="input_aadhar" class="form-label">Aadhar Number</label>
-          <input type="text" class="form-control" id="input_aadhar" required>
+          <input type="text" class="form-control" id="input_aadhar" >
         </div>
 
         <div class="col-md-6">
@@ -138,7 +138,7 @@ active_sms_exam_link
         </div>
         <div class="col-md-6">
           <label for="input_wmob" class="form-label">Whatsapp Number</label>
-          <input type="text" class="form-control" id="input_wmob" required>
+          <input type="text" class="form-control" id="input_wmob" >
         </div>
 
         <div class="col-md-6">
@@ -154,14 +154,14 @@ active_sms_exam_link
         </div>
         <div class="col-md-6">
           <label for="input_institution" class="form-label">Institution</label>
-          <input type="text" class="form-control" id="input_institution" required>
+          <input type="text" class="form-control" id="input_institution">
         </div>
 
         <div class="mb-3">
           <label for="input_img" class="form-label">Upload Your Image</label>
           <input type="file" id="input_img"
             style="height: 200px; width: 300px; background-color: white; display: flex; align-items: center; padding: 80px 10px;border: 5px double rgb(0, 0, 0); border-radius: 7px;"
-            placeholder="Upload Your Image" required>
+            placeholder="Upload Your Image">
         </div>
 
 
@@ -229,6 +229,8 @@ active_sms_exam_link
 
 
     </form>
+
+
 
   </div>
 </div>
@@ -306,11 +308,11 @@ active_sms_exam_link
             $('#input_mob').val('')
             $('#input_wmob').val('')
             $('#input_institution').val()
-            $('#regist_form_title').text('Successful')
-            $('#student_registration').html(`<div style="display:flex; justify-content:center;">
-                            <i class="fas fa-thumbs-up" style="font-size: 200px; color: #0d6efd;padding-top: 100px;"></i>
-                            </div>`)
+            $('#regist_form_title').text('Successful (Pay 100Rs registration fee using below QR Code.) )')
 
+            $('#student_registration').html(`   <div style="display: flex; justify-content: center;">
+      <img style="width: 100%; max-width: 700px;" src="{% static '/theGurkul/sms_exam/img/qr_code.jpg' %}" alt="">
+    </div>`)
 
           }
         }
