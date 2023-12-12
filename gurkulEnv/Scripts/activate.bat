@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\root\Downloads\The_Gurkul\gurkulEnv
+set VIRTUAL_ENV=C:\Users\root\OneDrive\Desktop\My Websites\The_Gurkul\gurkulEnv
 
 if not defined PROMPT set PROMPT=$P$G
 

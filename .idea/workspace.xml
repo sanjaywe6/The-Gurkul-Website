@@ -4,44 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f9887f1-b45c-46bf-a7fd-7a98b4b39b9d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/css/basic.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/Background/world.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/contact_images/talk_experts.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Acad_Hindi_UPBoard_10_Science_MCQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Acad_Hindi_UPBoard_11_Physics_STQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Acad_Hindi_UPBoard_12_Chemistry_LTQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Acad_Hindi_UPBoard_12_Physics_LTQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Acad_Hindi_UPBoard_12_Physics_MCQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Acad_Hindi_UPBoard_12_Physics_STQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Acad_Hindi_UPBoard_12_Physics_VLTQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Comp_Hindi_Other_Banking_Reasoning_MCQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Comp_Hindi_Other_SSC_GSorGK_MCQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Comp_Hindi_Other_SSC_Geography_MCQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Comp_Hindi_Other_SSC_Hindi_MCQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Comp_Hindi_Other_SSC_History_MCQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Comp_Hindi_Other_SSC_Mathematics_MCQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/gurkul_test/test_modal_banner/Comp_Hindi_Other_SSC_Reasoning_MCQ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/homeImg/first_home_welcome.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/homeImg/owner/ramsuraj_transparent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/homeImg/owner/sanjay.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/logo/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/socialMedia/facebookGolden.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/socialMedia/instagramGolden.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/socialMedia/linkedinGolden.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/socialMedia/telegramGolden.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/socialMedia/twitterGolden.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/img/socialMedia/youtubeGolden.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/theGurkul/js/basic.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/usrs/img/unknown_profile/profile.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/basic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/usr_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usr_login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/usr_registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usr_registration.html" afterDir="false" />
-    </list>
+    <list default="true" id="9f9887f1-b45c-46bf-a7fd-7a98b4b39b9d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,6 +13,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 1
+}]]></component>
   <component name="ProjectId" id="2KOcxfhMh1X2kvKlaFpaggRtHI2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -61,7 +28,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "full.screen.before.presentation.mode": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/sanjay/Programming Data/Working Websites/thegurkul/The_Gurkul",
+    "last_opened_file_path": "C:/Users/root/Desktop/Python Code Practice",
     "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui"
   }
 }]]></component>
