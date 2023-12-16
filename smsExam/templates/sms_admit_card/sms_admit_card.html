@@ -38,6 +38,7 @@ Admit Card
     .Instructions_table{
         display: grid;
         grid-template-columns: 20px 1fr;
+        color: red;
     }
 </style>
 {% endblock %}
@@ -126,9 +127,10 @@ active
                     </div>
                 </div>
                 <div style="display: flex; justify-content: center; align-items: center;">
-                    <img src="/media/{{std_data.0.img}}/" alt="" style="width: 100%;">
+                    <div style="height: 200px; width: 100%; border: 1px solid red; border-radius: 7px;display: flex; justify-content: center; align-items: center;"><h3>Photo</h3></div>
                 </div>
             </div>
+            <hr>
             <div class="std_data_table" style="height: 100px; margin: 20px;">
                 <div style="height: 100%;">
                     <img src="{% static 'theGurkul/sms_exam/img/director_sign/rs.jpg' %}" style="height: 95px; width: 100%;" alt="">
@@ -143,8 +145,9 @@ active
                     </div>
                 </div>
             </div>
-            <div style="margin: 20px 0px 5px 0px; display: flex; justify-content: center; align-items: center;">
-                <h5><b>Instructions to the Candidate</b></h5>
+            <hr>
+            <div style="margin: 5px 0px 5px 0px; display: flex; justify-content: center; align-items: center;">
+                <h5 style="color: blue;"><b>Instructions to the Candidate</b></h5>
             </div>
             <div class="Instructions">
                 <div class="Instructions_table">
@@ -156,7 +159,7 @@ active
                 <div class="Instructions_table">
                     <p>2</p>
                     <p>Admit Card is considered to be valid only if both the photograph and signature are clear. To ensure this, print this admit card on A4
-                        sized paper.
+                        sized paper using laser printer, preferably in colour.
                         </p>
                 </div>
                 <div class="Instructions_table">
@@ -197,11 +200,7 @@ active
                         place, the entry of the candidate in the examination center shall be PROHIBITED. MASK must be in proper position throughout
                         candidate’s presence in the examination hall.</p>
                 </div>
-                <div class="Instructions_table">
-                    <p>8</p>
-                    <p> Violation of any of the above guidelines including impersonation or breaking of code of conduct for SMS exam will lead to
-                        cancellation of candidature and/or legal action</p>
-                </div>
+                <hr>
             </div>
         </div>
     </div>
