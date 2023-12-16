@@ -146,3 +146,20 @@ def student_data_with_sno(request,sno):
         else:
             return render(request,'all_student_data_unauthorized.html')
     
+# fuction for downloading admit card
+def sms_exam_admit_card(request):
+    if request.method == 'POST':
+        mob = request.POST.get('mob')
+        dob = request.POST.get('dob')
+        admit_card = studentRegistration.objects.filter(mob = mob, dob = dob).all()
+        try:
+            if len(admit_card)>0:
+                params = {'std_data':admit_card}
+                return render(request,'sms_admit_card/sms_admit_card.html',params)
+            else:
+                messages.add_message(request,40,'Sorry! Invalid Credentials..')
+                return render(request,'sms_admit_card/sms_admit_card_auth.html')
+        except Exception:
+            messages.add_message(request,40,'Sorry! Invalid Credentials..')
+            return render(request,'sms_admit_card/sms_admit_card_auth.html')
+    return render(request,'sms_admit_card/sms_admit_card_auth.html')

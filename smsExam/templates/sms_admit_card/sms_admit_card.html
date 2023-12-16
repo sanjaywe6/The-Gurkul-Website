@@ -1,0 +1,232 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %}
+Admit Card
+{% endblock %}
+
+{% block css %}
+<style>
+    body{
+        font-size: 10px;
+    }
+    p{
+        margin: 0px;
+    }
+    .admit_card_header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .std_personal_data_table {
+        display: grid;
+        grid-template-columns: 1fr 250px;
+    }
+
+    .std_data_table {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+    .std_data_table_data {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        border: 1px solid black;
+        margin: 5px;
+        padding: 5px;
+    }
+    .Instructions_table{
+        display: grid;
+        grid-template-columns: 20px 1fr;
+    }
+</style>
+{% endblock %}
+
+{% block active_sms_exam_admit_card %}
+active
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <div id="admit_card_cont">
+        <div class="admit_card_header">
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <div>
+                    <img src="{% static 'theGurkul/thegurkul/img/logo/logo.png' %}" alt="Loading..."
+                        style="height: 55px;">
+                </div>
+            </div>
+            <div>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <p class="h2"><b>The Gurkul</b></p>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <p>Gurkul है, तो Growth है..</p>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center;text-align: center;">
+                    <p>SMS Exam 2023, Conducted by GTA (Gurkul Test Authority)</p>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <p style="font-size: 70px; color: #dfb535;"><b>GTA</b></p>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <div class="std_personal_data_table">
+                <div>
+                    <div class="std_data_table">
+                        <div class="std_data_table_data">
+                            <p><b>UIN No</b></p>
+                            <p>{{std_data.0.uin_no}}</p>
+                        </div>
+                        <div class="std_data_table_data">
+                            <p><b>Date</b></p>
+                            <p>24 December 2023</p>
+                        </div>
+                    </div>
+                    <div class="std_data_table">
+                        <div class="std_data_table_data">
+                            <p><b>Name</b></p>
+                            <p>{{std_data.0.fname}} {{std_data.0.lname}}</p>
+                        </div>
+                        <div class="std_data_table_data">
+                            <p><b>Day</b></p>
+                            <p>Sunday</p>
+                        </div>
+                    </div>
+                    <div class="std_data_table">
+                        <div class="std_data_table_data">
+                            <p><b>Exam Title</b></p>
+                            <p>SMS Exam</p>
+                        </div>
+                        <div class="std_data_table_data">
+                            <p><b>Time</b></p>
+                            <p>12:00 PM (11:30 AM Gate Close)</p>
+                        </div>
+                    </div>
+                    <div class="std_data_table">
+                        <div class="std_data_table_data">
+                            <p><b>Father Name</b></p>
+                            <p>{{std_data.0.father_name}}</p>
+                        </div>
+                        <div class="std_data_table_data">
+                            <p><b>Intstitute Contact</b></p>
+                            <p>9696357798</p>
+                        </div>
+                    </div>
+                    <div class="std_data_table_data">
+                        <p><b>Examination Centre</b></p>
+                        <p>Kisan Post Graduate College, Bahraich (U.P.)</p>
+                    </div>
+                    <div class="std_data_table_data">
+                        <p><b>Required ID</b></p>
+                        <p>Aadhaar Card</p>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <img src="/media/{{std_data.0.img}}/" alt="" style="width: 100%;">
+                </div>
+            </div>
+            <div class="std_data_table" style="height: 100px; margin: 20px;">
+                <div style="height: 100%;">
+                    <img src="{% static 'theGurkul/sms_exam/img/director_sign/rs.jpg' %}" style="height: 95px; width: 100%;" alt="">
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <p style="font-size: 15px;">Director (Ram Suraj Gupta)</p>
+                    </div>
+                </div>
+                <div style=" height: 100%; margin-left: 5px;">
+                    <textarea style="height: 95px; background-color: #e5e5e5; width: 100%;"></textarea>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <p style="font-size: 15px;">Student Sign</p>
+                    </div>
+                </div>
+            </div>
+            <div style="margin: 20px 0px 5px 0px; display: flex; justify-content: center; align-items: center;">
+                <h5><b>Instructions to the Candidate</b></h5>
+            </div>
+            <div class="Instructions">
+                <div class="Instructions_table">
+                    <p>1</p>
+                    <p>A printed copy of this Admit Card must be presented for verification along with the original (not photocopy or scanned copy) valid
+                        photo identification proof which is mentioned above. In case of poor quality of photo on ID proof, candidate MUST bring an additional
+                        recent valid photo ID also (For example: School ID, Passport, PAN Card, Voter ID, Aadhaar Card).</p>
+                </div>
+                <div class="Instructions_table">
+                    <p>2</p>
+                    <p>Admit Card is considered to be valid only if both the photograph and signature are clear. To ensure this, print this admit card on A4
+                        sized paper.
+                        </p>
+                </div>
+                <div class="Instructions_table">
+                    <p>3</p>
+                    <p>To facilitate the verification of their identity by the centre officials, candidates must report to the examination venue at least 90
+                        minutes before the scheduled commencement of the examination.</p>
+                </div>
+                <div class="Instructions_table">
+                    <p>4</p>
+                    <p>Candidates will have to go through Photo-Registration and then be permitted to occupy their seats 60 minutes before the scheduled
+                        start of the examination.
+                        CANDIDATES WILL NOT BE ALLOWED TO ENTER EXAMINATION CENTRE 30 MINUTES AFTER START OF THE EXAM.</p>
+                </div>
+                <div class="Instructions_table">
+                    <p>5</p>
+                    <p>Candidates should NOT bring any charts/tables/papers/books/sheets into the examination hall. Scribble pad will be provided for the
+                        rough work. Before using it, candidates must write their individual name and registration number. The candidate can possess ONLY
+                        one scribble pad at any point of time. Before taking the second scribble pad, if required, the first scribble pad MUST be returned to the
+                        invigilator. At the end of the examination, the remaining scribble pad must also be returned to the invigilator.</p>
+                </div>
+                <div class="Instructions_table">
+                    <p>6</p>
+                    <p>Personal calculators, any kind of watches, wallets, mobile phones or any other electronic/communication devices are STRICTLY
+                        PROHIBITED inside the examination hall. The Gurkul authorities are not responsible for the safekeeping of candidate’s personal belongings.
+                        During the examination, candidates may be checked for possession of any of the prohibited items. If the candidate is found to possess
+                        any of the prohibited items, candidate will be debarred from the examination and/or subjected to disciplinary action, which may
+                        include ban from appearing in future examinations.</p>
+                </div>
+                <div class="Instructions_table">
+                    <p>7</p>
+                    <p>Candidates must bring their own pen, pencil, transparent water bottle and pocket size hand sanitizer. Without proper face MASK in
+                        place, the entry of the candidate in the examination center shall be PROHIBITED. MASK must be in proper position throughout
+                        candidate’s presence in the examination hall.</p>
+                </div>
+                <div class="Instructions_table">
+                    <p>7</p>
+                    <p>Candidates must bring their own pen, pencil, transparent water bottle and pocket size hand sanitizer. Without proper face MASK in
+                        place, the entry of the candidate in the examination center shall be PROHIBITED. MASK must be in proper position throughout
+                        candidate’s presence in the examination hall.</p>
+                </div>
+                <div class="Instructions_table">
+                    <p>8</p>
+                    <p> Violation of any of the above guidelines including impersonation or breaking of code of conduct for SMS exam will lead to
+                        cancellation of candidature and/or legal action</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="my-4" style="display: flex; justify-content: center;">
+        <button class="btn btn-warning" id="print_btn">Print</button>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+
+        function print_admit_card() {
+            var admit_card_content = $('#admit_card_cont')
+            var original_page_content = $('body')
+            $('body').html(admit_card_content)
+            window.print()
+            $('body').html(original_page_content)
+        }
+
+        $('#print_btn').click(function () {
+            print_admit_card()
+        })
+    })
+</script>
+{% endblock %}

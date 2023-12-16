@@ -1,0 +1,125 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %}
+Admit Card
+{% endblock %}
+
+{% block css %}
+<style>
+    /* css for msg */
+    #absoluteMsg_outer {
+      display: grid;
+      grid-template-columns: 70px 1fr 20px;
+      background-color: #bdbdbd;
+      position: fixed;
+      bottom: 2%;
+      right: 2%;
+      width: 400px;
+      align-items: center;
+      justify-items: center;
+      padding: 10px;
+      border: 2px solid red;
+      border-radius: 10px;
+      visibility: hidden;
+      z-index: 1000;
+    }
+  
+    .absoluteMsg_outer_incoming {
+      animation-name: absoluteMsg_outer_incoming;
+      animation-duration: 1s;
+    }
+  
+    @keyframes absoluteMsg_outer_incoming {
+      from {
+        right: 100%;
+      }
+  
+      to {
+        right: 2%;
+      }
+    }
+  
+    #msg_bell {
+      animation-name: msg_bell_anim;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+    }
+  
+    @keyframes msg_bell_anim {
+      from {
+        font-size: 50px;
+        color: blue;
+      }
+  
+      to {
+        font-size: 65px;
+        color: red;
+      }
+    }
+  </style>
+<style>
+.student_auth_form_cont{
+    background-color:#aeaeae; 
+    margin: 30px 0px 30px 0px; 
+    max-width: 500px; 
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid black; 
+    border-radius: 7px;
+    box-shadow: 0px 0px 20px black;
+}
+</style>
+{% endblock %}
+
+{% block active_sms_exam_admit_card %}
+active
+{% endblock %}
+
+{% block body %}
+<div id="absoluteMsg_outer">
+    <div style="height: 65px; width: 65px; display: flex; justify-content: center; align-items: center;"><i id="msg_bell"
+        class="fas fa-bell" style="color: red; font-size: 65px;"></i></div>
+    <div>
+      <p id="show_msg"></p>
+    </div>
+    <div id="hide_msg" onmouseenter="this.style.color='red';" onmouseleave="this.style.color='white';"><i
+        class="	fas fa-angle-double-right" style="font-size: 20px; cursor: pointer;"></i></div>
+  
+  </div>
+
+
+
+<div class="container">
+
+    <div>
+        <div style="display: flex; justify-content: center;align-items: center;">
+            <div class="student_auth_form_cont">
+                <div class="my-2" style="display: flex; justify-content: center;align-items: center;"><i class="fas fa-user-lock text-primary display-1"></i></div>
+                <form action="/smsExam/sms_exam_admit_card/" method="post">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <label for="mob_no" class="col-sm-2 col-form-label">Mob.</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="mob" id="mob_no" placeholder="Enter mobile number here">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="dob" class="col-sm-2 col-form-label">D.O.B.</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" name="dob" id="dob" placeholder="Enter Date of Birth here">
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: end;">
+                        <button class="btn btn-success" type="submit">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
